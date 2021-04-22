@@ -17,7 +17,6 @@ public class Peao {
 	private Dama damaVizinhaSO;
 	private Dama damaVizinhaSE;
 	
-	
 	Peao(CorPeca cor, char coluna, char linha){
 		this.cor = cor;
 		this.coluna = coluna;
@@ -32,7 +31,6 @@ public class Peao {
 		damaVizinhaSO = null;
 		damaVizinhaSE = null;
 	}
-	
 	
 	public Peao getPeaoVizinhoNE() {
 		return peaoVizinhoNE;
@@ -98,44 +96,37 @@ public class Peao {
 		this.damaVizinhaSE = damaVizinhaSE;
 	}
 	
-	
-	
 	public CorPeca getCor() {
 		return cor;
 	}
-
-
+	
 	public void setCor(CorPeca cor) {
 		this.cor = cor;
 	}
-
-
+	
 	public char getLinha() {
 		return linha;
 	}
-
-
+	
 	public void setLinha(char linha) {
 		this.linha = linha;
 	}
 
-
 	public char getColuna() {
 		return coluna;
 	}
-
 
 	public void setColuna(char coluna) {
 		this.coluna = coluna;
 	}
 
 	/** Retorna true se esse peão pode capturar alguma peça, false senão */
-	public Boolean ehPossivelCapturar() {
+	public boolean ehPossivelCapturar() {
 		return ehPossivelCapturar(Direcao.NE) || ehPossivelCapturar(Direcao.NO) || ehPossivelCapturar(Direcao.SE) || ehPossivelCapturar(Direcao.SO);
 	}
 	
 	/** Retorna true se esse peão pode capturar a peça vizinha na direção indicada, false senão */
-	public Boolean ehPossivelCapturar(Direcao dir) {
+	public boolean ehPossivelCapturar(Direcao dir) {
 		switch(dir) {
 		case NE:
 			if(peaoVizinhoNE != null && peaoVizinhoNE.getCor() != this.cor)
@@ -176,6 +167,21 @@ public class Peao {
 				if(damaVizinhaSO.temVizinho(Direcao.SO) == false && damaVizinhaSO.getLinha() > '1' && damaVizinhaSO.getColuna() > 'a')
 					return true;
 			break;
+		}
+		
+		return false;
+	}
+	
+	public boolean temVizinho(Direcao dir) {
+		switch(dir) {
+		case NE:
+			return peaoVizinhoNE != null;
+		case NO:
+			return peaoVizinhoNO != null;
+		case SE:
+			return peaoVizinhoSE != null;
+		case SO:
+			return peaoVizinhoSO != null;
 		}
 		
 		return false;
