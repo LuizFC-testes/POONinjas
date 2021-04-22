@@ -1,3 +1,5 @@
+package mc322.damas;
+
 public class Dama {
     private CorPeca cor;
     private char linha,
