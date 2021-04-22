@@ -14,6 +14,12 @@ public class Dama {
                 infDirP,
                 infEsqP;
     
+    // Propriedades
+
+    CorPeca getCor() {
+        return this.cor;
+    }
+
     char getColuna() {
         return this.coluna;
     }
@@ -29,6 +35,22 @@ public class Dama {
     void setLinha(char novaLinha) {
         this.linha = novaLinha;
     }
+
+    void atualizarVetoresDama(Dama[] supEsq, Dama[] supDir, Dama[] infDir, Dama[] infEsq) {
+        this.supEsqD = supEsq;
+        this.supDirD = supDir;
+        this.infDirD = infDir;
+        this.infEsqD = infEsq;
+    }
+
+    void atualizarVetoresPeao(Peao[] supEsq, Peao[] supDir, Peao[] infDir, Peao[] infEsq) {
+        this.supEsqP = supEsq;
+        this.supDirP = supDir;
+        this.infDirP = infDir;
+        this.infEsqP = infEsq;
+    }
+
+    // Construtor
 
     Dama(CorPeca cor, char coluna, char linha) {
         this.cor = cor;
@@ -98,6 +120,28 @@ public class Dama {
             }
         }
         return i;
+    }
+
+    boolean temVizinho(Direcao dir) {
+        Peao[] vetorDirecP;
+        Dama[] vetorDirecD;
+        if (dir == Direcao.NO) {
+            vetorDirecP = this.supEsqP;
+            vetorDirecD = this.supEsqD;
+        } else if (dir == Direcao.NE) {
+            vetorDirecP = this.supDirP;
+            vetorDirecD = this.supDirD;
+        } else if (dir == Direcao.SE) {
+            vetorDirecP = this.infDirP;
+            vetorDirecD = this.infDirD;
+        } else {
+            vetorDirecP = this.infEsqP;
+            vetorDirecD = this.infEsqD;
+        }
+        if (vetorDirecP[0] != null || vetorDirecD[0] != null) {
+            return true;
+        }
+        return false;
     }
 
 }
