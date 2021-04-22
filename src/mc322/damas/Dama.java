@@ -36,6 +36,30 @@ public class Dama {
         this.linha = novaLinha;
     }
 
+    Dama[] obterVetorDama (Direcao dir) {
+        if (dir == Direcao.NO) {
+            return supEsqD;
+        } else if (dir == Direcao.NE) {
+            return supDirD;
+        } else if (dir == Direcao.SE) {
+            return infDirD;
+        } else {
+            return infEsqD;
+        }
+    }
+
+    Peao[] obterVetorPeao (Direcao dir) {
+        if (dir == Direcao.NO) {
+            return supEsqP;
+        } else if (dir == Direcao.NE) {
+            return supDirP;
+        } else if (dir == Direcao.SE) {
+            return infDirP;
+        } else {
+            return infEsqP;
+        }
+    }
+
     void atualizarVetoresDama(Dama[] supEsq, Dama[] supDir, Dama[] infDir, Dama[] infEsq) {
         this.supEsqD = supEsq;
         this.supDirD = supDir;
@@ -96,6 +120,9 @@ public class Dama {
                 break;
             }
         }
+        if (i == (distMax - 1) && vetorDirec[i] == null) {
+            return -1;
+        }
         return i;
     }   
 
@@ -118,6 +145,9 @@ public class Dama {
             if (vetorDirec[i] != null) {
                 break;
             }
+        }
+        if (i == (distMax - 1) && vetorDirec[i] == null) {
+            return -1;
         }
         return i;
     }
@@ -142,6 +172,46 @@ public class Dama {
             return true;
         }
         return false;
+    }
+
+    boolean coresSaoIguaisPeao(Peao p) {
+        CorPeca corP = p.getCor();
+        if (cor == corP) {
+            return true;
+        }
+        return false;
+    }
+
+    boolean coresSaoIguaisDama(Dama d) {
+        CorPeca corD = d.getCor();
+        if (cor == corD) {
+            return true;
+        }
+        return false;
+    }
+        
+    Direcao procurarJogadaObrigatoriaDama() {
+        Direcao[] direcoes = {Direcao.NO, Direcao.NE, Direcao.SE, Direcao.SO};
+        int posVetor;
+        Dama[] vetorDirecD;
+        Peao[] vetorDirecP;
+        for (int i = 0; i < 4; i++) {
+            vetorDirecD = obterVetorDama(direcoes[i]);
+            posVetor = primeiraDamaNaDirecao(direcoes[i]);
+            if (posVetor >= 0 && posVetor < (vetorDirecD.length - 1)) {
+                if (vetorDirecD[posVetor + 1] == null && !coresSaoIguaisDama(vetorDirecD[posVetor])) {
+                    return direcoes[i];
+                }
+            }
+            vetorDirecP = obterVetorPeao(direcoes[i]);
+            posVetor = primeiroPeaoNaDirecao(direcoes[i]);
+            if (posVetor >= 0 && posVetor < (vetorDirecP.length - 1)) {
+                if (vetorDirecP[posVetor + 1] == null && !coresSaoIguaisPeao(vetorDirecP[posVetor])) {
+                    return direcoes[i];
+                }
+            }
+        }
+        return null;
     }
 
 }
