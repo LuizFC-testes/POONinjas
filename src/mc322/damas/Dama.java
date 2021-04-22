@@ -1,3 +1,5 @@
+package mc322.damas;
+
 public class Dama {
     private CorPeca cor;
     private char linha,
@@ -79,7 +81,7 @@ public class Dama {
 
     private int primeiroPeaoNaDirecao(Direcao dir) {
         int distMax, i;
-        Dama[] vetorDirec;
+        Peao[] vetorDirec;
         if (dir == Direcao.NO) {
             vetorDirec = supEsqP;
         } else if (dir == Direcao.NE) {
