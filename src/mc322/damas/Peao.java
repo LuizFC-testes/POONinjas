@@ -13,15 +13,6 @@ public class Peao extends Peca {
 	
 	Peao(CorPeca cor, char coluna, char linha){
 		super(cor, coluna, linha);
-		
-		peaoVizinhoNE = null;
-		peaoVizinhoNO = null;
-		peaoVizinhoSO = null;
-		peaoVizinhoSE = null;
-		damaVizinhaNE = null;
-		damaVizinhaNO = null;
-		damaVizinhaSO = null;
-		damaVizinhaSE = null;
 	}
 	
 	public Peao getPeaoVizinhoNE() {
