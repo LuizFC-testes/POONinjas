@@ -18,7 +18,7 @@ public class JogoDamas {
 	 */
 	public boolean efetuarJogada(String origem, String destino) {
 		// Verica se posições são validas
-		if(isValidPositionString(origem) && isValidPositionString(destino)) {
+		if(posicaoValida(origem) && posicaoValida(destino)) {
 			
 			// Verifica se tem peça na origem
 			if(tabuleiro.temPeca(origem)) {
@@ -60,8 +60,18 @@ public class JogoDamas {
 		System.out.println("  a b c d e f g\n");
 	}
 	
-	/** Verifica se string contem dois char, uma letra entre a-g e um numero entre 1-7 */
-	private Boolean isValidPositionString(String cmd) {
-		return cmd.matches("^[a-g][1-7]$");
+	/** Verifica se string contem uma posição valida do tabuleiro */
+	private Boolean posicaoValida(String cmd) {
+		if(cmd.matches("^[a-g][1-7]$")) {
+			char col = cmd.charAt(0);
+			char lin = cmd.charAt(1);
+			
+			if((col == 'a' || col == 'c' || col == 'e' || col == 'g') && (lin == '1' || lin == '3' || lin == '5' || lin == '7'))
+				return true;
+			
+			if((col == 'b' || col == 'd' || col == 'f' || col == 'h') && (lin == '2' || lin == '4' || lin == '6' || lin == '8'))
+				return true;
+		}
+		return false;
 	}
 }

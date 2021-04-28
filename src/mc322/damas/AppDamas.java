@@ -30,12 +30,12 @@ public class AppDamas {
 			String destino = commands[i-1].toLowerCase().split(":")[1];
 			
 			// Efetua a jogada
+			System.out.println("Source: " + origem);
+			System.out.println("Target: " + destino);
 			jogo.efetuarJogada(origem, destino);
 			
 			// Salva e imprime estado do tabuleiro após jogada
 			saida[i] = jogo.getTabuleiro();
-			System.out.println("Source: " + origem);
-			System.out.println("Target: " + destino);
 			jogo.imprimirTabuleiro();
 		}
 
