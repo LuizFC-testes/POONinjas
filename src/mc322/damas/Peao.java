@@ -1,12 +1,6 @@
 package mc322.damas;
 
-public class Peao {
-	// Cor da peça
-	private CorPeca cor;
-	
-	// Posição no tabuleiro
-	private char linha, coluna;
-	
+public class Peao extends Peca {
 	// Ponteiros para vizinhos 
 	private Peao peaoVizinhoNE;
 	private Peao peaoVizinhoNO;
@@ -18,9 +12,7 @@ public class Peao {
 	private Dama damaVizinhaSE;
 	
 	Peao(CorPeca cor, char coluna, char linha){
-		this.cor = cor;
-		this.coluna = coluna;
-		this.linha = linha;
+		super(cor, coluna, linha);
 		
 		peaoVizinhoNE = null;
 		peaoVizinhoNO = null;

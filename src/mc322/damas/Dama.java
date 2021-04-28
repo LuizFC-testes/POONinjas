@@ -1,9 +1,7 @@
 package mc322.damas;
 
-public class Dama {
-    private CorPeca cor;
-    private char linha,
-                coluna;
+public class Dama extends Peca {
+	
     private Dama[] supEsqD,
                 supDirD,
                 infDirD,
@@ -14,28 +12,6 @@ public class Dama {
                 infDirP,
                 infEsqP;
     
-    // Propriedades
-
-    CorPeca getCor() {
-        return this.cor;
-    }
-
-    char getColuna() {
-        return this.coluna;
-    }
-
-    void setColuna(char novaColuna) {
-        this.coluna = novaColuna;
-    }
-
-    char getLinha() {
-        return this.linha;
-    }
-
-    void setLinha(char novaLinha) {
-        this.linha = novaLinha;
-    }
-
     Dama[] obterVetorDama (Direcao dir) {
         if (dir == Direcao.NO) {
             return supEsqD;
@@ -77,9 +53,7 @@ public class Dama {
     // Construtor
 
     Dama(CorPeca cor, char coluna, char linha) {
-        this.cor = cor;
-        setColuna(coluna);
-        setLinha(linha);
+    	super(cor, coluna, linha);
     }
 
     // Converter posições relativas dos vetores
