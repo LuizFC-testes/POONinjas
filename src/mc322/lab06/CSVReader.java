@@ -1,4 +1,4 @@
-package mc322.damas;
+package mc322.lab06;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
