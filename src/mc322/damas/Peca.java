@@ -15,19 +15,15 @@ public class Peca {
 	
 	// Propriedades
 	public CorPeca getCor() {
-		return this.cor;
+		return cor;
 	}
 
 	public char getColuna() {
-		return this.coluna;
+		return coluna;
 	}
 
 	public char getLinha() {
-		return this.linha;
-	}
-	
-	public void setCor(CorPeca cor) {
-		this.cor = cor;
+		return linha;
 	}
 
 	public void setColuna(char novaColuna) {
@@ -37,6 +33,19 @@ public class Peca {
 	public void setLinha(char novaLinha) {
 		this.linha = novaLinha;
 	}
-	
+
+	public String toString() {
+		// Vai ser sobrescrito
+		return null;
+	}
+
+	public boolean movimentoEhPossivel(Peca[] trajetoria) {
+		// Vai ser sobrescrito
+		return false;
+	}
+
+	public Peca virarDama() {
+		return this;
+	}
 	
 }
