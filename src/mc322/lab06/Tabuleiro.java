@@ -1,5 +1,7 @@
 package mc322.lab06;
 
+import java.lang.Math;
+
 public class Tabuleiro {
 	
 	private Peca[][] tab;
@@ -117,23 +119,8 @@ public class Tabuleiro {
 	}
 
 	private int charToIndex(char c) {
-		if(c == 'a' || c == '1')
-			return 0;
-		if(c == 'b' || c == '2')
-			return 1;
-		if(c == 'c' || c == '3')
-			return 2;
-		if(c == 'd' || c == '4')
-			return 3;
-		if(c == 'e' || c == '5')
-			return 4;
-		if(c == 'f' || c == '6')
-			return 5;
-		if(c == 'g' || c == '7')
-			return 6;
-		if(c == 'h' || c == '8')
-			return 7;
-		return -1;
+		int index = (Math.abs(c-'a') > Math.abs(c-'1')) ? Math.abs(c-'1') : Math.abs(c-'a');
+		return (index < 8 && index >= 0) ? index : -1;
 	}
 	
 	/** Verifica se string contem uma posição valida do tabuleiro */
