@@ -102,14 +102,18 @@ public class Tabuleiro {
 		
 		Peca[] trajetoria = new Peca[distancia];
 		
+		for(int i = 1; i <= distancia; i++) {
+			int c = (origem.charAt(0) < destino.charAt(0)) ? i : -i;
+			int l = (origem.charAt(1) < destino.charAt(1)) ? i : -i;
+			
+			trajetoria[i-1] = getPeca((char)(origem.charAt(0) + c), (char)(origem.charAt(0) + l));
+		}
 		
-		
-		return  trajetoria;
+		return trajetoria;
 	}
 	
 	private int calcularDistancia(String origem, String destino) {
-		int dist = 
-		return 0;
+		return Math.abs(origem.charAt(0) - destino.charAt(0));
 	}
 
 	private int charToIndex(char c) {
