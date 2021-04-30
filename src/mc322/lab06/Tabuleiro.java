@@ -39,9 +39,27 @@ public class Tabuleiro {
 		pecasPretas = 12;
 		cmdDaVez = 0;
 	}
+
+	public int getPecasBrancas() {
+		return pecasBrancas;
+	}
+
+	public void setPecasBrancas(int pecasBrancas) {
+		this.pecasBrancas = pecasBrancas;
+	}
+
+	public int getPecasPretas() {
+		return pecasPretas;
+	}
+
+	public void setPecasPretas(int pecasPretas) {
+		this.pecasPretas = pecasPretas;
+	}
 	
 	public Peca getPeca(String coord) {
-		return tab[charToIndex(coord.charAt(0))][charToIndex(coord.charAt(1))];
+		char coluna = coord.charAt(0),
+			 linha = coord.charAt(1);
+		return getPeca(coluna, linha);
 	}
 	
 	public Peca getPeca(char col, char lin) {
@@ -52,15 +70,15 @@ public class Tabuleiro {
 	public void imprimirTabuleiro() {
 		String[] sTab = toString().split("\n");
 		
-		System.out.println("8 " + sTab[0]);
-		System.out.println("7 " + sTab[1]);
-		System.out.println("6 " + sTab[2]);
-		System.out.println("5 " + sTab[3]);
-		System.out.println("4 " + sTab[4]);
-		System.out.println("3 " + sTab[5]);
-		System.out.println("2 " + sTab[6]);
-		System.out.println("1 " + sTab[7]);
-		System.out.println("  a b c d e f g h\n");
+		System.out.println("8" + sTab[0]);
+		System.out.println("7" + sTab[1]);
+		System.out.println("6" + sTab[2]);
+		System.out.println("5" + sTab[3]);
+		System.out.println("4" + sTab[4]);
+		System.out.println("3" + sTab[5]);
+		System.out.println("2" + sTab[6]);
+		System.out.println("1" + sTab[7]);
+		System.out.println("  a b c d e f g h");
 	}
 	
 	public String toString() {
@@ -68,10 +86,12 @@ public class Tabuleiro {
 		
 		for(char lin = '8'; lin >= '1'; lin--) {
 			for(char col = 'a'; col <= 'h'; col++) {
-				if(getPeca(col,lin) == null)
-					s += "- ";
-				else
-					s += getPeca(col,lin).toString() + " ";
+				s += " ";
+				if(getPeca(col,lin) == null) {
+					s += "-";
+				} else {
+					s += getPeca(col,lin).toString();
+				}
 			}
 			s += "\n";
 		}
@@ -79,39 +99,59 @@ public class Tabuleiro {
 		return s;
 	}
 
-	public boolean solicitaMovimento() {
+	public void capturarPecasNoCaminho(String origem, String destino) {
+		String coord;
+		for (int i = 0; i < calcularDistancia(origem, destino) - 1; i++) {
+			coord = obterPosicao(origem, destino, i);
+			if (getPeca(coord) != null) {
+				pecasBrancas -= (getPeca(coord).getCor() == CorPeca.BRANCA) ? 1 : 0;
+				pecasPretas -= (getPeca(coord).getCor() == CorPeca.PRETA) ? 1 : 0;
+			}
+			tab[coord.charAt(0)-'a'][coord.charAt(1)-'1'] = null;
+		}
+	}
+
+	public void solicitaMovimento() {
 		
 		if(cmdDaVez >= controle.requestCommands().length)
-			return false;
+			return ;
 		
 		String origem = controle.requestCommands()[cmdDaVez].split(":")[0];
 		String destino = controle.requestCommands()[cmdDaVez].split(":")[1];
 		
 		if(posicaoValida(origem) && posicaoValida(destino)) {
-			if(getPeca(origem).movimentoEhPossivel(gerarTrajetoria(origem, destino))) {
-				tab[charToIndex(destino.charAt(0))][charToIndex(destino.charAt(1))] = getPeca(origem);
-				tab[charToIndex(origem.charAt(0))][charToIndex(origem.charAt(1))] = null;
+			if (Math.abs(destino.charAt(0) - origem.charAt(0)) == Math.abs(destino.charAt(1) - origem.charAt(1))) { 
+				if(getPeca(origem).movimentoEhPossivel(gerarTrajetoria(origem, destino))) {
+					tab[charToIndex(destino.charAt(0))][charToIndex(destino.charAt(1))] = getPeca(origem);
+					tab[charToIndex(origem.charAt(0))][charToIndex(origem.charAt(1))] = null;
+					capturarPecasNoCaminho(origem, destino);
+				}
 			}
 		}
-		
 		cmdDaVez++;
-		
-		return false;
+	}
+
+	private String obterPosicao(String origem, String destino, int posRelTraj) {
+		char coluna = (char)(origem.charAt(0) + 1),
+			 linha = (char)(origem.charAt(1) + 1);
+		int c = (origem.charAt(0) < destino.charAt(0)) ? posRelTraj : -posRelTraj,
+			l = (origem.charAt(1) < destino.charAt(1)) ? posRelTraj : -posRelTraj;
+		linha = (char)(linha + l);
+		coluna = (char)(coluna + c);
+		return "" + coluna + linha;
 	}
 	
 	private Peca[] gerarTrajetoria(String origem, String destino) {
 		int distancia = calcularDistancia(origem, destino);
-		
 		Peca[] trajetoria = new Peca[distancia];
-		
-		
-		
-		return  trajetoria;
+		for(int i = 1; i <= distancia; i++) {
+			trajetoria[i-1] = getPeca(obterPosicao(origem, destino, i));
+		}
+		return trajetoria;
 	}
 	
 	private int calcularDistancia(String origem, String destino) {
-		int dist = 
-		return 0;
+		return Math.abs(origem.charAt(0) - destino.charAt(0));
 	}
 
 	private int charToIndex(char c) {
@@ -119,22 +159,20 @@ public class Tabuleiro {
 		return (index < 8 && index >= 0) ? index : -1;
 	}
 	
-	/** Verifica se string contem uma posição valida do tabuleiro */
+	/** Verifica se string contem uma posição valida para posicionamento de peças no tabuleiro */
+
 	private Boolean posicaoValida(char col, char lin) {
-		return posicaoValida("" + col + lin);
-	}
-	
-	private Boolean posicaoValida(String cmd) {
+		String cmd = "" + col + lin;
 		if(cmd.matches("^[a-h][1-8]$")) {
-			char col = cmd.charAt(0);
-			char lin = cmd.charAt(1);
-			
-			if((col == 'a' || col == 'c' || col == 'e' || col == 'g') && (lin == '1' || lin == '3' || lin == '5' || lin == '7'))
-				return true;
-			
-			if((col == 'b' || col == 'd' || col == 'f' || col == 'h') && (lin == '2' || lin == '4' || lin == '6' || lin == '8'))
-				return true;
+			int pos = (lin - '1')*8 + (col - 'a');
+			return ((lin - '1')%2 == 0) ^ (pos%2 == 0);
 		}
 		return false;
+	}
+
+	private Boolean posicaoValida(String pos) {
+		char coluna = pos.charAt(0),
+			 linha = pos.charAt(1);
+		return posicaoValida(coluna, linha);
 	}
 }
