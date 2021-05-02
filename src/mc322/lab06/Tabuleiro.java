@@ -12,8 +12,8 @@ public class Tabuleiro {
 	
 	public Tabuleiro(String dataSource, String dataExport) {
 		controle = new CSVHandling();
-//		controle.setDataSource(dataSource);
-//		controle.setDataExport(dataExport);
+		controle.setDataSource(dataSource);
+		controle.setDataExport(dataExport);
 		
 		tab = new Peca[8][8];
 		
@@ -78,10 +78,58 @@ public class Tabuleiro {
 		
 		return s;
 	}
+	
+	public String[] rodarComandos() {
+		String [] saida = new String[controle.requestCommands().length+1];
+		String [] state = new String[64];
+		
+		int i = 0;
+		boolean erro = false;
+		
+		System.out.println("Tabuleiro inicial:");
+		imprimirTabuleiro();
+		saida[i] = toString();
+		i++;
+		
+		while(!jogoAcabou() && !erro) {
+			String origem = controle.requestCommands()[cmdDaVez].split(":")[0];
+			String destino = controle.requestCommands()[cmdDaVez].split(":")[1];
+			
+			if(solicitaMovimento()) {
+				System.out.println("Source: " + origem);
+				System.out.println("Target: " + destino);
+				imprimirTabuleiro();
+				
+				saida[i] = toString();
+				i++;
+			}
+			else
+				erro = true;
+		}
+		
+		if(erro) {
+			System.out.println("Movimento invalido");
+			saida[i] = "Erro";
+			state[0] = "Erro";
+			controle.exportState(state);
+		}
+		else {
+			int j = 0;
+			for(char col = 'a'; col <= 'h'; col++) {
+				for(char lin = '1'; lin <= '8'; lin++) {
+					state[j] = "" + col + lin + ((getPeca(col,lin)==null) ? "_" : getPeca(col,lin).toString());
+					j++;
+				}
+			}
+			controle.exportState(state);
+		}
+		
+		return saida;
+	}
 
 	public boolean solicitaMovimento() {
 		
-		if(cmdDaVez >= controle.requestCommands().length)
+		if(jogoAcabou())
 			return false;
 		
 		String origem = controle.requestCommands()[cmdDaVez].split(":")[0];
@@ -94,7 +142,7 @@ public class Tabuleiro {
 					
 					// Caso houve capturas, remove peças do tabuleiro
 					for(int i = 0; i < trajetoria.length-1; i++) {
-						if(trajetoria[i] != null)
+						if(trajetoria[i] != null) {
 						
 							if(trajetoria[i].getCor() == CorPeca.BRANCA)
 								pecasBrancas--;
@@ -102,12 +150,14 @@ public class Tabuleiro {
 								pecasPretas--;
 						
 							tab[charToIndex(trajetoria[i].getColuna())][charToIndex(trajetoria[i].getLinha())] = null;
-							
+						}
 					}
 					
 					// Atualiza posição da peça no tabuleiro
 					tab[charToIndex(destino.charAt(0))][charToIndex(destino.charAt(1))] = getPeca(origem);
 					tab[charToIndex(origem.charAt(0))][charToIndex(origem.charAt(1))] = null;
+					getPeca(destino).setColuna(destino.charAt(0));
+					getPeca(destino).setLinha(destino.charAt(1));
 					
 					// Verifica se peça virou dama
 					if(destino.charAt(1) == '8' && getPeca(destino).getCor() == CorPeca.BRANCA)
@@ -115,6 +165,9 @@ public class Tabuleiro {
 					
 					if(destino.charAt(1) == '1' && getPeca(destino).getCor() == CorPeca.PRETA)
 						tab[charToIndex(destino.charAt(0))][charToIndex(destino.charAt(1))] = getPeca(destino).virarDama();
+					
+					cmdDaVez++;
+					return true;
 				}
 			}
 		}
@@ -137,7 +190,7 @@ public class Tabuleiro {
 			int c = (origem.charAt(0) < destino.charAt(0)) ? i : -i;
 			int l = (origem.charAt(1) < destino.charAt(1)) ? i : -i;
 			
-			trajetoria[i-1] = getPeca((char)(origem.charAt(0) + c), (char)(origem.charAt(0) + l));
+			trajetoria[i-1] = getPeca((char)(origem.charAt(0) + c), (char)(origem.charAt(1) + l));
 		}
 		
 		return trajetoria;
@@ -170,8 +223,12 @@ public class Tabuleiro {
 		}
 		return false;
 	}
-
-	public int totalJogadas() {
-		return controle.requestCommands().length;
+	
+	private boolean jogoAcabou() {
+		boolean temPecas = pecasBrancas > 0 && pecasPretas > 0;
+		boolean temComandos = cmdDaVez < controle.requestCommands().length;
+		return !temPecas || !temComandos;
 	}
+
+
 }
