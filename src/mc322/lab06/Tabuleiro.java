@@ -95,7 +95,14 @@ public class Tabuleiro {
 					// Caso houve capturas, remove peças do tabuleiro
 					for(int i = 0; i < trajetoria.length-1; i++) {
 						if(trajetoria[i] != null)
+						
+							if(trajetoria[i].getCor() == CorPeca.BRANCA)
+								pecasBrancas--;
+							else
+								pecasPretas--;
+						
 							tab[charToIndex(trajetoria[i].getColuna())][charToIndex(trajetoria[i].getLinha())] = null;
+							
 					}
 					
 					// Atualiza posição da peça no tabuleiro
