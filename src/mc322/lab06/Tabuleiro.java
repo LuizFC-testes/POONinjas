@@ -88,15 +88,37 @@ public class Tabuleiro {
 		String destino = controle.requestCommands()[cmdDaVez].split(":")[1];
 		
 		if(posicaoValida(origem) && posicaoValida(destino)) {
-			if(getPeca(origem).movimentoEhPossivel(gerarTrajetoria(origem, destino))) {
-				tab[charToIndex(destino.charAt(0))][charToIndex(destino.charAt(1))] = getPeca(origem);
-				tab[charToIndex(origem.charAt(0))][charToIndex(origem.charAt(1))] = null;
+			if(mesmaDiagonal(origem, destino)) {
+				Peca[] trajetoria = gerarTrajetoria(origem, destino);
+				if(getPeca(origem).movimentoEhPossivel(trajetoria)) {
+					
+					// Caso houve capturas, remove peças do tabuleiro
+					for(int i = 0; i < trajetoria.length-1; i++) {
+						if(trajetoria[i] != null)
+							tab[charToIndex(trajetoria[i].getColuna())][charToIndex(trajetoria[i].getLinha())] = null;
+					}
+					
+					// Atualiza posição da peça no tabuleiro
+					tab[charToIndex(destino.charAt(0))][charToIndex(destino.charAt(1))] = getPeca(origem);
+					tab[charToIndex(origem.charAt(0))][charToIndex(origem.charAt(1))] = null;
+					
+					// Verifica se peça virou dama
+					if(destino.charAt(1) == '8' && getPeca(destino).getCor() == CorPeca.BRANCA)
+						tab[charToIndex(destino.charAt(0))][charToIndex(destino.charAt(1))] = getPeca(destino).virarDama();
+					
+					if(destino.charAt(1) == '1' && getPeca(destino).getCor() == CorPeca.PRETA)
+						tab[charToIndex(destino.charAt(0))][charToIndex(destino.charAt(1))] = getPeca(destino).virarDama();
+				}
 			}
 		}
 		
 		cmdDaVez++;
 		
 		return false;
+	}
+	
+	private boolean mesmaDiagonal(String origem, String destino) {
+		return Math.abs(origem.charAt(0)-destino.charAt(0)) == Math.abs(origem.charAt(1)-destino.charAt(1));
 	}
 	
 	private Peca[] gerarTrajetoria(String origem, String destino) {
@@ -140,5 +162,9 @@ public class Tabuleiro {
 				return true;
 		}
 		return false;
+	}
+
+	public int totalJogadas() {
+		return controle.requestCommands().length;
 	}
 }
