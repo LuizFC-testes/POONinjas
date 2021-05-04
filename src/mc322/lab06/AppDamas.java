@@ -6,7 +6,7 @@ public class AppDamas {
 		if(args.length != 2)
 			System.out.println("Número incorreto de argumentos");
 		
-		String[] jogo = executaJogo(args[0],args[1]);
+		String[] jogo = executaJogo(args[0], args[1]);
 	}
 	
 	static String[] executaJogo(String fileSource, String fileExport) {

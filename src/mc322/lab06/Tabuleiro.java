@@ -71,10 +71,12 @@ public class Tabuleiro {
 		
 		for(char lin = '8'; lin >= '1'; lin--) {
 			for(char col = 'a'; col <= 'h'; col++) {
-				if(getPeca(col,lin) == null)
-					s += "- ";
-				else
-					s += getPeca(col,lin).toString() + " ";
+				s += " ";
+				if(getPeca(col,lin) == null) {
+					s += "-";
+				} else {
+					s += getPeca(col,lin).toString();
+				}
 			}
 			s += "\n";
 		}
@@ -114,18 +116,17 @@ public class Tabuleiro {
 				
 				saida[i] = toString();
 				i++;
-			}
-			else
+			} else {
 				erro = true;
+			}
 		}
 		
 		if(erro) {
 			System.out.println("Movimento invalido");
-			saida[i] = "Erro";
+			saida[i] = "Erro"; // Permite uppercase?
 			state[0] = "Erro";
 			controle.exportState(state);
-		}
-		else {
+		} else {
 			int j = 0;
 			for(char col = 'a'; col <= 'h'; col++) {
 				for(char lin = '1'; lin <= '8'; lin++) {
@@ -145,8 +146,9 @@ public class Tabuleiro {
 	 */
 	public boolean solicitaMovimento() {
 		// Verifica se jogo acabou por falta de peças ou jogadas
-		if(jogoAcabou())
+		if(jogoAcabou()) {
 			return false;
+		}
 		
 		String origem = controle.requestCommands()[cmdDaVez].split(":")[0];
 		String destino = controle.requestCommands()[cmdDaVez].split(":")[1];
@@ -168,11 +170,11 @@ public class Tabuleiro {
 						if(trajetoria[i] != null) {
 						
 							// Atualiza contagem de peças
-							if(trajetoria[i].getCor() == CorPeca.BRANCA)
+							if(trajetoria[i].getCor() == CorPeca.BRANCA) {
 								pecasBrancas--;
-							else
+							} else {
 								pecasPretas--;
-						
+							}
 							// Exclui peça do tabuleiro
 							tab[charToIndex(trajetoria[i].getColuna())][charToIndex(trajetoria[i].getLinha())] = null;
 						}
