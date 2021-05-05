@@ -89,7 +89,6 @@ public class Tabuleiro {
 		// Vetor de strings para retorno da função
 		String [] saida = new String[controle.requestCommands().length+1];
 		
-		//int i = 0;
 		boolean erro = false;
 		
 		// Estado inicial do tabuleiro
@@ -99,7 +98,6 @@ public class Tabuleiro {
 		
 		// Execução das jogadas
 		while(!jogoAcabou() && !erro) {
-			//i++;
 			String origem = controle.requestCommands()[cmdDaVez].split(":")[0];
 			String destino = controle.requestCommands()[cmdDaVez].split(":")[1];
 			
@@ -118,11 +116,13 @@ public class Tabuleiro {
 		return exportarArquivo(erro, saida);
 	}
 
+	/********************* Métodos privados ************************/
+
 	/**
 	 * Executa a proxima jogada
 	 * @return true se a jogada foi executadam false senão
 	 */
-	public boolean solicitaMovimento() { //Pq public?
+	private boolean solicitaMovimento() {
 		// Verifica se jogo acabou por falta de peças ou jogadas
 		if(jogoAcabou()) {
 			return false;
@@ -180,8 +180,6 @@ public class Tabuleiro {
 		cmdDaVez++;
 		return false;
 	}
-	
-	/********************* Métodos privados ************************/
 	
 	private Peca getPeca(String coord) {
 		return getPeca(coord.charAt(0), coord.charAt(1));
