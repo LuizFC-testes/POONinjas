@@ -23,18 +23,27 @@ public class Peao extends Peca {
 	public boolean movimentoEhPossivel(Peca[] trajetoria) {
 		int distancia = trajetoria.length;
 
-		if (distancia == 2) {
-			if (trajetoria[0] != null && trajetoria[1] == null) {
-				if (trajetoria[0].getCor() != cor) {
-					return true;
+		if(trajetoria[distancia-1] != null) {
+			return false;
+		}
+		
+		boolean captura = true;
+		boolean ehPossivel = true;
+		
+		for(int i = distancia-2; i >= 0 && ehPossivel; i--) {
+			if(captura) {
+				if(trajetoria[i] == null) {
+					ehPossivel = false;
 				}
-			}
-		} else if (distancia == 1) {
-			if (trajetoria[0] == null) {
-				return true;
+				captura = false;
+			} else {
+				if(trajetoria[i] != null && trajetoria[i].getCor() != this.cor) {
+					ehPossivel = false;
+				}
+				captura = true;
 			}
 		}
-		return false;
+		
+		return ehPossivel;
 	}
-	
 }
