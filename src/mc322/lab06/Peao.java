@@ -27,20 +27,17 @@ public class Peao extends Peca {
 			return false;
 		}
 		
-		boolean captura = true;
 		boolean ehPossivel = true;
 		
-		for(int i = distancia-2; i >= 0 && ehPossivel; i--) {
-			if(captura) {
+		for(int i = 0; i <= distancia-2 && ehPossivel; i++) {
+			if(i%2 == 0) {
 				if(trajetoria[i] == null) {
 					ehPossivel = false;
 				}
-				captura = false;
 			} else {
 				if(trajetoria[i] != null && trajetoria[i].getCor() != this.cor) {
 					ehPossivel = false;
 				}
-				captura = true;
 			}
 		}
 		
