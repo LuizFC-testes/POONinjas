@@ -50,15 +50,9 @@ public class Tabuleiro {
 	 */
 	public void imprimirTabuleiro() {
 		String[] sTab = toString().split("\n");
-		
-		System.out.println("8 " + sTab[0]);
-		System.out.println("7 " + sTab[1]);
-		System.out.println("6 " + sTab[2]);
-		System.out.println("5 " + sTab[3]);
-		System.out.println("4 " + sTab[4]);
-		System.out.println("3 " + sTab[5]);
-		System.out.println("2 " + sTab[6]);
-		System.out.println("1 " + sTab[7]);
+		for (int i = 0; i < 8; i++) {
+			System.out.println((8-i) + " " + sTab[i]);
+		}
 		System.out.println("  a b c d e f g h\n");
 	}
 	
