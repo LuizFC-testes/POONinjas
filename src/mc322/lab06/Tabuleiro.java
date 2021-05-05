@@ -261,7 +261,7 @@ public class Tabuleiro {
 		return posicaoValida("" + col + lin);
 	}
 	
-	private Boolean posicaoValida(String cmd) {
+	private Boolean posicaoValida(String cmd) { // Sugestão de otimização no branch "Luiz"
 		if(cmd.matches("^[a-h][1-8]$")) {
 			char col = cmd.charAt(0);
 			char lin = cmd.charAt(1);
