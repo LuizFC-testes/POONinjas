@@ -263,8 +263,8 @@ public class Tabuleiro {
 	private Boolean posicaoValida(char col, char lin) {
 		String cmd = "" + col + lin;
 		if(cmd.matches("^[a-h][1-8]$")) {
-			int pos = (lin - '1')*8 + (col - 'a');
-			return ((lin - '1')%2 == 0) ^ (pos%2 == 0);
+			int pos = ('8' - lin)*8 + (col - 'a');
+			return !(((lin - '1')%2 == 0) ^ (pos%2 == 0));
 		}
 		return false;
 	}
