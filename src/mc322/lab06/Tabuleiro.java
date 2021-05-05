@@ -261,21 +261,17 @@ public class Tabuleiro {
 	 * Verifica se a string contem uma posição valida do tabuleiro
 	 */
 	private Boolean posicaoValida(char col, char lin) {
-		return posicaoValida("" + col + lin);
-	}
-	
-	private Boolean posicaoValida(String cmd) { // Sugestão de otimização no branch "Luiz"
+		String cmd = "" + col + lin;
 		if(cmd.matches("^[a-h][1-8]$")) {
-			char col = cmd.charAt(0);
-			char lin = cmd.charAt(1);
-			
-			if((col == 'a' || col == 'c' || col == 'e' || col == 'g') && (lin == '1' || lin == '3' || lin == '5' || lin == '7'))
-				return true;
-			
-			if((col == 'b' || col == 'd' || col == 'f' || col == 'h') && (lin == '2' || lin == '4' || lin == '6' || lin == '8'))
-				return true;
+			int pos = (lin - '1')*8 + (col - 'a');
+			return ((lin - '1')%2 == 0) ^ (pos%2 == 0);
 		}
 		return false;
+	}
+
+	private Boolean posicaoValida(String pos) {
+		return posicaoValida(pos.charAt(0), pos.charAt(1));
+		}
 	}
 	
 	
