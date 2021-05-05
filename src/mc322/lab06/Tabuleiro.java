@@ -144,7 +144,7 @@ public class Tabuleiro {
 	 * Executa a proxima jogada
 	 * @return true se a jogada foi executadam false senão
 	 */
-	public boolean solicitaMovimento() {
+	public boolean solicitaMovimento() { //Pq public?
 		// Verifica se jogo acabou por falta de peças ou jogadas
 		if(jogoAcabou()) {
 			return false;
@@ -206,7 +206,7 @@ public class Tabuleiro {
 	/********************* Métodos privados ************************/
 	
 	private Peca getPeca(String coord) {
-		return tab[charToIndex(coord.charAt(0))][charToIndex(coord.charAt(1))];
+		return getPeca(coord.charAt(0), coord.charAt(1));
 	}
 	
 	private Peca getPeca(char col, char lin) {
