@@ -1,7 +1,10 @@
 package mc322.lab06;
 
 import java.lang.Math;
-
+/**
+ * @author João Victor Matoso
+ * @author Luiz Felipe Cezar
+ */
 public class Tabuleiro {
 	/** Matriz de representação do tabuleiro */
 	private Peca[][] tab;

@@ -33,9 +33,11 @@ public class Peao extends Peca {
 			if(i%2 == 0) {
 				if(trajetoria[i] == null) {
 					ehPossivel = false;
+				} else if(trajetoria[i].getCor() == this.cor) {
+					ehPossivel = false;
 				}
 			} else {
-				if(trajetoria[i] != null && trajetoria[i].getCor() != this.cor) {
+				if(trajetoria[i] != null) {
 					ehPossivel = false;
 				}
 			}
