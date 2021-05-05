@@ -119,7 +119,6 @@ public class Tabuleiro {
 			System.out.println("Movimento invalido");
 			saida[cmdDaVez] = "Erro"; // Permite uppercase?
 			state[0] = "Erro";
-			controle.exportState(state);
 		} else {
 			int j = 0;
 			for(char col = 'a'; col <= 'h'; col++) {
@@ -128,9 +127,8 @@ public class Tabuleiro {
 					j++;
 				}
 			}
-			controle.exportState(state);
 		}
-		
+		controle.exportState(state);
 		return saida;
 	}
 
