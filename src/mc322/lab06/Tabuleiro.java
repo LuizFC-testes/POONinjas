@@ -90,7 +90,7 @@ public class Tabuleiro {
 		String [] saida = new String[controle.requestCommands().length+1];
 		
 		// Vetor de strings que sera escrito no arquivo de saida
-		String [] state = new String[64];
+		String [] state;
 		
 		//int i = 0;
 		boolean erro = false;
@@ -106,10 +106,10 @@ public class Tabuleiro {
 			String origem = controle.requestCommands()[cmdDaVez].split(":")[0];
 			String destino = controle.requestCommands()[cmdDaVez].split(":")[1];
 			
+			System.out.println("Source: " + origem);
+			System.out.println("Target: " + destino);
 			if(solicitaMovimento()) {
 				//Aumentou o cmdDaVez
-				System.out.println("Source: " + origem);
-				System.out.println("Target: " + destino);
 				imprimirTabuleiro();
 				
 				saida[cmdDaVez] = toString();
@@ -121,8 +121,10 @@ public class Tabuleiro {
 		if(erro) {
 			System.out.println("Movimento invalido");
 			saida[cmdDaVez] = "Erro"; // Permite uppercase?
+			state = new String[1];
 			state[0] = "Erro";
 		} else {
+			state = new String[64];
 			int j = 0;
 			for(char col = 'a'; col <= 'h'; col++) {
 				for(char lin = '1'; lin <= '8'; lin++) {
