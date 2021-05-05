@@ -79,7 +79,7 @@ public class Tabuleiro {
 		}
 		return s;
 	}
-	
+
 	/**
 	 * Executa todos as jogadas do arquivo de entradam, imprime no console resultados
 	 * intermediarios e escreve o estado final do tabuleiro no arquivo de saida
@@ -88,9 +88,6 @@ public class Tabuleiro {
 	public String[] rodarComandos() {
 		// Vetor de strings para retorno da função
 		String [] saida = new String[controle.requestCommands().length+1];
-		
-		// Vetor de strings que sera escrito no arquivo de saida
-		String [] state;
 		
 		//int i = 0;
 		boolean erro = false;
@@ -118,23 +115,7 @@ public class Tabuleiro {
 			}
 		}
 		
-		if(erro) {
-			System.out.println("Movimento invalido");
-			saida[cmdDaVez] = "Erro"; // Permite uppercase?
-			state = new String[1];
-			state[0] = "Erro";
-		} else {
-			state = new String[64];
-			int j = 0;
-			for(char col = 'a'; col <= 'h'; col++) {
-				for(char lin = '1'; lin <= '8'; lin++) {
-					state[j] = "" + col + lin + ((getPeca(col,lin)==null) ? "_" : getPeca(col,lin).toString());
-					j++;
-				}
-			}
-		}
-		controle.exportState(state);
-		return saida;
+		return exportarArquivo(erro, saida);
 	}
 
 	/**
@@ -286,5 +267,25 @@ public class Tabuleiro {
 		return !temPecas || !temComandos;
 	}
 
-
+	private String[] exportarArquivo(boolean erro, String[] saida) {
+		// Vetor de strings que sera escrito no arquivo de saida
+		String[] state;
+		if(erro) {
+			System.out.println("Movimento invalido");
+			saida[cmdDaVez] = "erro";
+			state = new String[1];
+			state[0] = "erro";
+		} else {
+			state = new String[64];
+			int j = 0;
+			for(char col = 'a'; col <= 'h'; col++) {
+				for(char lin = '1'; lin <= '8'; lin++) {
+					state[j] = "" + col + lin + ((getPeca(col,lin)==null) ? "_" : getPeca(col,lin).toString());
+					j++;
+				}
+			}
+		}
+		controle.exportState(state);
+		return saida;
+	}
 }
