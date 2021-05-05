@@ -65,12 +65,12 @@ public class Tabuleiro {
 		
 		for(char lin = '8'; lin >= '1'; lin--) {
 			for(char col = 'a'; col <= 'h'; col++) {
-				s += " ";
 				if(getPeca(col,lin) == null) {
 					s += "-";
 				} else {
 					s += getPeca(col,lin).toString();
 				}
+				s += " ";
 			}
 			s += "\n";
 		}
