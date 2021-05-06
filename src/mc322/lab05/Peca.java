@@ -57,6 +57,7 @@ public class Peca {
 	}
 
 	public Peca virarDama() {
+		// Sobrescrito apenas para os peões
 		return this;
 	}
 	
