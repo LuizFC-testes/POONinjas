@@ -1,5 +1,9 @@
 package mc322.lab05;
 
+/**
+ * @author João Victor Matoso
+ * @author Luiz Felipe Cezar
+ */
 public class Peca {
 	/** Cor da peça */
 	protected CorPeca cor;
@@ -7,12 +11,14 @@ public class Peca {
 	/** Posição no tabuleiro */
 	protected char linha, coluna;
 
+	/** Construtor */
 	Peca(CorPeca cor, char coluna, char linha){
 		this.cor = cor;
 		this.coluna = coluna;
 		this.linha = linha;
 	}
 	
+	/****************** Metodos públicos *********************/
 	// Propriedades
 	public CorPeca getCor() {
 		return cor;
@@ -39,6 +45,12 @@ public class Peca {
 		return null;
 	}
 
+	/**
+	 * Dada uma trajetoria com o caminho que uma peça passará,
+	 * decide se o movimento é realizavel ou não
+	 * @param trajetoria - array de peças com a trajetória do movimento
+	 * @return true se é possível, false se não é possível
+	 */
 	public boolean movimentoEhPossivel(Peca[] trajetoria) {
 		// Vai ser sobrescrito
 		return false;

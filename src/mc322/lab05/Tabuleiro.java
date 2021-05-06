@@ -265,9 +265,14 @@ public class Tabuleiro {
 		return !temPecas || !temComandos;
 	}
 
+	/**
+	 * Exporta o conteudo da string saida, no arquivo especificado no atributo objeto controle.
+	 * @return vetor de strings que foram impressas no arquivo de saída
+	 */
 	private String[] exportarArquivo(boolean erro, String[] saida) {
 		// Vetor de strings que sera escrito no arquivo de saida
 		String[] state;
+		
 		if(erro) {
 			System.out.println("Movimento invalido");
 			saida[cmdDaVez] = "erro";

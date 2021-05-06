@@ -1,11 +1,19 @@
 package mc322.lab05;
 
+/**
+ * @author João Victor Matoso
+ * @author Luiz Felipe Cezar
+ */
 public class Dama extends Peca {
-    
+    /** Construtor */
     Dama(CorPeca cor, char coluna, char linha) {
         super(cor, coluna, linha);
     }
 
+    /****************** Metodos públicos *********************/
+    /**
+     * Retorna uma representação da dama dependendo de sua cor
+     */
     public String toString() {
         if (cor == CorPeca.BRANCA) {
             return "B";
@@ -14,6 +22,12 @@ public class Dama extends Peca {
         }
     }
 
+	/**
+	 * Dada uma trajetoria com o caminho que uma peça passará,
+	 * decide se o movimento é realizavel ou não
+	 * @param trajetoria - array de peças com a trajetória do movimento
+	 * @return true se é possível, false se não é possível
+	 */
     public boolean movimentoEhPossivel(Peca[] trajetoria) {
         int distancia = trajetoria.length;
         for (int i = 0; i < distancia - 1; i++) {
