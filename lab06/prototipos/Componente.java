@@ -1,4 +1,4 @@
-public class Componente {
+public abstract class Componente {
     protected int linha;
     protected int coluna;
     protected Caverna cave;
@@ -19,57 +19,33 @@ public class Componente {
 
     // Protótipos gerais
 
-    public String toString() {
-        return "Superclasse";
-    }
+    public abstract String toString();
 
     // Protótipos Heroi
 
-    public Flecha getFlecha() {
-        return null;
-    }
+    public abstract Flecha getFlecha();
 
-    public boolean flechaEquipada() {
-        return false;
-    }
+    public abstract boolean flechaEquipada();
 
-    public Ouro getOuro() {
-        return null;
-    }
+    public abstract Ouro getOuro();
 
-    public Componente[] percepcao() {
-        return null;
-    }
+    public abstract Componente[] percepcao(); // Pode imprimir as mensagens diretamente
 
-    public boolean capturarOuro() {
-        return false;
-    }
+    public abstract boolean capturarOuro();
 
-    public void moverHeroi(Sala s) {
-        System.out.println("Superclasse");
-    }
+    public abstract void moverHeroi(Sala s);
 
-    public void disparar() {
-        System.out.println("Superclasse");
-    }
+    public abstract void disparar();
 
-    public boolean confrontarWumpus() {
-        return false;
-    }
+    public abstract boolean confrontarWumpus();
 
     // Protótipos Buraco
 
-    public void capturarHeroi(Heroi h) {
-        System.out.println("Superclasse");
-    }
+    public abstract void capturarHeroi(Heroi h);
 
     // Protótipos Wumpus
 
-    public void posicionar(Sala s) {
-        System.out.println("Superclasse");
-    }
+    public abstract void posicionar(Sala s);
 
-    public void confrontarHeroi(Heroi h) {
-        System.out.println("Superclasse");
-    }
+    public abstract void confrontarHeroi(Heroi h);
 }
