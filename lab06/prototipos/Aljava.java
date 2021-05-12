@@ -9,10 +9,12 @@ public class Aljava {
         }
     }
 
-    public void equiparFlecha() {
+    public boolean equiparFlecha() {
         if (qtdFlechas > 0) {
             flechaAtual.equipar();
+            return true;
         }
+        return false;
     }
 
     public int contarFlechas() {

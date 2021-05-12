@@ -52,9 +52,11 @@ public abstract class Componente {
 
     // Protótipos Heroi
 
-    public abstract Flecha getFlecha();
+    public abstract boolean equiparFlecha();
 
     public abstract boolean flechaEquipada();
+
+    public abstract int contarFlechas();
 
     public abstract Ouro getOuro();
 
