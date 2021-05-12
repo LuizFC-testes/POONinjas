@@ -8,6 +8,7 @@ public abstract class Monstro extends Componente{
         this.coluna = coluna;
         this.cave = cave;
         this.forca = forca;
+        gerarEfeito();
     }
 
     public int getForca() {

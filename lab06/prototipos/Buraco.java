@@ -8,7 +8,7 @@ public class Buraco extends Componente {
         super(linha, coluna, cave);
         jogador = null;
         this.prioridade = 1;
-        gerarBrisa();
+        gerarEfeito();
     }
 
     public void capturarJogador(Heroi jogador) {
@@ -22,7 +22,7 @@ public class Buraco extends Componente {
         return "B";
     }
 
-    private void gerarBrisa() {
+    private void gerarEfeito() {
         String direcoes = {"w", "a", "s", "d"};
         Brisa brisa;
         boolean moveuUltimo;

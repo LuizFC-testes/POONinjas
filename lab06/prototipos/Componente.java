@@ -92,5 +92,5 @@ public abstract class Componente {
 
     public abstract void confrontarHeroi(Heroi h);
 
-    public abstract void gerarEfeito();
+    private abstract void gerarEfeito();
 }
