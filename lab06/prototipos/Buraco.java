@@ -11,11 +11,11 @@ public class Buraco extends Componente {
         gerarEfeito();
     }
 
-    public void capturarJogador(Heroi jogador) {
+    public int capturarHeroi(Heroi jogador) {
         this.jogador = jogador;
         cave.getSala(linha, coluna).removerComponente(jogador);
         anunciar();
-        jogador.morrer();
+        return jogador.morrer();
     }
 
     public String toString() {

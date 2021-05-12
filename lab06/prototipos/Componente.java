@@ -23,7 +23,7 @@ public abstract class Componente {
         // FAZER
     }
 
-    public void mover(String wasd) {
+    public boolean mover(String wasd) {
         int novaLinha = linha, novaColuna = coluna;
         if (wasd == "w") {
             novaLinha--;
@@ -68,13 +68,13 @@ public abstract class Componente {
 
     public abstract boolean capturarTesouro();
 
-    public abstract void moverHeroi(Sala s);
+    public abstract int moverHeroi(String wasd);
 
-    public abstract void disparar();
+    public abstract int disparar();
 
-    public abstract boolean confrontarWumpus();
+    public abstract boolean confrontarMonstro(Monstro m);
 
-    public abstract void morrer();
+    public abstract int morrer();
 
     // Protótipos Tesouro
 
@@ -86,13 +86,13 @@ public abstract class Componente {
 
     // Protótipos Buraco
 
-    public abstract void capturarHeroi(Heroi h);
+    public abstract int capturarHeroi(Heroi h);
 
     // Protótipos Monstro
 
     public abstract int getForca();
 
-    public abstract void confrontarHeroi(Heroi h);
+    public abstract int confrontarHeroi(Heroi h);
 
     private abstract void gerarEfeito();
 }

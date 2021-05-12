@@ -15,12 +15,17 @@ public abstract class Monstro extends Componente{
         return forca;
     }
 
-    public void confrontarHeroi(Heroi h) {
-        // FAZER
+    public int confrontarHeroi(Heroi h) {
+        if (h.confrontarMonstro()) {
+            return morrer();
+        }
+        return h.morrer();
     }
 
-    private void morrer() {
+    private int morrer() {
         cave.getSala().removerComponente(this);
+        anularEfeito();
+        return 500;
     }
 
     private abstract void gerarEfeito();
