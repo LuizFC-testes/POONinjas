@@ -1,3 +1,5 @@
+package prototipos;
+
 import java.util.Random;
 
 public class Brisa extends Componente {

@@ -1,8 +1,10 @@
+package prototipos;
+
 public abstract class Componente {
     protected int linha;
     protected int coluna;
     protected Caverna cave;
-    protected prioridade; // A partir de 1, e, quanto menor o número, mais alta
+    protected int prioridade; // A partir de 1, e, quanto menor o número, mais alta
 
     public Componente (int linha, int coluna, Caverna cave) {
         this.linha = linha;
@@ -19,8 +21,9 @@ public abstract class Componente {
         return coluna;
     }
 
-    public void posicionar() {
-        // FAZER
+    public void atualizarCoord(int linha, int coluna) {
+        this.linha = linha;
+        this.coluna = coluna;
     }
 
     public boolean mover(String wasd) {
@@ -34,11 +37,7 @@ public abstract class Componente {
         } else {
             novaColuna++;
         }
-        boolean moveu = cave.moverComponente(this, novaLinha, novaColuna)
-        if (moveu) {
-            linha = novaLinha;
-            coluna = novaColuna;
-        }
+        boolean moveu = cave.moverComponente(this, novaLinha, novaColuna);
         return moveu;
     }
 
@@ -52,47 +51,12 @@ public abstract class Componente {
 
     // Protótipos Heroi
 
-    public abstract boolean equiparFlecha();
-
-    public abstract boolean flechaEquipada();
-
-    public abstract int contarFlechas();
-
-    public abstract Ouro getOuro();
-
-    public abstract int[] checarEspolios();
-
-    public abstract int contarFortuna();
-
-    public abstract void percepcao(); // Pode imprimir as mensagens diretamente
-
-    public abstract boolean capturarTesouro();
-
-    public abstract int moverHeroi(String wasd);
-
-    public abstract int disparar();
-
-    public abstract boolean confrontarMonstro(Monstro m);
-
-    public abstract int morrer();
-
     // Protótipos Tesouro
-
-    public abstract int getValor();
-
-    public abstract void serCapturado();
-
+    
     public abstract void anunciar();
 
     // Protótipos Buraco
 
-    public abstract int capturarHeroi(Heroi h);
-
     // Protótipos Monstro
 
-    public abstract int getForca();
-
-    public abstract int confrontarHeroi(Heroi h);
-
-    private abstract void gerarEfeito();
 }

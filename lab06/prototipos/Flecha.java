@@ -1,3 +1,5 @@
+package prototipos;
+
 public class Flecha {
     boolean equipada;
 

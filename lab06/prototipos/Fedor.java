@@ -1,3 +1,5 @@
+package prototipos;
+
 import java.util.Random;
 
 public class Fedor extends Componente {

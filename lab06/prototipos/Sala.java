@@ -1,10 +1,16 @@
+package prototipos;
+
 public class Sala {
     private boolean visivel;
-    private Componente[] componentes;
+    private int linha,
+                coluna;
+    private CompMovel[] componentes;
 
-    Sala (int maxComp) {
+    Sala (int linha, int coluna, int maxComp) {
         visivel = false;
-        componentes = new Componente[maxComp];
+        this.linha = linha;
+        this.coluna = coluna;
+        componentes = new CompMovel[maxComp];
         for (int i = 0; i < maxComp; i++) {
             componentes[i] = null;
         }
@@ -17,19 +23,20 @@ public class Sala {
     public boolean adicionarComponente(Componente c) {
         int idx = c.getPrioridade() - 1;
         if (componentes[idx] == null) {
-            componentes[idx] = c;
+            CompMovel cm = (CompMovel)c;
+            componentes[idx] = cm;
             return true;
         }
         return false;
     }
 
-    public Componente compMaisImportante() {
+    public CompMovel compMaisImportante() {
         return componentes[0];
     }
 
     public boolean removerComponente(Componente c) {
         if (c.getLinha() == linha && c.getColuna() == coluna) {
-            componentes[c.getPrioridade() - 1];
+            componentes[c.getPrioridade() - 1] = null;
             return true;
         }
         return false;

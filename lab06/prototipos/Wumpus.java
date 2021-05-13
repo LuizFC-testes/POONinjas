@@ -1,3 +1,5 @@
+package prototipos;
+
 import java.util.Random;
 
 public class Wumpus extends Monstro {
@@ -5,8 +7,8 @@ public class Wumpus extends Monstro {
         super(linha, coluna, cave, 50, 500);
     }
 
-    private void gerarEfeito() {
-        String direcoes = {"w", "a", "s", "d"};
+    protected void gerarEfeito() {
+        String[] direcoes = {"w", "a", "s", "d"};
         Fedor catinga;
         boolean moveuUltimo;
         for (int i = 0; i < 4; i++) {
@@ -19,7 +21,7 @@ public class Wumpus extends Monstro {
         }
     }
 
-    private void anularEfeito() {
+    protected void anularEfeito() {
         Fedor f = new Fedor(linha, coluna, cave);
         int priori = f.getPrioridade();
         for (int i = 0; i < 2; i++) {
@@ -49,6 +51,10 @@ public class Wumpus extends Monstro {
         } else {
             System.out.println("Wumpus agora pede pelo prato principal");
         }
+    }
+
+    public void mensagemDeMorte() {
+        System.out.println("Você matou Wumpus!");
     }
 
     public String toString() {

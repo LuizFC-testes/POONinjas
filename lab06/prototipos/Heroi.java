@@ -1,3 +1,5 @@
+package prototipos;
+
 import java.lang.Class;
 import java.util.Random;
 
@@ -38,7 +40,10 @@ public class Heroi extends Componente {
 
     public Ouro getOuro() {
         // O ouro tem o maior valor "de todos os tesouros", então fica no início
-        return mochila;
+        if (mochila != null && mochila instanceof Ouro) {
+            return (Ouro)mochila;
+        }
+        return null;
     }
 
     public int[] checarEspolios() {
@@ -46,7 +51,7 @@ public class Heroi extends Componente {
         // Depende da quantidade de tesouros diferentes
         int[] contagemEspolios = new int[tiposTesouros.length];
         Tesouro auxiliar = mochila;
-        for (int i = 0; i < numTiposTesouros; i++) {
+        for (int i = 0; i < tiposTesouros.length; i++) {
             contagemEspolios[i] = 0;
             while(auxiliar != null && auxiliar.getValor() == tiposTesouros[i].getValor()) {
                 contagemEspolios[i]++;
@@ -72,22 +77,25 @@ public class Heroi extends Componente {
     }
 
     public boolean capturarTesouro() {
-        Componente comp = cave.getSala(linha, coluna).compMaisImportante();
-        if (comp.getClass().getSuperclass == Tesouro) {
+        CompMovel comp = cave.getSala(linha, coluna).compMaisImportante();
+        if (comp instanceof Tesouro) {
+            Tesouro t = (Tesouro)comp;
             if (mochila == null) {
-                mochila = comp;
+                mochila = t;
             } else {
                 Tesouro auxiliar = mochila;
-                while (auxiliar.getProximo() != null && (auxiliar.getProximo().getValor() > comp.getValor())) {
+                while (auxiliar.getProximo() != null && (auxiliar.getProximo().getValor() > t.getValor())) {
                     auxiliar = auxiliar.getProximo();
                 }
-                comp.setProximo(auxiliar.getProximo());
-                auxiliar.setProximo(comp);
-                comp.serCapturado();
+                t.setProximo(auxiliar.getProximo());
+                auxiliar.setProximo(t);
             }
+            t.serCapturado();
             System.out.println("Você conseguiu um tesouro!");
+            return true;
         } else {
             System.out.println("Você percebe que precisa de um cochilo depois de tentar pegar um tesouro que não estava aí");
+            return false;
         }
     }
 
@@ -96,11 +104,13 @@ public class Heroi extends Componente {
         if (mover(wasd)) {
             saldo -= 15; //Checar se depende de o mov ser válido ou não
             percepcao();
-            Componente maiorP = cave.getSala(linha, coluna).compMaisImportante();
-            if (maiorP.getClass().getSuperclass() == Monstro) {
-                saldo += maiorP.confrontarHeroi(this);
-            } else if (maiorP.getClass().getSuperclass() == Buraco) {
-                saldo += maiorP.capturarHeroi();
+            CompMovel maiorP = cave.getSala(linha, coluna).compMaisImportante();
+            if (maiorP instanceof Monstro) {
+                Monstro m = (Monstro)maiorP;
+                saldo += m.confrontarHeroi(this);
+            } else if (maiorP instanceof Buraco) {
+                Buraco b = (Buraco)maiorP;
+                saldo += b.capturarHeroi(this);
             }
             if (flechaEquipada()) { //Checar se depende de o mov ser válido ou não
                 saldo += disparar();
@@ -114,6 +124,7 @@ public class Heroi extends Componente {
                 System.out.println("Você procura uma passagem secreta na parede, mas não encontra");
             }
         }
+        return saldo;
     }   
 
     public int disparar() {

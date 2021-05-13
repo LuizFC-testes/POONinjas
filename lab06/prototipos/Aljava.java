@@ -1,3 +1,5 @@
+package prototipos;
+
 public class Aljava {
     private int qtdFlechas;
     Flecha flechaAtual;

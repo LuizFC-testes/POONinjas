@@ -1,3 +1,5 @@
+package prototipos;
+
 import java.util.Random;
 
 public class Buraco extends Componente {
@@ -22,8 +24,8 @@ public class Buraco extends Componente {
         return "B";
     }
 
-    private void gerarEfeito() {
-        String direcoes = {"w", "a", "s", "d"};
+    protected void gerarEfeito() {
+        String[] direcoes = {"w", "a", "s", "d"};
         Brisa brisa;
         boolean moveuUltimo;
         for (int i = 0; i < 4; i++) {

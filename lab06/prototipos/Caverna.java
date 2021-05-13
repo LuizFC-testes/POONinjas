@@ -1,3 +1,5 @@
+package prototipos;
+
 import java.lang.Object;
 import java.util.Random;
 
@@ -10,7 +12,7 @@ public class Caverna {
         limites = new IntRange(0, qtdSalas);
         for (int i = 0; i < qtdSalas; i++) {
             for (int j = 0; j > qtdSalas; j++) {
-                mapa[i][j] = new Sala();
+                mapa[i][j] = new Sala(i, j, 4);
             }
         }
     }
@@ -23,8 +25,8 @@ public class Caverna {
         return limites;
     }
 
-    public void adicionarComponente(Componente C) {
-        int i = c.getLinha(), j  = c.getColuna;
+    public void adicionarComponente(Componente c) {
+        int i = c.getLinha(), j  = c.getColuna();
         mapa[i][j].adicionarComponente(c);
     }
 
@@ -35,13 +37,14 @@ public class Caverna {
     public boolean moverComponente(Componente c, int linha, int coluna) {
         if (limites.contains(linha) && limites.contains(coluna)) {
             removerComponente(c);
+            c.atualizarCoord(linha, coluna);
             mapa[linha][coluna].adicionarComponente(c);
             return true;
         }
         return false;
     }
 
-    public void String toString() {
+    public String toString() {
         String mapaStr = "";
         for (int i = 0; limites.contains(i); i++) {
             mapaStr = mapaStr + (i+1);
@@ -51,5 +54,6 @@ public class Caverna {
             mapaStr = mapaStr + "\n";
         }
         mapaStr = mapaStr + "  1 2 3 4";
+        return mapaStr;
     }
 }
