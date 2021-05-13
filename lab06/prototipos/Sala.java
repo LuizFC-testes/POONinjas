@@ -35,6 +35,10 @@ public class Sala {
         return false;
     }
 
+    public void removerComponente(int prioridade) {
+        componentes[prioridade - 1] = null;
+    }
+
     public void exporSala() {
         for (int i = 0; i < componentes.length; i++) {
             if (componentes[i] != null) {
