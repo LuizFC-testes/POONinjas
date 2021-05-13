@@ -15,9 +15,19 @@ public class Controle {
 		Scanner keyboard = new Scanner(System.in);
 		boolean playing = true;
 		
+		System.out.println("------- Bem-vindo ao Mundo de Wumpus! ------- ");
+		System.out.println("Tente resgatar o ouro da caverna sem ser pego pelo Wumpus.");
+		System.out.println("Insira o nome do jogador: ");
+		
+		String cmd = keyboard.nextLine();
+		
+		hero.setName(cmd);
+		
+		System.out.println("Vamos lá " + hero.getNome() + "!\nDica: a qualquer momento digite /ajuda para obter lista de comandos. Bom jogo!\n");
+		
 		while(playing) {
 			imprimirInterface();
-			String cmd = keyboard.nextLine();
+			cmd = keyboard.nextLine();
 			
 			playing = executarComando(cmd);
 		}

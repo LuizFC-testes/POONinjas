@@ -25,6 +25,11 @@ public abstract class Componente {
         // FAZER
     }
 
+	public void atualizarCoord(int linha, int coluna) {
+		this.linha = linha;
+        this.coluna = coluna;
+	}
+    
     public boolean mover(String wasd) {
         int novaLinha = linha, novaColuna = coluna;
         if (wasd == "w") {
@@ -36,11 +41,14 @@ public abstract class Componente {
         } else {
             novaColuna++;
         }
-        boolean moveu = cave.moverComponente(this, novaLinha, novaColuna)
+        
+        boolean moveu = cave.moverComponente(this, novaLinha, novaColuna);
+        
         if (moveu) {
             linha = novaLinha;
             coluna = novaColuna;
         }
+        
         return moveu;
     }
 
@@ -88,5 +96,7 @@ public abstract class Componente {
 
     public abstract int confrontarHeroi(Heroi h);
 
-    private abstract void gerarEfeito();
+    public abstract void gerarEfeito();
+
+
 }

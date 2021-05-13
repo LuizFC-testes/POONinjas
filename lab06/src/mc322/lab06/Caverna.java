@@ -1,63 +1,50 @@
 package mc322.lab06;
 
 public class Caverna {
+    private Sala[][] mapa;
 
-	private Sala[][] salas;
-	
-	public Caverna() {
-		salas = new Sala[4][4];
-		
-		for(int i = 0; i < 4; i++) {
-			for(int j = 0; j < 4; j++) {
-				salas[i][j] = new Sala();
-			}
-		}
-	}
-	
-	public Sala getSala(int linha, int coluna) {
-		return salas[linha][coluna];
-	}
-	
-	public boolean adicionarComponente(Componente c, int lin, int col) {
-		if(posicaoValida(lin, col)) {
-			return salas[lin][col].adicionarComponente(c);
-		} else {
-			return false;
-		}
-	}
-	
-	public void removerComponente(Componente c, int lin, int col) {
-		salas[lin][col].removerComponente(c);
-	}
-	
-	public boolean moverComponente(Componente c, String wasd) {
-		int lin = c.getLinha();
-		int col = c.getColuna();
-		
-		switch(wasd) {
-		case "w":
-			lin--;
-			break;
-		case "a":
-			col--;
-			break;
-		case "s":
-			lin++;
-			break;
-		case "d":
-			col++;
-			break;
-		}
-		
-		if(!posicaoValida(lin, col))
-			return false;
-		
-		if(adicionarComponente(c, c.getLinha(), c.getColuna())) {
-			removerComponente(c, c.getLinha(), c.getColuna()));
-		}
-	}
-	
-	private boolean posicaoValida(int lin, int col) {
-		return lin >= 0 && lin < 4 && col >= 0 && col < 4;
-	}
+    Caverna(int qtdSalas) {
+        mapa = new Sala[qtdSalas][qtdSalas];
+        for (int i = 0; i < qtdSalas; i++) {
+            for (int j = 0; j < qtdSalas; j++) {
+                mapa[i][j] = new Sala(i, j, 4);
+            }
+        }
+    }
+
+    public Sala getSala(int linha, int coluna) {
+        return mapa[linha][coluna];
+    }
+
+    public void adicionarComponente(Componente c) {
+        int i = c.getLinha(), j  = c.getColuna();
+        mapa[i][j].adicionarComponente(c);
+    }
+
+    public void removerComponente(Componente c) {
+        mapa[c.linha][c.coluna].removerComponente(c);
+    }
+
+    public boolean moverComponente(Componente c, int linha, int coluna) {
+        if (linha >= 0 && coluna >= 0 && linha < mapa.length && coluna < mapa[0].length) {
+            removerComponente(c);
+            c.atualizarCoord(linha, coluna);
+            mapa[linha][coluna].adicionarComponente(c);
+            return true;
+        }
+        return false;
+    }
+
+    public String toString() {
+        String mapaStr = "";
+        for (int i = 0; i < mapa.length; i++) {
+            mapaStr = mapaStr + (i+1);
+            for (int j = 0; i < mapa[0].length; j++) {
+                mapaStr = mapaStr + " " + mapa[i][j].toString();
+            }
+            mapaStr = mapaStr + "\n";
+        }
+        mapaStr = mapaStr + "  1 2 3 4";
+        return mapaStr;
+    }
 }

@@ -10,10 +10,9 @@ public class Heroi extends Componente {
     private Aljava flechas;
     private Tesouro mochila;
 
-    public Heroi(int linha, int coluna, Caverna cave, String nome) {
+    public Heroi(int linha, int coluna, Caverna cave) {
         super(linha, coluna, cave);
         this.flechas = new Aljava(1);
-        this.nome = nome;
         this.statusVivo = true;
         this.mochila = null;
         this.prioridade = 2;
@@ -21,6 +20,10 @@ public class Heroi extends Componente {
     
     public String getNome() {
     	return this.nome;
+    }
+    
+    public void setName(String nome) {
+    	this.nome = nome;
     }
     
     public boolean estaNaPorta() {
@@ -126,6 +129,7 @@ public class Heroi extends Componente {
                 System.out.println("Você procura uma passagem secreta na parede, mas não encontra");
             }
         }
+        return saldo;
     }   
 
     public int disparar() {
