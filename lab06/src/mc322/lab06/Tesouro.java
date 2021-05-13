@@ -1,3 +1,5 @@
+package mc322.lab06;
+
 public abstract class Tesouro extends Componente{
     protected int valor;
     protected Tesouro proximo; //Só é usado na mochila do herói
@@ -22,8 +24,8 @@ public abstract class Tesouro extends Componente{
     }
 
     public void serCapturado() {
-        this.linha = null;
-        this.coluna = null;
+        this.linha = -1;
+        this.coluna = -1;
     }
 
     public abstract void anunciar();

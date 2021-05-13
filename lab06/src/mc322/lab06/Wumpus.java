@@ -1,37 +1,42 @@
+package mc322.lab06;
+
 import java.util.Random;
 
 public class Wumpus extends Monstro {
+	
+	Fedor[] cheiro;
+	
     Wumpus(int linha, int coluna, Caverna cave) {
         super(linha, coluna, cave, 50, 500);
     }
 
-    private void gerarEfeito() {
-        String direcoes = {"w", "a", "s", "d"};
-        Fedor catinga;
-        boolean moveuUltimo;
-        for (int i = 0; i < 4; i++) {
-            catinga = new Fedor(linha, coluna, cave);
-            //cave.getSala(linha, coluna).adicionarComponente(catinga);
-            moveuUltimo = catinga.mover(direcoes[i]);
-        }
-        if (!moveuUltimo) {
-            cave.getSala(linha, coluna).removerComponente(catinga);
+    protected void gerarEfeito() {
+        String[] direcoes = {"w", "a", "s", "d"};
+        
+        if(cheiro != null)
+        	return;
+        else
+        	cheiro = new Fedor[4];
+        
+        for(int i = 0; i < 4; i++) {
+            cheiro[i] = new Fedor(linha, coluna, cave);
+            
+            if (!cheiro[i].mover(direcoes[i])) {
+            	cave.removerComponente(cheiro[i]);
+            	cheiro[i] = null;
+            }
         }
     }
 
-    private void anularEfeito() {
-        Fedor f = new Fedor(linha, coluna, cave);
-        int priori = f.getPrioridade();
-        for (int i = 0; i < 2; i++) {
-            if (cave.getLimites().contains(linha -1 + 2*i)) {
-                cave.getSala(linha -1 + 2*i, coluna).removerComponente(priori);
-                //remover o fedor da sala (linha -1 + 2*i, coluna)
+    public void anularEfeito() {
+    	if(cheiro == null)
+    		return;
+    	
+        for (int i = 0; i < 4; i++) {
+            if(cheiro[i] != null) {
+            	cave.removerComponente(cheiro[i]);
+            	cheiro[i] = null;
             }
-            if (cave.getLimites().contains(coluna -1 + 2*i)) {
-                cave.getSala(linha, coluna -1 + 2*i).removerComponente(priori);
-                //remover o fedor da sala (linha, coluna -1 + 2*i)
-            }
-            cave.getSala(linha, coluna).removerComponente(priori);
         }
     }
 
@@ -54,4 +59,8 @@ public class Wumpus extends Monstro {
     public String toString() {
         return "W";
     }
+
+	public void mensagemDeMorte() {
+		
+	}
 }

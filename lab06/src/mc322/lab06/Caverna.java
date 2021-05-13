@@ -26,7 +26,7 @@ public class Caverna {
     }
 
     public boolean moverComponente(Componente c, int linha, int coluna) {
-        if (linha >= 0 && coluna >= 0 && linha < mapa.length && coluna < mapa[0].length) {
+        if (posicaoValida(linha,coluna)) {
             removerComponente(c);
             c.atualizarCoord(linha, coluna);
             mapa[linha][coluna].adicionarComponente(c);
@@ -46,5 +46,9 @@ public class Caverna {
         }
         mapaStr = mapaStr + "  1 2 3 4";
         return mapaStr;
+    }
+    
+    public boolean posicaoValida(int linha, int coluna) {
+    	return linha >= 0 && coluna >= 0 && linha < mapa.length && coluna < mapa[0].length;
     }
 }

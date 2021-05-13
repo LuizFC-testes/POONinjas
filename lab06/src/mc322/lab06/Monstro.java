@@ -1,4 +1,4 @@
-import java.util.Random;
+package mc322.lab06;
 
 public abstract class Monstro extends Componente{
     protected int forca;
@@ -6,6 +6,7 @@ public abstract class Monstro extends Componente{
     protected int saque;
 
     Monstro(int linha, int coluna, Caverna cave, int forca, int saque) {
+    	super(linha, coluna, cave);
         prioridade = 1;
         this.linha = linha;
         this.coluna = coluna;
@@ -21,7 +22,7 @@ public abstract class Monstro extends Componente{
 
     public int confrontarHeroi(Heroi h) {
         anunciar();
-        if (h.confrontarMonstro()) {
+        if (h.confrontarMonstro(this)) {
             mensagemDeMorte();
             return morrer();
         }
@@ -30,20 +31,18 @@ public abstract class Monstro extends Componente{
     }
 
     private int morrer() {
-        cave.getSala().removerComponente(this);
+        cave.removerComponente(this);
         anularEfeito();
         return saque;
     }
 
-    private abstract void gerarEfeito();
+    protected abstract void gerarEfeito();
 
-    private abstract void anularEfeito();
+    public abstract void anularEfeito();
 
     public abstract void anunciar();
 
     public abstract void mensagemDeVitoria();
 
     public abstract void mensagemDeMorte();
-
-    public abstract String toString();
 }

@@ -21,10 +21,6 @@ public abstract class Componente {
         return coluna;
     }
 
-    public void posicionar() {
-        // FAZER
-    }
-
 	public void atualizarCoord(int linha, int coluna) {
 		this.linha = linha;
         this.coluna = coluna;
@@ -42,61 +38,23 @@ public abstract class Componente {
             novaColuna++;
         }
         
-        boolean moveu = cave.moverComponente(this, novaLinha, novaColuna);
-        
-        if (moveu) {
+        if (cave.moverComponente(this, novaLinha, novaColuna)) {
             linha = novaLinha;
             coluna = novaColuna;
+            return true;
         }
         
-        return moveu;
+        return false;
     }
 
     public int getPrioridade() {
         return prioridade;
     }
 
-    // Protótipos gerais
+	protected abstract void anunciar();
 
-    public abstract String toString();
-
-    // Protótipos Heroi
-
-    public abstract boolean equiparFlecha();
-
-    public abstract boolean flechaEquipada();
-
-    public abstract int contarFlechas();
-
-    public abstract Ouro getOuro();
-
-    public abstract int[] checarEspolios();
-
-    public abstract int contarFortuna();
-
-    public abstract void percepcao(); // Pode imprimir as mensagens diretamente
-
-    public abstract boolean capturarTesouro();
-
-    public abstract int moverHeroi(String wasd);
-
-    public abstract int disparar();
-
-    public abstract boolean confrontarMonstro(Monstro m);
-
-    public abstract int morrer();
-
-    // Protótipos Buraco
-
-    public abstract int capturarHeroi(Heroi h);
-
-    // Protótipos Monstro
-
-    public abstract int getForca();
-
-    public abstract int confrontarHeroi(Heroi h);
-
-    public abstract void gerarEfeito();
-
-
+	public int confrontarHeroi(Heroi heroi) {
+		return 0;
+	}
+    
 }

@@ -108,22 +108,25 @@ public class Heroi extends Componente {
 
     public int moverHeroi(String wasd) {
         int saldo = 0;
+        
         if (mover(wasd)) {
             saldo -= 15; //Checar se depende de o mov ser válido ou não
+            
             percepcao();
+            
             Componente maiorP = cave.getSala(linha, coluna).compMaisImportante();
-            if (maiorP.getClass().getSuperclass() == Monstro) {
+            
+            if (maiorP != null) {
                 saldo += maiorP.confrontarHeroi(this);
-            } else if (maiorP.getClass().getSuperclass() == Buraco) {
-                saldo += maiorP.capturarHeroi();
             }
+            
             if (flechaEquipada()) { //Checar se depende de o mov ser válido ou não
                 saldo += disparar();
             }
         } else {
             Random rand = new Random();
             int sorteio = rand.nextInt(5);
-            if (sorteio < 4) {
+            if (sorteio < 3) {
                 System.out.println("Você se distrai e não percebe a parede se aproximando...");
             } else {
                 System.out.println("Você procura uma passagem secreta na parede, mas não encontra");
@@ -155,4 +158,8 @@ public class Heroi extends Componente {
     public String toString() {
         return "P";
     }
+
+	protected void anunciar() {
+		
+	}
 }

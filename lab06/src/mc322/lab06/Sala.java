@@ -5,16 +5,13 @@ public class Sala {
     private boolean visivel;
     private int linha,
                 coluna;
-    private CompMovel[] componentes;
+    private Componente[] componentes;
 
     Sala (int linha, int coluna, int maxComp) {
         visivel = false;
         this.linha = linha;
         this.coluna = coluna;
-        componentes = new CompMovel[maxComp];
-        for (int i = 0; i < maxComp; i++) {
-            componentes[i] = null;
-        }
+        componentes = new Componente[maxComp];
     }
 
     public void tornarVisivel() {
@@ -23,15 +20,14 @@ public class Sala {
 
     public boolean adicionarComponente(Componente c) {
         int idx = c.getPrioridade() - 1;
-        if (componentes[idx] == null) {
-            CompMovel cm = (CompMovel)c;
-            componentes[idx] = cm;
+        if(componentes[idx] == null) {
+            componentes[idx] = c;
             return true;
         }
         return false;
     }
 
-    public CompMovel compMaisImportante() {
+    public Componente compMaisImportante() {
         return componentes[0];
     }
 
@@ -61,7 +57,7 @@ public class Sala {
         } else {
             for (int i = 0; i < componentes.length; i++) {
                 if (componentes[i] != null) {
-                    return componentes[i].toString;
+                    return componentes[i].toString();
                 }
             }
             return "#";
