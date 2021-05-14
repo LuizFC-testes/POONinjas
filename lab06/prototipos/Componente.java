@@ -1,6 +1,6 @@
 package prototipos;
 
-public abstract class Componente {
+public class Componente {
     protected int linha;
     protected int coluna;
     protected Caverna cave;
@@ -44,19 +44,5 @@ public abstract class Componente {
     public int getPrioridade() {
         return prioridade;
     }
-
-    // Protótipos gerais
-
-    public abstract String toString();
-
-    // Protótipos Heroi
-
-    // Protótipos Tesouro
-    
-    public abstract void anunciar();
-
-    // Protótipos Buraco
-
-    // Protótipos Monstro
 
 }

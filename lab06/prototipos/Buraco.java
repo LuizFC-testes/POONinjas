@@ -26,21 +26,19 @@ public class Buraco extends Componente {
 
     protected void gerarEfeito() {
         String[] direcoes = {"w", "a", "s", "d"};
-        Brisa brisa;
-        boolean moveuUltimo;
-        for (int i = 0; i < 4; i++) {
-            brisa = new Brisa(linha, coluna, cave);
-            cave.getSala(linha, coluna).adicionarComponente(brisa);
-            moveuUltimo = brisa.mover(direcoes[i]);
-        }
-        if (!moveuUltimo) {
-            cave.getSala(linha, coluna).removerComponente(brisa);
+                
+        for(int i = 0; i < 4; i++) {
+            Brisa brisa = new Brisa(linha, coluna, cave);
+            
+            if (!brisa.mover(direcoes[i])) {
+            	cave.removerComponente(brisa);
+            }
         }
     }
 
     public void anunciar() {
         Random sorteio = new Random();
-        int sorteado = sorteio.nextInt;
+        int sorteado = sorteio.nextInt();
         if (sorteado < 3) {
             System.out.println("Você se sente sem chão...");
         } else if (sorteado < 8) {

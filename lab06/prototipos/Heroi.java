@@ -10,13 +10,31 @@ public class Heroi extends Componente {
     private Aljava flechas;
     private Tesouro mochila;
 
-    public Heroi(int linha, int coluna, Caverna cave, String nome) {
+    public Heroi(int linha, int coluna, Caverna cave) {
         super(linha, coluna, cave);
         this.flechas = new Aljava(1);
-        this.nome = nome;
         this.statusVivo = true;
         this.mochila = null;
         this.prioridade = 2;
+    }
+
+    public String getNome() {
+    	return this.nome;
+    }
+
+    public void setName(String nome) {
+    	this.nome = nome;
+    }
+
+    public boolean estaNaPorta() {
+    	if(getLinha() == 0 && getColuna() == 0) {
+    		return true;
+        }
+    	return false;
+    }
+
+    public void exibirMapa() {
+    	System.out.println(cave);
     }
 
     public boolean equiparFlecha() {
@@ -38,13 +56,13 @@ public class Heroi extends Componente {
         return statusVivo;
     }
 
-    public Ouro getOuro() {
+    /*public Ouro getOuro() {
         // O ouro tem o maior valor "de todos os tesouros", então fica no início
         if (mochila != null && mochila instanceof Ouro) {
             return (Ouro)mochila;
         }
         return null;
-    }
+    }*/
 
     public int[] checarEspolios() {
         Tesouro[] tiposTesouros = {new Ouro()};
@@ -102,7 +120,7 @@ public class Heroi extends Componente {
     public int moverHeroi(String wasd) {
         int saldo = 0;
         if (mover(wasd)) {
-            saldo -= 15; //Checar se depende de o mov ser válido ou não
+            saldo -= 15;
             percepcao();
             CompMovel maiorP = cave.getSala(linha, coluna).compMaisImportante();
             if (maiorP instanceof Monstro) {
@@ -112,7 +130,7 @@ public class Heroi extends Componente {
                 Buraco b = (Buraco)maiorP;
                 saldo += b.capturarHeroi(this);
             }
-            if (flechaEquipada()) { //Checar se depende de o mov ser válido ou não
+            if (flechaEquipada()) {
                 saldo += disparar();
             }
         } else {
@@ -145,6 +163,10 @@ public class Heroi extends Componente {
     public int morrer() {
         statusVivo = false;
         return -1000;
+    }
+
+    public void anunciar() {
+        return ;
     }
 
     public String toString() {

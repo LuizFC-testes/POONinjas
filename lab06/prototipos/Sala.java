@@ -11,9 +11,9 @@ public class Sala {
         this.linha = linha;
         this.coluna = coluna;
         componentes = new CompMovel[maxComp];
-        for (int i = 0; i < maxComp; i++) {
+        /*for (int i = 0; i < maxComp; i++) {
             componentes[i] = null;
-        }
+        }*/
     }
 
     public void tornarVisivel() {
@@ -60,7 +60,7 @@ public class Sala {
         } else {
             for (int i = 0; i < componentes.length; i++) {
                 if (componentes[i] != null) {
-                    return componentes[i].toString;
+                    return componentes[i].toString();
                 }
             }
             return "#";
