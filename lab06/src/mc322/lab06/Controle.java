@@ -25,7 +25,7 @@ public class Controle {
 		
 		System.out.println("Vamos lá " + hero.getNome() + "!\nDica: a qualquer momento digite /ajuda para obter lista de comandos. Bom jogo!\n");
 		
-		while(playing && hero.getStatusVivo()) {
+		while(playing) {
 			imprimirInterface();
 			cmd = keyboard.nextLine();
 			
@@ -39,21 +39,28 @@ public class Controle {
 		hero.exibirMapa();
 		System.out.println("Player: " + hero.getNome());
 		System.out.println("Score: " + score);
+		System.out.print("Flechas: " + hero.contarFlechas());
+		if (hero.flechaEquipada()) {
+			System.out.print(" (equipada)");
+		}
+		System.out.print("\n");
+		// Imprimir quantidade de ouros
 	}
 	
 	private boolean executarComando(String cmd) {
 		switch(cmd) {
 		case "w":
-			score += hero.moverHeroi(cmd);
-			break;
+		// bizuzin
+			/*score += hero.moverHeroi(cmd);
+			break;*/
 			
 		case "s":
-			score += hero.moverHeroi(cmd);
-			break;
+			/*score += hero.moverHeroi(cmd);
+			break;*/
 			
 		case "d":
-			score += hero.moverHeroi(cmd);
-			break;
+			/*score += hero.moverHeroi(cmd);
+			break;*/
 			
 		case "a":
 			score += hero.moverHeroi(cmd);
@@ -104,7 +111,7 @@ public class Controle {
 	
 	private void listCommands() {
 		System.out.println("Lista de comandos");
-		System.out.println("w/a/s/d -> mover heroi");
+		System.out.println("w/a/s/d -> mover herói");
 		System.out.println("k -> equipar flecha");
 		System.out.println("c -> capturar ouro");
 		System.out.println("q -> sair");
