@@ -6,10 +6,6 @@ public class Ouro extends Tesouro {
         super(linha, coluna, cave, 1000);
     }
 
-    public Ouro() {
-        super(1000);
-    }
-
     public void anunciar() {
         System.out.println("Você encontrou ouro!");
     }

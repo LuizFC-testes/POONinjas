@@ -64,14 +64,15 @@ public class Heroi extends Componente {
         return null;
     }*/
 
-    public int[] checarEspolios() {
-        Tesouro[] tiposTesouros = {new Ouro()};
+    public int[] checarEspolios(String[] tiposTesouros) throws ClassNotFoundException {
         // Depende da quantidade de tesouros diferentes
         int[] contagemEspolios = new int[tiposTesouros.length];
         Tesouro auxiliar = mochila;
+        Class c;
         for (int i = 0; i < tiposTesouros.length; i++) {
-            contagemEspolios[i] = 0;
-            while(auxiliar != null && auxiliar.getValor() == tiposTesouros[i].getValor()) {
+            //contagemEspolios[i] = 0;
+            c = Class.forName(tiposTesouros[i]);
+            while(auxiliar != null && auxiliar.getClass() == c) {
                 contagemEspolios[i]++;
                 auxiliar = auxiliar.getProximo();
             }

@@ -2,7 +2,7 @@ package prototipos;
 
 public class AppMundoWumpus {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException {
 		if(args.length != 1) {
 			System.out.println("Número incorreto de argumentos. Indique o caminho do arquivo com os dados iniciais do jogo.");
 			return;

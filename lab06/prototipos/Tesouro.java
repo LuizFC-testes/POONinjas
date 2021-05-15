@@ -11,12 +11,6 @@ public class Tesouro extends Componente{
         this.proximo = null;
     }
 
-    Tesouro(int valor) {
-        this.prioridade = 1;
-        this.valor = valor;
-        this.proximo = null;
-    }
-
     public int getValor() {
         return valor;
     }

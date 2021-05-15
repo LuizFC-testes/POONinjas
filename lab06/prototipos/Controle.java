@@ -11,7 +11,7 @@ public class Controle {
 		this.hero = hero;
 	}
 	
-	public void play() {
+	public void play() throws ClassNotFoundException {
 		Scanner keyboard = new Scanner(System.in);
 		boolean playing = true;
 		
@@ -35,7 +35,7 @@ public class Controle {
 		quit();
 	}
 	
-	private void imprimirInterface() {
+	private void imprimirInterface() throws ClassNotFoundException {
 		hero.exibirMapa();
 		System.out.println("Player: " + hero.getNome());
 		System.out.println("Score: " + score);
@@ -45,6 +45,12 @@ public class Controle {
 		}
 		System.out.print("\n");
 		// Imprimir quantidade de ouros
+		String[] tiposTesouros = {"Ouro"};
+		int[] contagemEspolios = hero.checarEspolios(tiposTesouros);
+		for (int i = 0; i < tiposTesouros.length; i++) {
+			System.out.print(tiposTesouros[i] + ": " + contagemEspolios[i] + "	");
+		}
+		System.out.print("\n");
 	}
 	
 	private boolean executarComando(String cmd) {
@@ -88,7 +94,7 @@ public class Controle {
 		return hero.getStatusVivo();
 	}
 	
-	private void quit() {
+	private void quit() throws ClassNotFoundException {
 		int fortuna = hero.contarFortuna();
 		
 		System.out.println("------ Fim de jogo -------");
