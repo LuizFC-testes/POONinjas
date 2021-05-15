@@ -1,14 +1,18 @@
 package prototipos;
 
-public class Tesouro extends Componente{
+public abstract class Tesouro extends Componente{
     protected int valor;
     protected Tesouro proximo; //Só é usado na mochila do herói
 
     Tesouro(int linha, int coluna, Caverna cave, int valor) {
         super(linha, coluna, cave);
-        this.prioridade = 1;
         this.valor = valor;
         this.proximo = null;
+    }
+
+    protected void prioridadeEAdd() {
+        this.prioridade = 1;
+        this.cave.adicionarComponente(this);
     }
 
     public int getValor() {

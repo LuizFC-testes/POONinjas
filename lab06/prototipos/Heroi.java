@@ -15,7 +15,11 @@ public class Heroi extends Componente {
         this.flechas = new Aljava(1);
         this.statusVivo = true;
         this.mochila = null;
+    }
+
+    protected void prioridadeEAdd() {
         this.prioridade = 2;
+        this.cave.adicionarComponente(this);
     }
 
     public String getNome() {

@@ -18,6 +18,7 @@ public class Caverna {
 
     public void adicionarComponente(Componente c) {
         int i = c.getLinha(), j  = c.getColuna();
+        System.out.println(i + ", " + j);
         mapa[i][j].adicionarComponente(c);
     }
 

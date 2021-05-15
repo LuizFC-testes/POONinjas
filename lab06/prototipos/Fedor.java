@@ -6,7 +6,11 @@ public class Fedor extends Componente {
 
     public Fedor(int linha, int coluna, Caverna cave) {
         super(linha, coluna, cave);
+    }
+
+    protected void prioridadeEAdd() {
         this.prioridade = 3;
+        this.cave.adicionarComponente(this);
     }
 
     public void anunciar() {

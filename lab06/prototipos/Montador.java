@@ -15,8 +15,8 @@ public class Montador {
 			String posicao = csv.requestCommands()[i][0];
 			String peca = csv.requestCommands()[i][1];
 			
-			int linha = Integer.parseInt(posicao.split(":")[0]);
-			int coluna = Integer.parseInt(posicao.split(":")[1]);
+			int linha = Integer.parseInt(posicao.split(":")[0]) - 1;
+			int coluna = Integer.parseInt(posicao.split(":")[1]) - 1;
 			
 			switch(peca) {
 			case "P":

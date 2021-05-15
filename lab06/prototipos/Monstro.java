@@ -6,10 +6,14 @@ public abstract class Monstro extends Componente{
 
     Monstro(int linha, int coluna, Caverna cave, int forca, int saque) {
         super(linha, coluna, cave);
-        prioridade = 1;
         this.forca = forca;
         this.saque = saque;
         gerarEfeito();
+    }
+
+    protected void prioridadeEAdd() {
+        this.prioridade = 1;
+        this.cave.adicionarComponente(this);
     }
 
     public int getForca() {

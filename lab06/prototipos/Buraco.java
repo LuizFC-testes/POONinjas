@@ -9,8 +9,12 @@ public class Buraco extends Componente {
     public Buraco(int linha, int coluna, Caverna cave) {
         super(linha, coluna, cave);
         jogador = null;
-        this.prioridade = 1;
         gerarEfeito();
+    }
+
+    protected void prioridadeEAdd() {
+        this.prioridade = 1;
+        this.cave.adicionarComponente(this);
     }
 
     public int capturarHeroi(Heroi jogador) {

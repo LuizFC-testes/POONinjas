@@ -1,6 +1,6 @@
 package prototipos;
 
-public class Componente implements CompMovel {
+public abstract class Componente implements CompMovel {
     protected int linha;
     protected int coluna;
     protected Caverna cave;
@@ -10,8 +10,11 @@ public class Componente implements CompMovel {
         this.linha = linha;
         this.coluna = coluna;
         this.cave = cave;
-        this.cave.adicionarComponente(this);
+        prioridadeEAdd();
+        //this.cave.adicionarComponente(this);
     }
+
+    protected abstract void prioridadeEAdd();
 
     public int getLinha() {
         return linha;
@@ -43,10 +46,6 @@ public class Componente implements CompMovel {
 
     public int getPrioridade() {
         return prioridade;
-    }
-
-    public void anunciar() {
-        return ;
     }
 
 }
