@@ -45,12 +45,12 @@ public class Controle {
 		}
 		System.out.print("\n");
 		// Imprimir quantidade de ouros
-		String[] tiposTesouros = {"Ouro"};
+		String[] tiposTesouros = {"prototipos.Ouro"};
 		int[] contagemEspolios = hero.checarEspolios(tiposTesouros);
 		for (int i = 0; i < tiposTesouros.length; i++) {
-			System.out.print(tiposTesouros[i] + ": " + contagemEspolios[i] + "	");
+			System.out.print(Class.forName(tiposTesouros[i]).getSimpleName() + ": " + contagemEspolios[i] + "	");
 		}
-		System.out.print("\n");
+		System.out.println("\n");
 	}
 	
 	private boolean executarComando(String cmd) {
