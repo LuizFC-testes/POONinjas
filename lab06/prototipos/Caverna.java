@@ -18,7 +18,7 @@ public class Caverna {
 
     public void adicionarComponente(Componente c) {
         int i = c.getLinha(), j  = c.getColuna();
-        System.out.println(i + ", " + j);
+        //System.out.println(i + ", " + j);
         mapa[i][j].adicionarComponente(c);
     }
 
@@ -38,9 +38,11 @@ public class Caverna {
 
     public String toString() {
         String mapaStr = "";
+        System.out.println("[" + mapa.length + ", " + mapa[0].length + "]");
         for (int i = 0; i < mapa.length; i++) {
             mapaStr = mapaStr + (i+1);
             for (int j = 0; i < mapa[0].length; j++) {
+                System.out.println(i + ", " + j);
                 mapaStr = mapaStr + " " + mapa[i][j].toString();
             }
             mapaStr = mapaStr + "\n";
