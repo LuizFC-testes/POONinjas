@@ -31,13 +31,14 @@ public abstract class Componente implements CompMovel {
 
     public boolean mover(String wasd) {
         int novaLinha = linha, novaColuna = coluna;
-        if (wasd == "w") {
+        if (wasd.equals("w")) {
             novaLinha--;
-        } else if (wasd == "a") {
+        } else if (wasd.equals("a")) {
             novaColuna--;
-        } else if (wasd == "s") {
+        } else if (wasd.equals("s")) {
             novaLinha++;
         } else {
+            System.out.println("Aqui");
             novaColuna++;
         }
         boolean moveu = cave.moverComponente(this, novaLinha, novaColuna);
