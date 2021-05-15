@@ -38,7 +38,7 @@ public abstract class Componente implements CompMovel {
         } else if (wasd.equals("s")) {
             novaLinha++;
         } else {
-            System.out.println("Aqui");
+            //System.out.println("Aqui");
             novaColuna++;
         }
         boolean moveu = cave.moverComponente(this, novaLinha, novaColuna);

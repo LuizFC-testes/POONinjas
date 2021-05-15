@@ -20,7 +20,6 @@ public class Buraco extends Componente {
     public int capturarHeroi(Heroi jogador) {
         this.jogador = jogador;
         cave.getSala(linha, coluna).removerComponente(jogador);
-        anunciar();
         return jogador.morrer();
     }
 

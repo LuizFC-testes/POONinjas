@@ -21,7 +21,6 @@ public abstract class Monstro extends Componente{
     }
 
     public int confrontarHeroi(Heroi h) {
-        anunciar();
         if (h.confrontarMonstro(this)) {
             mensagemDeMorte();
             return morrer();

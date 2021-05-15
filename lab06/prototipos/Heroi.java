@@ -113,6 +113,7 @@ public class Heroi extends Componente {
                 t.setProximo(auxiliar.getProximo());
                 auxiliar.setProximo(t);
             }
+            cave.removerComponente(t);
             t.serCapturado();
             System.out.println("Você conseguiu um tesouro!");
             return true;
