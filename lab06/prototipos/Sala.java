@@ -22,6 +22,8 @@ public class Sala {
 
     public boolean adicionarComponente(Componente c) {
         int idx = c.getPrioridade() - 1;
+        System.out.println(c.getPrioridade());
+        System.out.println(idx);
         if (componentes[idx] == null) {
             CompMovel cm = (CompMovel)c;
             componentes[idx] = cm;
