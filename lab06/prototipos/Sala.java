@@ -27,6 +27,9 @@ public class Sala {
         if (componentes[idx] == null) {
             CompMovel cm = (CompMovel)c;
             componentes[idx] = cm;
+            if (c instanceof Heroi && !visivel) {
+                tornarVisivel();
+            }
             return true;
         }
         return false;

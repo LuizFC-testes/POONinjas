@@ -38,11 +38,11 @@ public class Caverna {
 
     public String toString() {
         String mapaStr = "";
-        System.out.println("[" + mapa.length + ", " + mapa[0].length + "]");
-        for (int i = 0; i < mapa.length; i++) {
+        for (int i = 0; i < mapa.length; i++) { //Voltar para o genérico depois
             mapaStr = mapaStr + (i+1);
-            for (int j = 0; i < mapa[0].length; j++) {
-                System.out.println(i + ", " + j);
+            for (int j = 0; j < mapa[0].length; j++) { //Voltar para o genérico depois
+                //System.out.println("[" + mapa.length + ", " + mapa[0].length + "]");
+                //System.out.println(i + ", " + j);
                 mapaStr = mapaStr + " " + mapa[i][j].toString();
             }
             mapaStr = mapaStr + "\n";
