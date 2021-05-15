@@ -110,7 +110,7 @@ public class Heroi extends Componente {
         int saldo = 0;
         
         if (mover(wasd)) {
-            saldo -= 15; //Checar se depende de o mov ser válido ou não
+            saldo -= 15;
             
             percepcao();
             
@@ -120,7 +120,7 @@ public class Heroi extends Componente {
                 saldo += maiorP.confrontarHeroi(this);
             }
             
-            if (flechaEquipada()) { //Checar se depende de o mov ser válido ou não
+            if (flechaEquipada()) {
                 saldo += disparar();
             }
         } else {

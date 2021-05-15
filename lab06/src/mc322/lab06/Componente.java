@@ -40,7 +40,7 @@ public abstract class Componente {
         
         if (cave.moverComponente(this, novaLinha, novaColuna)) {
             linha = novaLinha;
-            coluna = novaColuna;
+            coluna = novaColuna; //moverComponente já atualiza se true
             return true;
         }
         
@@ -51,7 +51,7 @@ public abstract class Componente {
         return prioridade;
     }
 
-	protected abstract void anunciar();
+	protected abstract void anunciar(); // Salas usam o anunciar
 
 	public int confrontarHeroi(Heroi heroi) {
 		return 0;
