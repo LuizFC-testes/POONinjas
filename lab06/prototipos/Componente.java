@@ -1,6 +1,6 @@
 package prototipos;
 
-public class Componente {
+public class Componente implements CompMovel {
     protected int linha;
     protected int coluna;
     protected Caverna cave;
