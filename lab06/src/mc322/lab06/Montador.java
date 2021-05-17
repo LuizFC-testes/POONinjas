@@ -11,7 +11,11 @@ public class Montador {
 		
 		cave = new Caverna(4);
 		
-		for(int i = 0; i < 16; i++) {
+		boolean hasWumpus = false, hasOuro = false, hasHero = false, erro = false;
+		int nBuracos = 0;
+		
+		
+		for(int i = 0; i < 16 && !erro; i++) {
 			String posicao = csv.requestCommands()[i][0];
 			String peca = csv.requestCommands()[i][1];
 			
@@ -20,26 +24,56 @@ public class Montador {
 			
 			switch(peca) {
 			case "P":
-				hero = new Heroi(linha, coluna, cave);
+				if(!hasHero) {
+					hero = new Heroi(linha, coluna, cave);
+					hasHero = true;
+				} else {
+					erro = true;
+				}
 				break;
 				
 			case "B":
-				new Buraco(linha, coluna, cave);
+				if(nBuracos < 3) {
+					new Buraco(linha, coluna, cave);
+					nBuracos++;
+				} else {
+					erro = true;
+				}
 				break;
 				
 			case "W":
-				new Wumpus(linha, coluna, cave);
+				if(!hasWumpus) {
+					new Wumpus(linha, coluna, cave);
+					hasWumpus = true;
+				} else {
+					erro = true;
+				}
 				break;
 				
 			case "O":
-				new Ouro(linha, coluna, cave);
+				if(!hasOuro) {
+					new Ouro(linha, coluna, cave);
+					hasOuro = true;
+				} else {
+					erro = true;
+				}
 				break;
 			}
+		}
+		
+		if(erro || !hasHero || !hasOuro || !hasWumpus || nBuracos < 2) {
+			System.out.println("Arquivo de entrada inválido.");
+			hero = null;
+			cave = null;
+			csv = null;
 		}
 	}
 	
 	public Controle gerarControle() {
-		return new Controle(hero);
+		if(hero != null) {
+			return new Controle(hero);
+		}
+		return null;
 	}
 
 }
