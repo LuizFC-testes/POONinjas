@@ -5,7 +5,7 @@ public class Montador {
 	Caverna cave;
 	Heroi hero;
 
-	public Montador(String file) {
+	public boolean montar(String file) {
 		csv = new CSVHandling();
 		csv.setDataSource(file);
 		
@@ -66,7 +66,10 @@ public class Montador {
 			hero = null;
 			cave = null;
 			csv = null;
+			return false;
 		}
+		
+		return true;
 	}
 	
 	public Controle gerarControle() {

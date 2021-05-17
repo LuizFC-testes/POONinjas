@@ -8,10 +8,11 @@ public class AppMundoWumpus {
 			return;
 		}
 		
-		Montador montador = new Montador(args[0]);
+		Montador montador = new Montador();
 		
-		Controle jogo = montador.gerarControle();
-		
-		jogo.play();
+		if(montador.montar(args[0])) {		
+			Controle jogo = montador.gerarControle();
+			jogo.play();
+		}
 	}
 }
