@@ -2,18 +2,18 @@ package mc322.lab06;
 
 public abstract class Monstro extends Componente{
     protected int forca;
-    protected int prioridade;
     protected int saque;
 
     Monstro(int linha, int coluna, Caverna cave, int forca, int saque) {
-    	super(linha, coluna, cave);
-        prioridade = 1;
-        this.linha = linha;
-        this.coluna = coluna;
-        this.cave = cave;
+        super(linha, coluna, cave);
         this.forca = forca;
         this.saque = saque;
         gerarEfeito();
+    }
+
+    protected void prioridadeEAdd() {
+        this.prioridade = 1;
+        this.cave.adicionarComponente(this);
     }
 
     public int getForca() {
@@ -21,7 +21,6 @@ public abstract class Monstro extends Componente{
     }
 
     public int confrontarHeroi(Heroi h) {
-        anunciar();
         if (h.confrontarMonstro(this)) {
             mensagemDeMorte();
             return morrer();
@@ -38,11 +37,13 @@ public abstract class Monstro extends Componente{
 
     protected abstract void gerarEfeito();
 
-    public abstract void anularEfeito();
+    protected abstract void anularEfeito();
 
     public abstract void anunciar();
 
     public abstract void mensagemDeVitoria();
 
     public abstract void mensagemDeMorte();
+
+    public abstract String toString();
 }

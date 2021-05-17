@@ -1,6 +1,6 @@
 package mc322.lab06;
 
-public abstract class Componente {
+public abstract class Componente implements CompMovel {
     protected int linha;
     protected int coluna;
     protected Caverna cave;
@@ -10,8 +10,11 @@ public abstract class Componente {
         this.linha = linha;
         this.coluna = coluna;
         this.cave = cave;
-        this.cave.adicionarComponente(this);
+        prioridadeEAdd();
+        //this.cave.adicionarComponente(this);
     }
+
+    protected abstract void prioridadeEAdd();
 
     public int getLinha() {
         return linha;
@@ -21,40 +24,29 @@ public abstract class Componente {
         return coluna;
     }
 
-	public void atualizarCoord(int linha, int coluna) {
-		this.linha = linha;
+    public void atualizarCoord(int linha, int coluna) {
+        this.linha = linha;
         this.coluna = coluna;
-	}
-    
+    }
+
     public boolean mover(String wasd) {
         int novaLinha = linha, novaColuna = coluna;
-        if (wasd == "w") {
+        if (wasd.equals("w")) {
             novaLinha--;
-        } else if (wasd == "a") {
+        } else if (wasd.equals("a")) {
             novaColuna--;
-        } else if (wasd == "s") {
+        } else if (wasd.equals("s")) {
             novaLinha++;
         } else {
+            //System.out.println("Aqui");
             novaColuna++;
         }
-        
-        if (cave.moverComponente(this, novaLinha, novaColuna)) {
-            linha = novaLinha;
-            coluna = novaColuna; //moverComponente já atualiza se true
-            return true;
-        }
-        
-        return false;
+        boolean moveu = cave.moverComponente(this, novaLinha, novaColuna);
+        return moveu;
     }
 
     public int getPrioridade() {
         return prioridade;
     }
 
-	protected abstract void anunciar(); // Salas usam o anunciar
-
-	public int confrontarHeroi(Heroi heroi) {
-		return 0;
-	}
-    
 }

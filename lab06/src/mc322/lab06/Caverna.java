@@ -18,6 +18,7 @@ public class Caverna {
 
     public void adicionarComponente(Componente c) {
         int i = c.getLinha(), j  = c.getColuna();
+        //System.out.println(i + ", " + j);
         mapa[i][j].adicionarComponente(c);
     }
 
@@ -37,9 +38,11 @@ public class Caverna {
 
     public String toString() {
         String mapaStr = "";
-        for (int i = 0; i < mapa.length; i++) {
+        for (int i = 0; i < mapa.length; i++) { //Voltar para o genérico depois
             mapaStr = mapaStr + (i+1);
-            for (int j = 0; i < mapa[0].length; j++) {
+            for (int j = 0; j < mapa[0].length; j++) { //Voltar para o genérico depois
+                //System.out.println("[" + mapa.length + ", " + mapa[0].length + "]");
+                //System.out.println(i + ", " + j);
                 mapaStr = mapaStr + " " + mapa[i][j].toString();
             }
             mapaStr = mapaStr + "\n";
@@ -47,7 +50,7 @@ public class Caverna {
         mapaStr = mapaStr + "  1 2 3 4";
         return mapaStr;
     }
-    
+
     public boolean posicaoValida(int linha, int coluna) {
     	return linha >= 0 && coluna >= 0 && linha < mapa.length && coluna < mapa[0].length;
     }

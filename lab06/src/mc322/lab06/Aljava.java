@@ -2,7 +2,7 @@ package mc322.lab06;
 
 public class Aljava {
     private int qtdFlechas;
-    Flecha flechaAtual;
+    private Flecha flechaAtual;
 
     Aljava(int qtdFlechas) {
         this.qtdFlechas = qtdFlechas;

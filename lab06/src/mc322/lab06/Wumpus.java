@@ -3,9 +3,9 @@ package mc322.lab06;
 import java.util.Random;
 
 public class Wumpus extends Monstro {
-	
-	Fedor[] cheiro;
-	
+
+    Fedor[] cheiro;
+
     Wumpus(int linha, int coluna, Caverna cave) {
         super(linha, coluna, cave, 50, 500);
     }
@@ -28,8 +28,8 @@ public class Wumpus extends Monstro {
         }
     }
 
-    public void anularEfeito() {
-    	if(cheiro == null)
+    protected void anularEfeito() {
+        if(cheiro == null)
     		return;
     	
         for (int i = 0; i < 4; i++) {
@@ -56,11 +56,11 @@ public class Wumpus extends Monstro {
         }
     }
 
+    public void mensagemDeMorte() {
+        System.out.println("Você matou Wumpus!");
+    }
+
     public String toString() {
         return "W";
     }
-
-	public void mensagemDeMorte() {
-		
-	}
 }

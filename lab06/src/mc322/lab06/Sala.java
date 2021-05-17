@@ -1,17 +1,19 @@
 package mc322.lab06;
 
-
 public class Sala {
     private boolean visivel;
     private int linha,
                 coluna;
-    private Componente[] componentes;
+    private CompMovel[] componentes;
 
     Sala (int linha, int coluna, int maxComp) {
         visivel = false;
         this.linha = linha;
         this.coluna = coluna;
-        componentes = new Componente[maxComp];
+        componentes = new CompMovel[maxComp];
+        /*for (int i = 0; i < maxComp; i++) {
+            componentes[i] = null;
+        }*/
     }
 
     public void tornarVisivel() {
@@ -20,14 +22,20 @@ public class Sala {
 
     public boolean adicionarComponente(Componente c) {
         int idx = c.getPrioridade() - 1;
-        if(componentes[idx] == null) {
-            componentes[idx] = c;
+        //System.out.println(c.getPrioridade());
+        //System.out.println(idx);
+        if (componentes[idx] == null) {
+            CompMovel cm = (CompMovel)c;
+            componentes[idx] = cm;
+            if (c instanceof Heroi && !visivel) {
+                tornarVisivel();
+            }
             return true;
         }
         return false;
     }
 
-    public Componente compMaisImportante() {
+    public CompMovel compMaisImportante() {
         return componentes[0];
     }
 

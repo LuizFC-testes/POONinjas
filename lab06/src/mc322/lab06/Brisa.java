@@ -6,7 +6,11 @@ public class Brisa extends Componente {
 
     public Brisa(int linha, int coluna, Caverna cave) {
         super(linha, coluna, cave);
+    }
+
+    protected void prioridadeEAdd() {
         this.prioridade = 4;
+        this.cave.adicionarComponente(this);
     }
 
     public void anunciar() {

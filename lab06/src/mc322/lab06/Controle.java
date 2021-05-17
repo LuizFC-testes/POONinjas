@@ -11,7 +11,7 @@ public class Controle {
 		this.hero = hero;
 	}
 	
-	public void play() {
+	public void play() throws ClassNotFoundException {
 		Scanner keyboard = new Scanner(System.in);
 		boolean playing = true;
 		
@@ -35,7 +35,7 @@ public class Controle {
 		quit();
 	}
 	
-	private void imprimirInterface() {
+	private void imprimirInterface() throws ClassNotFoundException {
 		hero.exibirMapa();
 		System.out.println("Player: " + hero.getNome());
 		System.out.println("Score: " + score);
@@ -44,24 +44,21 @@ public class Controle {
 			System.out.print(" (equipada)");
 		}
 		System.out.print("\n");
+		
 		// Imprimir quantidade de ouros
+		String[] tiposTesouros = {"mc322.lab06.Ouro"};
+		int[] contagemEspolios = hero.checarEspolios(tiposTesouros);
+		for (int i = 0; i < tiposTesouros.length; i++) {
+			System.out.print(Class.forName(tiposTesouros[i]).getSimpleName() + ": " + contagemEspolios[i] + "	");
+		}
+		System.out.println("\n");
 	}
 	
 	private boolean executarComando(String cmd) {
 		switch(cmd) {
 		case "w":
-		// bizuzin
-			/*score += hero.moverHeroi(cmd);
-			break;*/
-			
 		case "s":
-			/*score += hero.moverHeroi(cmd);
-			break;*/
-			
 		case "d":
-			/*score += hero.moverHeroi(cmd);
-			break;*/
-			
 		case "a":
 			score += hero.moverHeroi(cmd);
 			break;
@@ -77,18 +74,18 @@ public class Controle {
 		case "q":
 			return false;
 			
-		case "/list":
+		case "/ajuda":
 			listCommands();
 			break;
 			
 		default:
-			System.out.println("Entrada inválida. Digite /list para lista de comandos");
+			System.out.println("Entrada inválida. Digite /ajuda para lista de comandos");
 		}
 		
 		return hero.getStatusVivo();
 	}
 	
-	private void quit() {
+	private void quit() throws ClassNotFoundException {
 		int fortuna = hero.contarFortuna();
 		
 		System.out.println("------ Fim de jogo -------");
@@ -110,10 +107,11 @@ public class Controle {
 	}
 	
 	private void listCommands() {
-		System.out.println("Lista de comandos");
+		System.out.println("\n------ Lista de comandos ------");
 		System.out.println("w/a/s/d -> mover herói");
 		System.out.println("k -> equipar flecha");
 		System.out.println("c -> capturar ouro");
 		System.out.println("q -> sair");
+		System.out.println("-------------------------------\n");
 	}
 }

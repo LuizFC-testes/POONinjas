@@ -6,9 +6,13 @@ public abstract class Tesouro extends Componente{
 
     Tesouro(int linha, int coluna, Caverna cave, int valor) {
         super(linha, coluna, cave);
-        this.prioridade = 1;
         this.valor = valor;
         this.proximo = null;
+    }
+
+    protected void prioridadeEAdd() {
+        this.prioridade = 1;
+        this.cave.adicionarComponente(this);
     }
 
     public int getValor() {
@@ -28,7 +32,4 @@ public abstract class Tesouro extends Componente{
         this.coluna = -1;
     }
 
-    public abstract void anunciar();
-
-    public abstract String toString();
 }

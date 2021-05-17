@@ -1,6 +1,6 @@
 package mc322.lab06;
 
-public interface Componentes {
+public interface CompMovel {
     public int getLinha();
     public int getColuna();
     public void atualizarCoord(int linha, int coluna);
