@@ -35,6 +35,11 @@ public class Sala {
         return false;
     }
 
+    public boolean estaNaSala(Componente c) {
+        CompMovel cm = componentes[c.getPrioridade()];
+        return c.getClass() == cm.getClass();
+    }
+
     public CompMovel compMaisImportante() {
         return componentes[0];
     }

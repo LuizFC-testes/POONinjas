@@ -13,11 +13,19 @@ public class Caverna {
     }
 
     public int[] dimensoesCaverna() {
-        return {mapa.length, mapa[0].length};
+        int[] dimensoes = {mapa.length, mapa[0].length};
+        return dimensoes;
     }
 
     public Sala getSala(int linha, int coluna) {
         return mapa[linha][coluna];
+    }
+
+    public boolean estaNaCaverna(Componente c) {
+        if (c != null) {
+            return mapa[c.getLinha()][c.getColuna()].estaNaSala(c);
+        }
+        return false;
     }
 
     public void adicionarComponente(Componente c) {

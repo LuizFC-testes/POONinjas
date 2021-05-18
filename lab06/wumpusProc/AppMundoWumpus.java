@@ -8,7 +8,7 @@ public class AppMundoWumpus {
 			return;
 		}
 		
-		Montador montador = new Montador(args[0]);
+		MontadorProced montador = new MontadorProced(4, 4, 4);
 		
 		Controle jogo = montador.gerarControle();
 		

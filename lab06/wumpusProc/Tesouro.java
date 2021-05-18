@@ -15,7 +15,7 @@ public abstract class Tesouro extends Componente{
         this.cave.adicionarComponente(this);
     }
 
-    public boolean casaValida() {
+    public boolean salaValida() {
         int[] dimCave = cave.dimensoesCaverna();
         boolean valida = !((linha%(dimCave[0]-1) == 0)&&(coluna%(dimCave[1]-1) == 0));
         if (!valida) {

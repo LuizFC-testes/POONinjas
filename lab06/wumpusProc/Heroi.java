@@ -1,6 +1,6 @@
 package wumpusProc;
 
-import java.lang.Class;
+//import java.lang.Class;
 import java.util.Random;
 
 public class Heroi extends Componente {

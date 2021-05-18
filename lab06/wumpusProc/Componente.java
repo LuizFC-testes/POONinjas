@@ -13,7 +13,7 @@ public abstract class Componente implements CompMovel {
         prioridadeEAdd();
     }
 
-    public boolean casaValida() {
+    public boolean salaValida() {
         // Um componente já instanciado já possui suas coordenadas dentro dos limites da caverna
         // Vai ser sobreposto na classe Tesouro
         return true;
