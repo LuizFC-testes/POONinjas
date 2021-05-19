@@ -2,14 +2,22 @@ package mc322.lab06;
 
 import java.util.Random;
 
+/**
+ * @author João Victor Matoso
+ * @author Luiz Felipe Cezar
+ */
 public class Wumpus extends Monstro {
-
+	/** Efeito de fedor gerado pelo monstro */
     Fedor[] cheiro;
 
+    /** Construtor */
     Wumpus(int linha, int coluna, Caverna cave) {
         super(linha, coluna, cave, 50, 500);
     }
 
+    /**
+     * Gera o efeito de fedor nas redondezas do Wumpus
+     */
     protected void gerarEfeito() {
         String[] direcoes = {"w", "a", "s", "d"};
         
@@ -28,6 +36,9 @@ public class Wumpus extends Monstro {
         }
     }
 
+    /**
+     * Elimina o efeito de fedor das redondezas do Wumpus
+     */
     protected void anularEfeito() {
         if(cheiro == null)
     		return;
@@ -40,10 +51,16 @@ public class Wumpus extends Monstro {
         }
     }
 
+    /**
+     * Ação de anunciar a presença do componente no console
+     */
     public void anunciar() {
         System.out.println("Você ouve um rugido estrondoso!");
     }
 
+    /**
+     * Anucia vitória do monstro no caso de combate
+     */
     public void mensagemDeVitoria() {
         Random rand = new Random();
         int sorteio = rand.nextInt(10);
@@ -56,10 +73,16 @@ public class Wumpus extends Monstro {
         }
     }
 
+    /**
+     * Anuncia a morte do monstro
+     */
     public void mensagemDeMorte() {
         System.out.println("Você matou Wumpus!");
     }
 
+    /**
+     * Caractere usado na representação no tabuleiro
+     */
     public String toString() {
         return "W";
     }
