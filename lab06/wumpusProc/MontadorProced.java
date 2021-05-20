@@ -32,7 +32,7 @@ public class MontadorProced {
         Componente novoComp = null;
         while (!posValida || !cave.estaNaCaverna(novoComp)) {
             int[] coord = sortearCoord(dimCave[0] - 1, dimCave[1] - 1);
-            novoComp = classe.getConstructor(params).newInstance(coord[0], coord[1], cave);
+            novoComp = (nome)classe.getConstructor(params).newInstance(coord[0], coord[1], cave);
             posValida = novoComp.salaValida();
         }
     }
