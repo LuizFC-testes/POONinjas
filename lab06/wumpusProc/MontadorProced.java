@@ -7,11 +7,11 @@ public class MontadorProced {
 	Heroi hero;
 
 	public MontadorProced(int qtdLinhas, int qtdColunas, int maxComp) {
-        int[] dimCave = cave.dimensoesCaverna();
 		cave = new Caverna(qtdLinhas, qtdColunas, maxComp);
+        int[] dimCave = cave.dimensoesCaverna();
         hero = new Heroi(0, 0, cave);
         Random rand = new Random();
-        int qtdBuracos = rand.nextInt(Math.min(dimCave[0], dimCave[1]) - 1);
+        int qtdBuracos = Math.min(dimCave[0], dimCave[1]) - 2 + rand.nextInt(2);
         criarVariosCompAleat("Buraco", qtdBuracos);
         criarCompPosAleat("Wumpus");
         criarCompPosAleat("Ouro");
@@ -23,18 +23,32 @@ public class MontadorProced {
         }
     }
 
-    private void criarCompPosAleat(String nome) throws ClassNotFoundException {
+    private void criarCompPosAleat(String nome) {
         String classpath = "wumpusProc." + nome;
         int[] dimCave = cave.dimensoesCaverna();
         boolean posValida = false;
-        Class classe = Class.forName(classpath);
-        Class[] params = {int.class, int.class, Caverna.class};
+        //Class classe = Class.forName(classpath);
+        //Class[] params = {int.class, int.class, Caverna.class};
         Componente novoComp = null;
-        while (!posValida || !cave.estaNaCaverna(novoComp)) {
+        do {
             int[] coord = sortearCoord(dimCave[0] - 1, dimCave[1] - 1);
-            novoComp = (nome)classe.getConstructor(params).newInstance(coord[0], coord[1], cave);
+            switch (nome) {
+                case "Buraco":
+                    novoComp = new Buraco(coord[0], coord[1], cave);
+                    break;
+                case "Wumpus":
+                    novoComp = new Wumpus(coord[0], coord[1], cave);
+                    break;
+                case "Ouro":
+                    novoComp = new Ouro(coord[0], coord[1], cave);
+                    break;
+            }
             posValida = novoComp.salaValida();
-        }
+            System.out.println(nome);
+            System.out.println("[" + coord[0] + ", " + coord[1] + "]");
+            System.out.println("posValida: " + posValida);
+            System.out.println("estaNaCaverna: " + cave.estaNaCaverna(novoComp));
+        } while (!posValida || !cave.estaNaCaverna(novoComp));
     }
 
     private int[] sortearCoord(int maxLinha, int maxColuna) {

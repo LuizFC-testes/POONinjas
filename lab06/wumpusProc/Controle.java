@@ -24,6 +24,7 @@ public class Controle {
 		hero.setName(cmd);
 		
 		System.out.println("Vamos lá " + hero.getNome() + "!\nDica: a qualquer momento digite /ajuda para obter lista de comandos. Bom jogo!\n");
+		hero.percepcao();
 		
 		while(playing) {
 			imprimirInterface();
