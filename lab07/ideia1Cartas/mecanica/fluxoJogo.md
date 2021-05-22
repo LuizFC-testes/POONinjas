@@ -9,7 +9,7 @@
 # Turnos
 
 1. Comprar uma carta do deck e adicioná-la à mão
-2. Se quiser, sacrificar uma carta (enviá-la ao cemitério) em troca de *valor do seu custo + 1* em **Mana**
+2. Se quiser, sacrificar **uma** carta (enviá-la ao cemitério) em troca de *valor do seu custo + 1* em **Mana**
 3. Posicionar uma carta de **Classe** (opcional)
 4. Resolver efeitos de armadilhas
 5. Resolver efeitos de combates
