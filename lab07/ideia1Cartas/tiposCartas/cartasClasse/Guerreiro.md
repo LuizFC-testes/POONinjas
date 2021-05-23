@@ -2,4 +2,4 @@ Alcance: 0
 Força: 120 (melee)
 Resistência: 120 (melee), 120 (distância)
 Domínios:
-Habilidade: Não precisa estar em linha reta para flanquear um inimigo, basta ter um aliado também adjacente a ele
+Habilidade: Recebe 10% de bônus de atributo por território dominado pelo jogador que esteja adjacente ou ocupado por ele, até o máximo de 50%. Dá 10% de bônus em flanqueamentos.
