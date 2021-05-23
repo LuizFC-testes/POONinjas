@@ -5,6 +5,7 @@
 # Objetivo
 
 * Formar um caminho de territórios conquistados por você que conecte o seu reino ao reino do adversário
+* Caso as cartas (fora de campo) de um jogador acabem antes do objetivo acontecer, ele também perde (?)
 
 # Turnos
 
