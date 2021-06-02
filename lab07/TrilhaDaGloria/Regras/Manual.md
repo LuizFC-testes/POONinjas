@@ -32,11 +32,15 @@ Cada jogador possui um Reino, que é disposto no lado do tabuleiro oposto ao lad
 
 Cada jogador possui um **Deck**, que é disposto no lado direito inferior da tela. Dele, ele obtém **Cartas** as quais utilizará para completar o objetivo (explicado na seção "Objetivo"). Cada jogador pode ver as cartas que possui na **Mão** (centro inferior da tela), que são as cartas jogáveis por ele no turno atual. No canto inferior esquerdo da tela, aparece o **Cemitério**, onde são dispostas as suas cartas que foram descartadas.
 
+### Mana
+
+Recurso utilizado para a realização de certas ações especiais (como algumas habilidades de Herois) e a invocação de Armadilhas e Magias. Mais detalhes são explicados na //**[SEÇÃO]**.
+
 ### Cartas
 
 Há 3 tipos de carta: Heróis, Armadilhas e Magias
 
-* Herois
+* Heróis
 
 //**[IMAGEM]**
 
@@ -47,9 +51,13 @@ O principal tipo de carta do jogo. Apresentam as seguintes características:
 Indicado pela cor de fundo da carta. Os Domínios interagem principalmente com **Biomas**, o que resulta em bônus ou penalidades nos **Atributos** do Heroi, dependendo do Bioma ao qual ele estiver associado.
 
 2. Escudo representando o seu **Reino**
+
 3. Uma **Classe**. 
+
 Cada Classe possui um conjunto de Domínios possíveis, além de **Atributos**-base e uma **Habilidade** única. Mais detalhes sobre cada Classe podem ser encontrados no //**[APÊNDICE]**
+
 4. Atributos. 
+
 São utilizados para enfrentar ou se proteger de cartas inimigas. São assim representados:
 ```
 * //**[IMAGEM]** (Alcance) - Define a distância máxima em terrenos adjacentes que um Heroi inimigo deve estar para que este seja elegível a ser enfrentado pelo Heroi da carta
@@ -63,4 +71,32 @@ Os atributos de Força e Resistência são apresentados nas cartas da seguinte f
 ```
 Mais detalhes do funcionamento dos atributos podem ser encontrados na seção "Combate".
 
+Layout das cartas de Heroi:
 
+//**[IMAGEM + LEGENDAS]**
+
+* Armadilha
+
+São utilizadas para combater Heróis inimigos. Possuem as seguintes características:
+
+1. //**[IMAGEM]** Poder: Utilizado para confrontar Herois. Pode sofrer um bônus ou uma penalidade, a depender do Domínio do Herói que enfrentar (mais detalhes na //**[SEÇÃO]**).
+
+2. //**[IMAGEM]** Alcance: Funciona de maneira similar ao alcance de Heróis. É a distância máxima que um Heroi inimigo deve ser posicionado para que este acione a Armadilha.
+
+3. Domínio: Cada armadilha com nome distinto possui um Domínio pré-determinado (podendo não ser nenhum), que pode interagir com o Domínio do Heroi que estiver combatendo de diversas formas.
+
+4. Tipo
+
+Pode ser "mecânica" ou "elementar". Armadilhas mecânicas não possuem Domínios, enquanto que as elementares possuem.
+
+5. Efeito
+
+Podem ser instantâneos ou termporários, e afetam Heróis ou Terrenos.
+
+Layout das cartas de Armadilha:
+
+//**[IMAGEM + LEGENDAS]**
+
+* Magia
+
+//**[IMAGEM]**
