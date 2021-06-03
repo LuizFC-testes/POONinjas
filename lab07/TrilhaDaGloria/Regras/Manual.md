@@ -48,7 +48,7 @@ O principal tipo de carta do jogo. Apresentam as seguintes características:
 
 1. Domínio
 
-Indicado pela cor de fundo da carta. Os Domínios interagem principalmente com **Biomas**, o que resulta em bônus ou penalidades nos **Atributos** do Heroi, dependendo do Bioma ao qual ele estiver associado.
+Indicado pela cor de fundo da carta. Os Domínios interagem principalmente com **Biomas**, o que resulta em bônus ou penalidades nos **Atributos** do Heroi, dependendo do Bioma ao qual ele estiver associado. Cada Domínio de Bioma tem um valor fixo de bônus ou penalidade para cada Domínio de Herói.
 
 2. Escudo representando o seu **Reino**
 
@@ -99,7 +99,7 @@ Layout das cartas de Armadilha:
 
 * Magia
 
-Pode ser jogada durante resoluções de Armadilhas e de Combates ou durante a Fase de Posicionamento, e custa 2 Mana para ser utilizada. Seus efeitos podem ser instantâneos, temporários ou permanentes.
+Pode ser jogada durante resoluções de Armadilhas e de Combates ou durante a Fase de Posicionamento, e custa 2 Mana para ser utilizada. Seus efeitos podem ser instantâneos, temporários ou permanentes. Magias só podem ser invocadas por Heróis do mesmo Reino, sendo o alcance da Magia medido a partir do Terreno em que o Herói que a invocou se encontra.
 
 //**[IMAGEM]**
 
@@ -162,3 +162,16 @@ O bônus ou a penalidade total aplicada ao Herói é referente aos seus Atributo
 Um Atributo de valor 100 com bônus total de 10% passa a ter valor 110, enquanto que, ao sofrer uma penalidade total de 10%, passa a ter valor 90.
 ```
 O mesmo se aplica para o Poder de Armadilhas.
+
+## Jogabilidade - Avançado
+
+### Flanqueamentos
+
+Quando há mais de um Herói capaz de alcançar um Herói inimigo participante de um Combate, ocorre Flanqueamento. Em um Flanqueamento, para cada Herói "excedente" (ou seja, além de um) que alcançar o mesmo Herói adversário, será aplicado 5% de bônus ao aliado que estiver participando do confronto, ao longo de sua duração. Há duas categorias de Flanqueamento:
+* Flanqueamento simples: Há apenas um Herói de um Reino contra vários Heróis do Reino inimigo.
+* //**[IMAGEM]**
+Nesse caso, o Herói flanqueador com o maior valor do respectivo Atributo utilizado (**Força**, para atacantes, e **Resistência**, para defensores) dentre seus aliados participará do confronto contra o Herói inimigo, e os bônus são aplicados a ele. Caso o Herói da equipe flanqueadora não derrote o inimigo, é realizado um novo confronto entre o Herói flanqueado e o flanqueador com o segundo maior Atributo utilizado, prosseguindo para os próximos Heróis flanqueadores em ordem decrescente de valor do Atributo utilizado, caso seja necessário (caso o Herói flanqueado continue sobrevivendo aos confrontos dos flanqueadores), recalculando os bônus de Flanqueamento a cada confronto, de acordo com a quantidade de flanqueadores restante (que diminui ou não, dependendo se o flanqueador do confronto anterior foi morto ou não). O progresso e os resultados desses confrontos seguem da mesma forma que os combates comuns, ou seja, com o espaço para a utilização de habilidades ativas e Magias, bem como a conquista de Terrenos pelo Reino vitorioso em cada confronto.
+* Flanqueamento em equipes: Quando, na mesma fase de combate, há Heróis flanqueando e sofrendo flanqueamento ao mesmo tempo. //**[REVISAR]**
+//**[IMAGEM]**
+Nesse caso, é verificado qual o flanqueamento mais forte, ou seja, aquele que possui mais Heróis flanqueadores para um Herói flanqueado, para ter a prioridade. Em caso de empate nesse quesito, um Flanqueamento dos defensores será priorizado. Caso o mesmo Reino possua mais de um Flanqueamento apto a receber a prioridade, o priorizado será aquele que possuir o Herói cujo Atributo utilizado é o mais forte, dentre os Flanqueamentos empatados. Assim que o Flanqueamento corrente é definido, o confronto é realizado da mesma forma que no Flanqueamento Simples. Entretanto, após cada confronto, é verificado o próximo Flanqueamento a ser considerado, da mesma forma, até que cada Flanqueamento seja completamente resolvido (sem necessariamente uma das equipes ser completamente derrotada). Caso algum confronto não resulte em nenhuma morte, é seguida a sequência de um Flanqueamento Simples, até que haja alguma morte ou que esse Flanqueamento seja completamente resolvido. Caso haja um Flanqueamento resolvido sem nenhuma morte, se inicia a resolução do próximo Flanqueamento na fila de prioridade.
+
