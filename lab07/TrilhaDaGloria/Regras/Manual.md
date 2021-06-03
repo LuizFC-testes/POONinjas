@@ -4,7 +4,7 @@
 
 ### Tabuleiro
 
-//**[IMAGEM]**
+![Inserir Imagem](https://github.com/LuizFC-testes/POONinjas/blob/Luiz/lab07/TrilhaDaGloria/Regras/Inserir%20Imagem.png)
 
 O tabuleiro é composto por **Terrenos** quadrados, que configuram uma grade 5x5. 
 
@@ -28,7 +28,7 @@ Cada jogador possui um Reino, que é disposto no lado do tabuleiro oposto ao lad
 
 ### Deck (Baralho), Mão e Cemitério
 
-//**[IMAGEM]**
+![Inserir Imagem](https://github.com/LuizFC-testes/POONinjas/blob/Luiz/lab07/TrilhaDaGloria/Regras/Inserir%20Imagem.png)
 
 Cada jogador possui um **Deck**, que é disposto no lado direito inferior da tela. Dele, ele obtém **Cartas** as quais utilizará para completar o objetivo (explicado na seção "Objetivo"). Cada jogador pode ver as cartas que possui na **Mão** (centro inferior da tela), que são as cartas jogáveis por ele no turno atual. No canto inferior esquerdo da tela, aparece o **Cemitério**, onde são dispostas as suas cartas que foram descartadas.
 
@@ -42,7 +42,7 @@ Há 3 tipos de carta: Heróis, Armadilhas e Magias
 
 * Heróis
 
-//**[IMAGEM]**
+![Inserir Imagem](https://github.com/LuizFC-testes/POONinjas/blob/Luiz/lab07/TrilhaDaGloria/Regras/Inserir%20Imagem.png)
 
 O principal tipo de carta do jogo. Apresentam as seguintes características:
 
@@ -73,15 +73,16 @@ Mais detalhes do funcionamento dos atributos podem ser encontrados na seção "C
 
 Layout das cartas de Heroi:
 
-//**[IMAGEM + LEGENDAS]**
+![Inserir Imagem](https://github.com/LuizFC-testes/POONinjas/blob/Luiz/lab07/TrilhaDaGloria/Regras/Inserir%20Imagem.png)
+**[IMAGEM + LEGENDAS]**
 
 * Armadilha
 
 São utilizadas para combater Heróis inimigos. Possuem as seguintes características:
 
-1. //**[IMAGEM]** Poder: Utilizado para confrontar Herois. Pode sofrer um bônus ou uma penalidade, a depender do Domínio do Herói que enfrentar (mais detalhes na //**[SEÇÃO]**).
+1. ![Inserir Imagem](https://github.com/LuizFC-testes/POONinjas/blob/Luiz/lab07/TrilhaDaGloria/Regras/Inserir%20Imagem%20(mini).png) Poder: Utilizado para confrontar Herois. Pode sofrer um bônus ou uma penalidade, a depender do Domínio do Herói que enfrentar (mais detalhes na //**[SEÇÃO]**).
 
-2. //**[IMAGEM]** Alcance: Funciona de maneira similar ao alcance de Heróis. É a distância máxima que um Heroi inimigo deve ser posicionado para que este acione a Armadilha.
+2. ![Inserir Imagem](https://github.com/LuizFC-testes/POONinjas/blob/Luiz/lab07/TrilhaDaGloria/Regras/Inserir%20Imagem%20(mini).png) Alcance: Funciona de maneira similar ao alcance de Heróis. É a distância máxima que um Heroi inimigo deve ser posicionado para que este acione a Armadilha.
 
 3. Domínio: Cada armadilha com nome distinto possui um Domínio pré-determinado (podendo não ser nenhum), que pode interagir com o Domínio do Heroi que estiver combatendo de diversas formas.
 
@@ -95,13 +96,14 @@ Podem ser instantâneos ou termporários, e afetam Heróis ou Terrenos.
 
 Layout das cartas de Armadilha:
 
-//**[IMAGEM + LEGENDAS]**
+![Inserir Imagem](https://github.com/LuizFC-testes/POONinjas/blob/Luiz/lab07/TrilhaDaGloria/Regras/Inserir%20Imagem.png)
+**[IMAGEM + LEGENDAS]**
 
 * Magia
 
 Pode ser jogada durante resoluções de Armadilhas e de Combates ou durante a Fase de Posicionamento, e custa 2 Mana para ser utilizada. Seus efeitos podem ser instantâneos, temporários ou permanentes. Magias só podem ser invocadas por Heróis do mesmo Reino, sendo o alcance da Magia medido a partir do Terreno em que o Herói que a invocou se encontra.
 
-//**[IMAGEM]**
+![Inserir Imagem](https://github.com/LuizFC-testes/POONinjas/blob/Luiz/lab07/TrilhaDaGloria/Regras/Inserir%20Imagem.png)
 
 ## Jogabilidade - Básico
 
@@ -109,7 +111,7 @@ Pode ser jogada durante resoluções de Armadilhas e de Combates ou durante a Fa
 
 O jogador alcança a vitória cumprindo um dos requisitos:
 
-* Formar uma um caminho de terrenos adjacentes conquistados por você que conecte o seu Reino com o Reino adversário //**[IMAGEM]**
+* Formar uma um caminho de terrenos adjacentes conquistados por você que conecte o seu Reino com o Reino adversário ![Inserir Imagem](https://github.com/LuizFC-testes/POONinjas/blob/Luiz/lab07/TrilhaDaGloria/Regras/Inserir%20Imagem%20(mini).png)
 * Ser o único com cartas jogáveis (ou seja, no Deck e na Mão) restantes
 
 ### Conquistando territórios
@@ -173,12 +175,14 @@ O mesmo se aplica para o Poder de Armadilhas.
 Quando há mais de um Herói capaz de alcançar um Herói inimigo participante de um Combate, ocorre Flanqueamento. Em um Flanqueamento, para cada Herói "excedente" (ou seja, além de um) que alcançar o mesmo Herói adversário, será aplicado 5% de bônus ao aliado que estiver participando do confronto, ao longo de sua duração. Há duas categorias de Flanqueamento:
 * Flanqueamento simples: Há apenas um Herói de um Reino contra vários Heróis do Reino inimigo.
 
-//**[IMAGEM]**
+![Inserir Imagem](https://github.com/LuizFC-testes/POONinjas/blob/Luiz/lab07/TrilhaDaGloria/Regras/Inserir%20Imagem.png)
+![Exemplo](https://github.com/LuizFC-testes/POONinjas/blob/Luiz/lab07/TrilhaDaGloria/Regras/Exemplo.png)
 
 Nesse caso, o Herói flanqueador com o maior valor do respectivo Atributo utilizado (**Força**, para atacantes, e **Resistência**, para defensores) dentre seus aliados participará do confronto contra o Herói inimigo, e os bônus são aplicados a ele. Caso o Herói da equipe flanqueadora não derrote o inimigo, é realizado um novo confronto entre o Herói flanqueado e o flanqueador com o segundo maior Atributo utilizado, prosseguindo para os próximos Heróis flanqueadores em ordem decrescente de valor do Atributo utilizado, caso seja necessário (caso o Herói flanqueado continue sobrevivendo aos confrontos dos flanqueadores), recalculando os bônus de Flanqueamento a cada confronto, de acordo com a quantidade de flanqueadores restante (que diminui ou não, dependendo se o flanqueador do confronto anterior foi morto ou não). O progresso e os resultados desses confrontos seguem da mesma forma que os combates comuns, ou seja, com o espaço para a utilização de habilidades ativas e Magias, bem como a conquista de Terrenos pelo Reino vitorioso em cada confronto.
-* Flanqueamento em equipes: Quando, na mesma fase de combate, há Heróis flanqueando e sofrendo flanqueamento ao mesmo tempo. //**[REVISAR]**
+* Flanqueamento em equipes: Quando, na mesma fase de combate, há Heróis flanqueando e sofrendo flanqueamento ao mesmo tempo. ![Revisar](https://github.com/LuizFC-testes/POONinjas/blob/Luiz/lab07/TrilhaDaGloria/Regras/Revisar%20(mini).png)
 
-//**[IMAGEM]**
+![Inserir Imagem](https://github.com/LuizFC-testes/POONinjas/blob/Luiz/lab07/TrilhaDaGloria/Regras/Inserir%20Imagem.png)
+![Exemplo](https://github.com/LuizFC-testes/POONinjas/blob/Luiz/lab07/TrilhaDaGloria/Regras/Exemplo.png)
 
 Nesse caso, é verificado qual o flanqueamento mais forte, ou seja, aquele que possui mais Heróis flanqueadores para um Herói flanqueado, para ter a prioridade. Em caso de empate nesse quesito, um Flanqueamento dos defensores será priorizado. Caso o mesmo Reino possua mais de um Flanqueamento apto a receber a prioridade, o priorizado será aquele que possuir o Herói cujo Atributo utilizado é o mais forte, dentre os Flanqueamentos empatados. Assim que o Flanqueamento corrente é definido, o confronto é realizado da mesma forma que no Flanqueamento Simples. Entretanto, após cada confronto, é verificado o próximo Flanqueamento a ser considerado, da mesma forma, até que cada Flanqueamento seja completamente resolvido (sem necessariamente uma das equipes ser completamente derrotada). Caso algum confronto não resulte em nenhuma morte, é seguida a sequência de um Flanqueamento Simples, até que haja alguma morte ou que esse Flanqueamento seja completamente resolvido. Caso haja um Flanqueamento resolvido sem nenhuma morte, se inicia a resolução do próximo Flanqueamento na fila de prioridade.
 
