@@ -99,4 +99,66 @@ Layout das cartas de Armadilha:
 
 * Magia
 
+Pode ser jogada durante resoluções de Armadilhas e de Combates ou durante a Fase de Posicionamento, e custa 2 Mana para ser utilizada. Seus efeitos podem ser instantâneos, temporários ou permanentes.
+
 //**[IMAGEM]**
+
+## Jogabilidade - Básico
+
+### Objetivo do jogo
+
+O jogador alcança a vitória cumprindo um dos requisitos:
+
+* Formar uma um caminho de terrenos adjacentes conquistados por você que conecte o seu Reino com o Reino adversário //**[IMAGEM]**
+* Ser o único com cartas jogáveis (ou seja, no Deck e na Mão) restantes
+
+### Conquistando territórios
+
+Há duas formas de conquistar territórios:
+
+* Mantendo um Herói em um Terreno por 5 turnos
+* Derrotando um Herói inimigo que esteja no Terreno a ser conquistado, usando um Herói controlado por você
+
+### Início do jogo
+
+O Campo de Batalha (tabuleiro) é gerado aleatoriamente, definindo os Biomas e Construções de cada Terreno. Esses Terrenos são inicialmente neutros, ou seja, não pertencem a nenhum dos jogadores. Cada jogador inicia o jogo com 30 cartas no total, que são criadas aleatoriamente no início do jogo, estando 5 na Mão e o restante no Deck. Além disso, cada jogador também começa com 5 Mana. Nas 30 cartas de cada jogador, estarão 20 Heróis, 5 Armadilhas e 5 Magias.
+
+### Turnos
+
+O fluxo do jogo é em turnos. Os turnos são divididos em três **Fases**:
+
+1. Fase de Compra
+
+Caso ainda hajam cartas restantes no Deck, o jogador compra a carta do topo do Deck, ou seja, a retira do Deck e a adiciona à sua Mão.
+
+2. Fase de Sacrifício
+
+O jogador pode optar por sacrificar uma carta (enviá-la ao cemitério) em troca de seu custo, acrescido de um em Mana. Assim, o valor de Mana recebido com o sacrifício de cada tipo de carta será:
+```
+Herói: 1; Armadilha: 2; Magia: 3
+```
+
+2. Fase de Posicionamento
+
+As cartas de Herói e de Armadilha são jogadas posicionando-as em Terrenos do Campo de Batalha (invocação). Cartas de Herói não custam Mana para serem invocadas, enquanto que Armadilhas custam 1 Mana. Em um turno normal, durante a Fase de Posicionamento de seu turno, o jogador pode invocar até um Heroi e até uma Armadilha, na ordem que preferir. Assim que uma carta é invocada, um Totem (ícone) representando a carta invocada é mostrado no Terreno em que foi invocada. A carta é invocada oculta ao oponente, ou seja, seu Totem não revela a ele qual carta ela é. Para o jogador que as invocou, as cartas ficam sempre visíveis.
+
+3. Fase de Combate
+
+São resolvidos os acionamentos de Armadilhas e de Combates, nesta ordem. Uma Armadilha é acionada caso um Herói do Reino inimigo seja invocado após ela, dentro do seu Alcance. É então aberto um espaço para que sejam utilizadas Magias e habilidades ativas de Herois (desde que as habilidades sejam capazes de afetar um dos Heróis ao alcance da Armadilha). Os jogadores podem utilizar habilidades ativas de seus Herois e Magias de sua mão o quanto quiserem (habilidades ativas tem o limite de um uso por Fase de Combate), desde que possuam Mana suficiente para isso, e na hora que quiserem (não é necessário esperar o oponente utilizar algo para que você possa utilizar outra habilidade ou Magia). 
+Assim que ambos os jogadores declararem que terminaram de utilizar suas habilidades e Magias, cada uma é resolvida seguindo a ordem da anunciada primeiro para a mais recente. Os efeitos da Armadilha são então resolvidos, e a armadilha é descartada para o Cemitério. Então, o turno segue para os eventuais combates que possam ser acionados, caso o Herói recém-invocado esteja dentro do Alcance de um Herói inimigo ou um Herói inimigo esteja dentro do seu Alcance. O combate segue então como detalhado na //**[SEÇÃO]**, sendo aberto outro espaço para a utilização de habilidades e Magias antes da sua resolução.
+Assim que uma carta de Heroi ou de Armadilha participa diretamente na fase de combate, essa carta é anunciada para ambos os jogadores. Caso um Heroi que não participa diretamente da Fase de Combate utilize uma habilidade ativa, ele também é revelado ao adversário. Cartas reveladas permanecem expostas no Campo de Batalha para ambos os jogadores, caso não sejam destruídas.
+
+### Combate
+
+O Reino da carta de Heroi recém-posicionada é o **Reino atacante**, enquanto que seu adversário é o **Reino defensor**. Cartas atacantes que estiverem envolvidas no combate utilizam sua **Força** contra a **Resistência** das defensoras. Cada confronto é realizado entre dois Heróis inimigos por vez. Caso o confronto da vez seja realizado entre dois Heróis que não estejam no mesmo Terreno, é realizado então um confronto à distância, e seus Atributos à distância são utilizados contra o oponente. Caso se encontrem no mesmo Terreno, são utilizados os seus respectivos Atributos corpo-a-corpo. O Herói que possuir o maior valor do seu respectivo Atributo utilizado, vence o confronto. Caso haja empate nesses valores, a vitória é do Reino defensor.
+Apenas Heróis capazes de visualizar o adversário do Combate (o possuírem dentro de seu Alcance) são capazes de tentar infligi-lo dano. Caso não consigam visualizar o oponente, são capazes apenas de bloquearem a investida inimiga. Nesse caso, ao vencer o confronto, o Herói não morre (não é enviado ao Cemitério), mas não é capaz de matar o oponente. Caso o Herói alcance o oponente e vença o confronto, o oponente é enviado ao Cemitério e o Terreno em que estava é conquistado pelo Reino vitorioso, mesmo se o Terreno já tiver sido conquistado previamente pelo oponente. Apenas um Reino pode ter posse de cada Terreno por vez, ou seja, caso um jogador conquiste um Terreno adversário, ele o toma para si.
+Para a resolução de combates e Armadilhas, os bônus aplicáveis aos Heróis são cumulativos e se somam, por exemplo:
+```
+Caso um Herói sofra um efeito que lhe dê 10% de bônus, outro que dê 5% de bônus e mais um que dê 10% de penalidade, o total de bônus que ele receberá é 5%.
+Da mesma forma, caso ele sofra efeitos de +10%, +5% e -20%, ele sofre uma penalidade de 5%
+```
+O bônus ou a penalidade total aplicada ao Herói é referente aos seus Atributos, incrementando-os ou descontando de seu valor. Por exemplo:
+```
+Um Atributo de valor 100 com bônus total de 10% passa a ter valor 110, enquanto que, ao sofrer uma penalidade total de 10%, passa a ter valor 90.
+```
+O mesmo se aplica para o Poder de Armadilhas.
