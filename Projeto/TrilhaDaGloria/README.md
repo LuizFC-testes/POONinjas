@@ -18,7 +18,7 @@ Leia o [manual](Regras/Manual.md) para mais informações.
 ## Slides da Prévia
 
 # Documentação dos Componentes
-
+![Diagrama geral dos principais componentes](assets/componentes.png)
 # Diagramas
 
 ## Diagrama Geral do Projeto
