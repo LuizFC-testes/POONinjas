@@ -42,6 +42,7 @@ public class Monarca implements IMonarca{
 	public void sacrificarCarta(Carta c) {
 		if(mao.removerCarta(c)) {
 			cemiterio.adicionarCarta(c);
+			mana++;
 		}
 	}
 }
