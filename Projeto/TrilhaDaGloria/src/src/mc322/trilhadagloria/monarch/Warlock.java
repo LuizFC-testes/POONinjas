@@ -1,5 +1,5 @@
 package mc322.trilhadagloria.monarch;
 
-public class Warlock extends Carta {
+public class Warlock extends Heroi {
 
 }

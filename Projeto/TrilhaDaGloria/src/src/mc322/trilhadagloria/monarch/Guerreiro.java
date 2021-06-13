@@ -1,5 +1,5 @@
 package mc322.trilhadagloria.monarch;
 
-public class Guerreiro extends Carta {
+public class Guerreiro extends Heroi {
 
 }

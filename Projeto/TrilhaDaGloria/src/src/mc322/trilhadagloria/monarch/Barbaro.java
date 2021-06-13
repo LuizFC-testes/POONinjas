@@ -1,5 +1,5 @@
 package mc322.trilhadagloria.monarch;
 
-public class Barbaro extends Carta {
+public class Barbaro extends Heroi {
 
 }
