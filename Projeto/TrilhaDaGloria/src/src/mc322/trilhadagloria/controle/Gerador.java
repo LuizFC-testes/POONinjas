@@ -1,5 +1,7 @@
 package mc322.trilhadagloria.controle;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 import mc322.trilhadagloria.battlefield.Caverna;
@@ -16,6 +18,7 @@ import mc322.trilhadagloria.monarch.Barbaro;
 import mc322.trilhadagloria.monarch.Bardo;
 import mc322.trilhadagloria.monarch.Carta;
 import mc322.trilhadagloria.monarch.Clerigo;
+import mc322.trilhadagloria.monarch.Dominio;
 import mc322.trilhadagloria.monarch.Druida;
 import mc322.trilhadagloria.monarch.Guerreiro;
 import mc322.trilhadagloria.monarch.Ladino;
@@ -28,44 +31,77 @@ import mc322.trilhadagloria.monarch.Sorcerer;
 import mc322.trilhadagloria.monarch.Warlock;
 
 public class Gerador {
-	public static Carta gerarHeroi() {
+	
+	/**
+	 * Gerador de Deck
+	 * @param nHerois - número de cartas do tipo Heroi
+	 * @param nMagias - número de cartas do tipo Magia
+	 * @param nArmadilhas - número de cartas do tipo Armadilha
+	 * @return ArrayList de cartas geradas aleatoriamente conforme especificado 
+	 */
+	public static ArrayList<Carta> gerarDeck(int nHerois, int nMagias, int nArmadilhas) {
+		ArrayList<Carta> deck = new ArrayList<Carta>();
+		
+		for(int i = 0; i < nHerois; i++) {
+			deck.add(Gerador.gerarHeroi());
+		}
+		
+		for(int i = 0; i < nMagias; i++) {
+			deck.add(Gerador.gerarMagia());
+		}
+		
+		for(int i = 0; i < nArmadilhas; i++) {
+			deck.add(Gerador.gerarArmadilha());
+		}
+		
+		Collections.shuffle(deck);
+		
+		return deck;
+	}
+	
+	/**
+	 * Gera aleatoriamente um objeto do tipo Heroi. Os Herois possuem probabilidade iguais de geração.
+	 * @return  objeto do tipo Carta/Heroi
+	 */
+	private static Carta gerarHeroi() {
 		Random rnd = new Random();
+		
+		// Escolhe um dominio aleatório
+		Dominio dom = Dominio.values()[rnd.nextInt(Dominio.values().length)];
 		
 		switch(rnd.nextInt(12)) {
 		case 0:
-			return new Barbaro();
+			return new Warlock(dom);
 		case 1:
-			return new Bardo();
+			return new Bardo(dom);
 		case 2:
-			return new Clerigo();
+			return new Clerigo(dom);
 		case 3:
-			return new Druida();
+			return new Druida(dom);
 		case 4:
-			return new Guerreiro();
+			return new Guerreiro(dom);
 		case 5:
-			return new Ladino();
+			return new Ladino(dom);
 		case 6:
-			return new Mago();
+			return new Mago(dom);
 		case 7:
-			return new Monge();
+			return new Monge(dom);
 		case 8:
-			return new Paladino();
+			return new Paladino(dom);
 		case 9:
-			return new Ranger();
+			return new Ranger(dom);
 		case 10:
-			return new Sorcerer();
-		case 11:
-			return new Warlock();
+			return new Sorcerer(dom);
 		default:
-			return new Barbaro();
+			return new Barbaro(dom);
 		}
 	}
 	
-	public static Carta gerarMagia() {
+	private static Carta gerarMagia() {
 		return new Magia();
 	}
 	
-	public static Carta gerarArmadilha() {
+	private static Carta gerarArmadilha() {
 		return new Armadilha();
 	}
 	
