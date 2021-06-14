@@ -1,5 +1,6 @@
 package mc322.trilhadagloria.monarch;
 
+import mc322.trilhadagloria.battlefield.Terreno;
 import mc322.trilhadagloria.exceptions.EmptyDeckException;
 
 public class Monarca implements IMonarca{
@@ -34,7 +35,7 @@ public class Monarca implements IMonarca{
 		cemiterio.adicionarCarta(c);
 	}
 
-	public void invocarCarta(Carta c/*, Terreno t*/) {
+	public void invocarCarta(Carta c, Terreno t) {
 		mao.removerCarta(c);
 		// ISummon invocar no battlefield
 	}
