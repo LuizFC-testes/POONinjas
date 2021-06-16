@@ -12,10 +12,12 @@ Leia o [manual](Regras/Manual.md) para mais informações.
 # Vídeos do Projeto
 
 ## Vídeo da Prévia
+* [Apresentação da proposta de jogo](assets/apresentacao-video.mp4)
 
 # Slides do Projeto
 
 ## Slides da Prévia
+* [Apresentação da proposta de jogo](assets/apresentacao-slide.pdf)
 
 # Documentação dos Componentes
 ![Diagrama geral dos principais componentes](assets/componentes.png)
