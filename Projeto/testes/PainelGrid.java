@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import javax.swing.Box;
 
 public class PainelGrid extends JPanel {
 
@@ -28,6 +29,13 @@ public class PainelGrid extends JPanel {
         c.weightx = 0.5;
         this.add(minimizar, c);
         botoes[0] = minimizar;
+        c = new GridBagConstraints();
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 2;
+        c.gridy = 0;
+        c.weightx = 0.5;
+        Component cola = Box.createGlue();
+        this.add(cola, c);
     }
 
     private void criarMaxim() {
@@ -56,6 +64,13 @@ public class PainelGrid extends JPanel {
         c.gridwidth = 2;
         this.add(fechar, c);
         botoes[2] = fechar;
+        c = new GridBagConstraints();
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 0;
+        c.gridy = 2;
+        c.weightx = 0.5;
+        Component cola = Box.createGlue();
+        this.add(cola, c);
     }
 
     public void conectarFrame(ActionListener act) {
