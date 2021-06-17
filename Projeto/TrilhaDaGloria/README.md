@@ -26,7 +26,7 @@ Leia o [manual](Regras/Manual.md) para mais informações sobre as regras do jog
 O jogo é construído seguindo a arquitetura Model-View-Control. O controle é responsável pelo fluxo e consistência do jogo. O view faz a exibição do jogo na tela, assim como captura as ações do usuário. Já o modelo é composto por dois principais componentes: o Monarch representa um player e suas tropas (cartas); e o BattleField que representa o tabuleiro com os terrenos e construções e é responsável por modelizar os combates entre as cartas invocadas.
 
 Na figura abaixo, estes componentes estão detalhados juntos com as interfaces de comunicação.
-![Diagrama geral dos principais componentes](assets/componentes.png)
+![Diagrama geral dos principais componentes](assets/componentes2.png)
 
 ## Diagrama Geral de Componentes
 Logo abaixo, está um modelo mais aprofundado do componente Monarch, responsável por modelizar o player e suas cartas.
