@@ -17,7 +17,9 @@
 ## [GridBagLayout](https://docs.oracle.com/javase/tutorial/uiswing/layout/gridbag.html)
 
 Layout Manager bom para posicionar os elementos ingame. O detalhamento é grande, então é melhor checar direto na página
+
 Resumo:
+
 Propriedades de GridBagConstraints
 ```
 * fill: Determina por onde o componente ajusta suas dimensões de acordo com as células que ocupa (NONE, HORIZONTAL, 
@@ -40,5 +42,6 @@ Propriedades de GridBagConstraints
   espaço que ele ocupa
 ```
 Mais sobre [Insets](https://docs.oracle.com/javase/8/docs/api/java/awt/Insets.html) e [Anchor](https://docs.oracle.com/javase/8/docs/api/java/awt/GridBagConstraints.html#anchor)
+
 As propriedades dos constraints do componente a ser adicionado no layout devem ser definidas em um objeto GridBagConstraints, para ser passado como parâmetro junto com o componente ao adicioná-lo ao layout. É recomendável criar um objeto constraint novo cada vez que for adicionar um componente ao layout, para evitar bugs gerados por constraints inesperados.
 
