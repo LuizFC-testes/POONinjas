@@ -45,3 +45,5 @@ Mais sobre [Insets](https://docs.oracle.com/javase/8/docs/api/java/awt/Insets.ht
 
 As propriedades dos constraints do componente a ser adicionado no layout devem ser definidas em um objeto GridBagConstraints, para ser passado como parâmetro junto com o componente ao adicioná-lo ao layout. É recomendável criar um objeto constraint novo cada vez que for adicionar um componente ao layout, para evitar bugs gerados por constraints inesperados.
 
+## [Autorizar JButton](https://docs.oracle.com/javase/7/docs/api/javax/swing/AbstractButton.html#setEnabled(boolean))
+![setEnabled](imagensRef/setEnabled.png)
