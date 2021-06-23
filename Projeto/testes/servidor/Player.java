@@ -174,7 +174,7 @@ public class Player extends JFrame {
 			System.out.println("-----Client-----");
 			
 			try {
-				socket = new Socket("localhost", 51734);
+				socket = new Socket(GameServer.ADDRESS, GameServer.PORT);
 				dataIn = new DataInputStream(socket.getInputStream());
 				dataOut = new DataOutputStream(socket.getOutputStream());
 				
