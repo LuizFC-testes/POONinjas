@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.Socket;
 
 import javax.swing.JButton;
@@ -13,6 +14,8 @@ import javax.swing.JTextArea;
 
 public class Player extends JFrame {
 	private static final long serialVersionUID = 4113419485118457382L;
+	public static final int PORT = 12969;
+	public static final String ADDRESS = "6.tcp.ngrok.io";
 	
 	private int width;
 	private int height;
@@ -169,12 +172,14 @@ public class Player extends JFrame {
 		private Socket socket;
 		private DataInputStream dataIn;
 		private DataOutputStream dataOut;
+		InetAddress ip;
 		
 		public ClientSideConnection() {
 			System.out.println("-----Client-----");
 			
 			try {
-				socket = new Socket(GameServer.ADDRESS, GameServer.PORT);
+				ip = InetAddress.getByName(ADDRESS);
+				socket = new Socket(ip, PORT);
 				dataIn = new DataInputStream(socket.getInputStream());
 				dataOut = new DataOutputStream(socket.getOutputStream());
 				
@@ -194,6 +199,7 @@ public class Player extends JFrame {
 				
 				
 			} catch(IOException e) {
+				System.out.println("Erro de conexão no servidor");
 				e.printStackTrace();
 			}
 		}

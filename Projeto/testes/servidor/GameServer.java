@@ -7,7 +7,6 @@ import java.util.Random;
 
 public class GameServer {
 	public static final int PORT = 51768;
-	public static final String ADDRESS = "trilhadagloria.servegame.com";
 	
 	private ServerSocket ss;
 	private int numPlayers;
