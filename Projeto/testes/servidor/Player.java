@@ -14,8 +14,8 @@ import javax.swing.JTextArea;
 
 public class Player extends JFrame {
 	private static final long serialVersionUID = 4113419485118457382L;
-	public static final int PORT = 12969;
-	public static final String ADDRESS = "6.tcp.ngrok.io";
+	public static final int PORT = 11548;
+	public static final String ADDRESS = "0.tcp.ngrok.io";
 	
 	private int width;
 	private int height;
