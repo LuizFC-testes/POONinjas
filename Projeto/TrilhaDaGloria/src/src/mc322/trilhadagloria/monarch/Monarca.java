@@ -13,6 +13,7 @@ public class Monarca implements IMonarca{
 	private ISummon battleField;
 	private int mana;
 	private int playerId;
+	private int inimigoId;
 	
 	public Monarca() {
 		deck = new Deck();
@@ -32,6 +33,14 @@ public class Monarca implements IMonarca{
 	
 	public int getMana() {
 		return this.mana;
+	}
+	
+	public int getInimigoId() {
+		return inimigoId;
+	}
+	
+	public void setInimigoId(int id) {
+		inimigoId = id;
 	}
 	
 	public void comprarCarta() throws EmptyDeckException {

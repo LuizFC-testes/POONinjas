@@ -38,4 +38,14 @@ public abstract class Carta {
 	public Monarca getDono() {
 		return dono;
 	}
+	
+	public void morrer() {
+		terreno = null;
+		invocada = false;
+		dono.enviarCemiterio(this);
+	}
+
+	public Terreno getTerreno() {
+		return terreno;
+	}
 }
