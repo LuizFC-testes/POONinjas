@@ -17,15 +17,15 @@ public class Monarca implements IMonarca{
 	private int playerId;
 	private int inimigoId;
 	
-	public Monarca(int playerId, ArrayList<Carta> deckInicial) {
-		deck = new Deck(deckInicial);
+	public Monarca(int playerId, String[] deck) {
+		this.deck = new Deck(deck);
 		mao = new GrupoCartas();
 		cemiterio = new GrupoCartas();
 		mana = 5;
 	
 		try {
 			for(int i = 0; i < 5; i++) {
-				mao.adicionarCarta(deck.comprarCarta());
+				mao.adicionarCarta(this.deck.comprarCarta());
 			}
 		}
 		catch(EmptyDeckException error) {

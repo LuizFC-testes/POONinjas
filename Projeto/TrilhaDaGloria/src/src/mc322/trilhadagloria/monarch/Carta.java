@@ -2,7 +2,8 @@ package mc322.trilhadagloria.monarch;
 
 import mc322.trilhadagloria.battlefield.Terreno;
 
-public abstract class Carta {	
+public abstract class Carta {
+	private int id;
 	protected boolean invocada = false;
 	protected int turnosInvocada = 0;
 	protected Terreno terreno = null;
@@ -11,6 +12,10 @@ public abstract class Carta {
 	protected Monarca dono;
 	private boolean visivelAoInimigo = false;
 	
+	public Carta(int id) {
+		this.id = id;
+	}
+
 	public void proximoTurno() {
 		if(invocada) {
 			turnosInvocada++;

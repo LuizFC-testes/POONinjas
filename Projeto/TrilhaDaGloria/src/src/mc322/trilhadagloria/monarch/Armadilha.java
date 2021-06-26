@@ -9,7 +9,8 @@ public class Armadilha extends Carta {
 	private Efeito efeito;
 	private Heroi alvo;
 	
-	public Armadilha() {
+	public Armadilha(int id) {
+		super(id);
 		this.preco = 1;
 		armada = false;
 	}

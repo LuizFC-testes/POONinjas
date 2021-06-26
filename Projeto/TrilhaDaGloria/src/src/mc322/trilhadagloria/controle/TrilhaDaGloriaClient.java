@@ -8,6 +8,7 @@ import java.net.Socket;
 public class TrilhaDaGloriaClient {	
 	private ClientSideConnection csc;
 	private int playerId;
+	private Controle control;
 	
 	public TrilhaDaGloriaClient() {
 	}
@@ -29,9 +30,12 @@ public class TrilhaDaGloriaClient {
 				dataIn = new ObjectInputStream(socket.getInputStream());
 				dataOut = new ObjectOutputStream(socket.getOutputStream());
 				
+				// Recebe pacote de inicialização do jogo
 				Packet pi = (Packet) dataIn.readObject();
-				playerId = pi.playerId;
 				System.out.println("SERVER: " + pi.msg);
+				
+				control = GeradorClient.gerarJogo(pi);
+				playerId = pi.playerId;
 				System.out.println("Conectado ao servidor como jogador #" + playerId + ".");
 				
 			} catch(IOException e) {

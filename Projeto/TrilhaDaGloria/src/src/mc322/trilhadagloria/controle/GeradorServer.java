@@ -102,13 +102,13 @@ public class GeradorServer {
 	private String gerarMagia() {
 		String s = cartaId + ";";
 		cartaId++;
-		return s+"m;";
+		return s+"magia;";
 	}
 	
 	private String gerarArmadilha() {
 		String s = cartaId + ";";
 		cartaId++;
-		return s+"a;";
+		return s+"armadilha;";
 	}
 	
 	private String gerarTerreno() {

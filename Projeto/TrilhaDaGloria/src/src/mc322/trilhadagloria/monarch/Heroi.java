@@ -12,7 +12,8 @@ public abstract class Heroi extends Carta {
 	protected Dominio dominio;
 	protected ArrayList<Efeito> sobEfeito;
 	
-	public Heroi(Dominio dominio) {
+	public Heroi(int id, Dominio dominio) {
+		super(id);
 		this.dominio = dominio;
 		preco = 0;
 	}

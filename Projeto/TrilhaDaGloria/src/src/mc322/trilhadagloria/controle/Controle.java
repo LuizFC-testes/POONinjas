@@ -13,32 +13,29 @@ public class Controle implements IControle {
 		this.battlefield = battlefield;
 	}
 
-	public void conecta(ICommand monarca) {
-		this.player = monarca;
+	public void conectaPlayer(ICommand player) {
+		this.player = player;
+	}
+	
+	public void conectaInimigo(ICommand inimigo) {
+		this.inimigo = inimigo;
 	}
 
-	@Override
 	public void comprarCarta() {
-		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void invocarCarta(Carta c) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
-	@Override
+
 	public void passarFase() {
-		// TODO Auto-generated method stub
-		
+
 	}
 
-	@Override
+
 	public void sacrificarCarta(Carta c) {
-		// TODO Auto-generated method stub
-		
-	}
 
+	}
 }
