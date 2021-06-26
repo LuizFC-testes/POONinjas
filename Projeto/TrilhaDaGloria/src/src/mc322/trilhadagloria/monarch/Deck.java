@@ -1,12 +1,12 @@
 package mc322.trilhadagloria.monarch;
 
-import mc322.trilhadagloria.controle.Gerador;
+import java.util.ArrayList;
 import mc322.trilhadagloria.exceptions.EmptyDeckException;
 
 public class Deck extends GrupoCartas{
 	
-	public Deck() {
-		cartas = Gerador.gerarDeck(20,5,5);
+	public Deck(ArrayList<Carta> cartas) {
+		this.cartas = cartas;
 	}
 	
 	public Carta comprarCarta() throws EmptyDeckException {

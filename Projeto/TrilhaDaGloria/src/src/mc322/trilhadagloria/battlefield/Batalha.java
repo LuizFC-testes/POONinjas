@@ -7,12 +7,12 @@ import mc322.trilhadagloria.monarch.Heroi;
 public class Batalha {
 	protected Heroi atacante;
 	protected Heroi defensor;
+	protected Armadilha armadilha;
 
 	public Batalha() {
 		atacante = null;
 		defensor = null;
 	}
-	
 	
 	public Batalha(Heroi heroi, Carta carta) {
 		atacante = heroi;
@@ -21,6 +21,8 @@ public class Batalha {
 			Armadilha armadilha = (Armadilha) carta;
 			if(!armadilha.estaArmada()) {
 				armadilha.armar(heroi);
+				this.armadilha = armadilha;
+				defensor = null;
 			}
 		} else if(carta instanceof Heroi) {
 			defensor = (Heroi) carta;

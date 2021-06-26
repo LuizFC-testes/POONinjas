@@ -3,6 +3,11 @@ package mc322.trilhadagloria.battlefield;
 import mc322.trilhadagloria.monarch.Dominio;
 
 public class Tundra extends Terreno {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5090882421944871314L;
+
 	public float getBonus(Dominio d) {
 		switch(d) {
 		case FLORA:

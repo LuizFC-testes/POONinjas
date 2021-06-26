@@ -2,11 +2,13 @@ package mc322.trilhadagloria.battlefield;
 
 import java.util.ArrayList;
 
+import mc322.trilhadagloria.monarch.Armadilha;
 import mc322.trilhadagloria.monarch.Heroi;
 
 public class GerenciadorDeBatalhas {
 	Tabuleiro tabuleiro;
 	ArrayList<Batalha> filaDeBatalhas;
+	ArrayList<Armadilha> armadilhas;
 
 	public GerenciadorDeBatalhas(Tabuleiro tabuleiro) {
 		this.tabuleiro = tabuleiro;
@@ -57,6 +59,18 @@ public class GerenciadorDeBatalhas {
 			Batalha b = filaDeBatalhas.remove(0);
 			Heroi perdedor = b.batalhar();
 			tabuleiro.remover(perdedor);
+		}
+	}
+
+	public void ativarArmadilhas() {
+		for(Armadilha a : tabuleiro.getArmadilhas()) {
+			a.ativar();
+		}
+	}
+
+	public void atualizarArmadilhas() {
+		for(Armadilha a : tabuleiro.getArmadilhas()) {
+			a.armar(a.buscarAlvo());
 		}
 	}
 	

@@ -1,10 +1,14 @@
 package mc322.trilhadagloria.battlefield;
 
+import java.io.Serializable;
+
 import mc322.trilhadagloria.exceptions.GameExceptions;
 import mc322.trilhadagloria.monarch.Carta;
 import mc322.trilhadagloria.monarch.Dominio;
 
-public abstract class Terreno {
+public abstract class Terreno implements Serializable {
+	private static final long serialVersionUID = -2300659424101637635L;
+	
 	private Carta cartas[];
 	private Terreno vizinhos[];
 	private int posicaoI;

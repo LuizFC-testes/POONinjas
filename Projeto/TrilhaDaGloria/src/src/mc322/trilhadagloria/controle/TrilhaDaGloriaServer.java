@@ -1,7 +1,5 @@
 package mc322.trilhadagloria.controle;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -11,12 +9,14 @@ import java.net.Socket;
 public class TrilhaDaGloriaServer {
 	
 	public static final int PORT = 51768;
-	public static final String ADDRESS = "trilhadagloria.gameserve.com";
 	
 	private ServerSocket ss;
 	private int numPlayers;
+	@SuppressWarnings("unused")
+	private ServerSideConnection player0;
+	@SuppressWarnings("unused")
 	private ServerSideConnection player1;
-	private ServerSideConnection player2;
+	GeradorServer gerador;
 	
 	/**
 	 * Construtor do servidor
@@ -33,6 +33,9 @@ public class TrilhaDaGloriaServer {
 			System.out.println("Falha ao iniciar servidor na porta " + PORT);
 			e.printStackTrace();
 		}
+		
+		// Gerar decks e terreno aleatorios
+		gerador = new GeradorServer();
 	}
 	
 	/**
@@ -45,17 +48,16 @@ public class TrilhaDaGloriaServer {
 			while(numPlayers < 2) {
 				// Aguarda conexão do cliente
 				Socket s = ss.accept();
-				numPlayers++;
-				
 				System.out.println("Jogador #" + numPlayers + " conectou.");
-				
 				ServerSideConnection ssc = new ServerSideConnection(s, numPlayers);
 				
-				if(numPlayers == 1) {
-					player1 = ssc;
+				if(numPlayers == 0) {
+					player0 = ssc;
 				} else {
-					player2 = ssc;
+					player1 = ssc;
 				}
+				
+				numPlayers++;
 				
 				// Inicia thread de comunicação com o cliente
 				Thread t = new Thread(ssc);
@@ -69,6 +71,7 @@ public class TrilhaDaGloriaServer {
 	
 	private class ServerSideConnection implements Runnable {
 		private Socket socket;
+		@SuppressWarnings("unused")
 		private ObjectInputStream dataIn;
 		private ObjectOutputStream dataOut;
 		private int playerId;
@@ -78,9 +81,8 @@ public class TrilhaDaGloriaServer {
 			playerId = id;
 			
 			try {
-				dataIn = new ObjectInputStream(socket.getInputStream());
 				dataOut = new ObjectOutputStream(socket.getOutputStream());
-				
+				dataIn = new ObjectInputStream(socket.getInputStream());
 			} catch(IOException e) {
 				e.printStackTrace();
 			}
@@ -91,15 +93,13 @@ public class TrilhaDaGloriaServer {
 		 */
 		public void run() {
 			try {
-				dataOut.writeInt(playerId);
+				// Envia pacote de boas vindas com dados de inicialização do jogo
+				dataOut.writeObject(gerador.gerarPacoteInicial(playerId));
 				dataOut.flush();
 				
 				while(true) {
 					
 				}
-				
-//				player1.closeConnection();
-//				player2.closeConnection();
 				
 			} catch(IOException e) {
 				System.out.println("Falha na thread do jogador #" + playerId);
@@ -107,15 +107,8 @@ public class TrilhaDaGloriaServer {
 			}
 		}
 		
-		public void sendPacket(Packet pck) {
-			try {
-				dataOut.writeObject(pck);
-				dataOut.flush();
-			} catch(IOException e) {
-				e.printStackTrace();
-			}
-		}
 		
+		@SuppressWarnings("unused")
 		public void closeConnection() {
 			try {
 				socket.close();

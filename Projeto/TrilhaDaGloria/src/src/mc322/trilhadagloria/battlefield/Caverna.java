@@ -4,6 +4,11 @@ import mc322.trilhadagloria.monarch.Dominio;
 
 public class Caverna extends Terreno {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7603867789440250231L;
+
 	public float getBonus(Dominio d) {
 		switch(d) {
 		case TERRA:

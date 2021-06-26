@@ -36,4 +36,6 @@ public abstract class Efeito {
 	public abstract int bonusResistencia(Heroi h);
 
 	public abstract float bonusForca(Heroi h);
+
+	protected abstract void ativarEfeitoPreCombate();
 }

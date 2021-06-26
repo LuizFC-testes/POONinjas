@@ -6,6 +6,10 @@ import mc322.trilhadagloria.battlefield.Batalha;
 import mc322.trilhadagloria.battlefield.Terreno;
 
 public abstract class Heroi extends Carta {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7239787499017908130L;
 	protected int forca[];
 	protected int resistencia[];
 	protected int alcance;

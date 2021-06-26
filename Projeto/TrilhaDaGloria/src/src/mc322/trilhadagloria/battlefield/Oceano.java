@@ -3,6 +3,11 @@ package mc322.trilhadagloria.battlefield;
 import mc322.trilhadagloria.monarch.Dominio;
 
 public class Oceano extends Terreno {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2782409113846850055L;
+
 	public float getBonus(Dominio d) {
 		switch(d) {
 		case TERRA:

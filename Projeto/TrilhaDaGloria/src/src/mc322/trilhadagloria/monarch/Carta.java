@@ -1,9 +1,13 @@
 package mc322.trilhadagloria.monarch;
 
 
+import java.io.Serializable;
+
 import mc322.trilhadagloria.battlefield.Terreno;
 
-public abstract class Carta {
+public abstract class Carta implements Serializable {
+	private static final long serialVersionUID = 4340480894928106038L;
+	
 	protected boolean invocada = false;
 	protected int turnosInvocada = 0;
 	protected Terreno terreno = null;

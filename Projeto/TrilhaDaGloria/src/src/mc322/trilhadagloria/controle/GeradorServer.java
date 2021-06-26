@@ -10,6 +10,7 @@ import mc322.trilhadagloria.battlefield.Floresta;
 import mc322.trilhadagloria.battlefield.Montanha;
 import mc322.trilhadagloria.battlefield.Oceano;
 import mc322.trilhadagloria.battlefield.Planicie;
+import mc322.trilhadagloria.battlefield.Tabuleiro;
 import mc322.trilhadagloria.battlefield.Terreno;
 import mc322.trilhadagloria.battlefield.Tundra;
 import mc322.trilhadagloria.battlefield.Vulcanico;
@@ -30,7 +31,23 @@ import mc322.trilhadagloria.monarch.Ranger;
 import mc322.trilhadagloria.monarch.Sorcerer;
 import mc322.trilhadagloria.monarch.Warlock;
 
-public class Gerador {
+public class GeradorServer {
+	private ArrayList<Carta> deckPlayer0;
+	private ArrayList<Carta> deckPlayer1;
+	private ArrayList<Terreno> tabuleiro;
+	
+	public GeradorServer() {
+		// Gerar decks
+		deckPlayer0 = gerarDeck(20,5,5);
+		deckPlayer1 = gerarDeck(20,5,5);
+		
+		// Gerar terrenos
+		tabuleiro = new ArrayList<Terreno>();
+		
+		for(int i = 0; i < Tabuleiro.MAPSIZE*Tabuleiro.MAPSIZE; i++) {
+			tabuleiro.add(gerarTerreno());
+		}
+	}
 	
 	/**
 	 * Gerador de Deck
@@ -39,19 +56,19 @@ public class Gerador {
 	 * @param nArmadilhas - número de cartas do tipo Armadilha
 	 * @return ArrayList de cartas geradas aleatoriamente conforme especificado 
 	 */
-	public static ArrayList<Carta> gerarDeck(int nHerois, int nMagias, int nArmadilhas) {
+	private ArrayList<Carta> gerarDeck(int nHerois, int nMagias, int nArmadilhas) {
 		ArrayList<Carta> deck = new ArrayList<Carta>();
 		
 		for(int i = 0; i < nHerois; i++) {
-			deck.add(Gerador.gerarHeroi());
+			deck.add(gerarHeroi());
 		}
 		
 		for(int i = 0; i < nMagias; i++) {
-			deck.add(Gerador.gerarMagia());
+			deck.add(gerarMagia());
 		}
 		
 		for(int i = 0; i < nArmadilhas; i++) {
-			deck.add(Gerador.gerarArmadilha());
+			deck.add(gerarArmadilha());
 		}
 		
 		Collections.shuffle(deck);
@@ -63,7 +80,7 @@ public class Gerador {
 	 * Gera aleatoriamente um objeto do tipo Heroi. Os Herois possuem probabilidade iguais de geração.
 	 * @return  objeto do tipo Carta/Heroi
 	 */
-	private static Carta gerarHeroi() {
+	private Carta gerarHeroi() {
 		Random rnd = new Random();
 		
 		// Escolhe um dominio aleatório
@@ -97,15 +114,15 @@ public class Gerador {
 		}
 	}
 	
-	private static Carta gerarMagia() {
+	private Carta gerarMagia() {
 		return new Magia();
 	}
 	
-	private static Carta gerarArmadilha() {
+	private Carta gerarArmadilha() {
 		return new Armadilha();
 	}
 	
-	public static Terreno gerarTerreno() {
+	private Terreno gerarTerreno() {
 		Random rnd = new Random();
 		int p = rnd.nextInt(100);
 		
@@ -127,4 +144,17 @@ public class Gerador {
 			return new Caverna();
 	}
 	
+	public PacketInicial gerarPacoteInicial(int playerId) {
+		PacketInicial pi = new PacketInicial(playerId);
+		
+		pi.deckPlayer0 = new Carta[this.deckPlayer0.size()];
+		pi.deckPlayer1 = new Carta[this.deckPlayer1.size()];
+		pi.tabuleiro = new Terreno[this.tabuleiro.size()];
+		
+		pi.deckPlayer0 = this.deckPlayer0.toArray(pi.deckPlayer0);
+		pi.deckPlayer1 = this.deckPlayer1.toArray(pi.deckPlayer1);
+		pi.tabuleiro = this.tabuleiro.toArray(pi.tabuleiro);
+		
+		return pi;
+	}
 }

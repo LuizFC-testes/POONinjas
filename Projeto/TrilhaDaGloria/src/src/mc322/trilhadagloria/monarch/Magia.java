@@ -1,7 +1,10 @@
 package mc322.trilhadagloria.monarch;
 
-import mc322.trilhadagloria.battlefield.Terreno;
-
 public class Magia extends Carta{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1272399007538794341L;
 
 }

@@ -1,5 +1,7 @@
 package mc322.trilhadagloria.monarch;
 
+import java.util.ArrayList;
+
 import mc322.trilhadagloria.battlefield.ISummon;
 import mc322.trilhadagloria.battlefield.Terreno;
 import mc322.trilhadagloria.exceptions.EmptyDeckException;
@@ -15,8 +17,8 @@ public class Monarca implements IMonarca{
 	private int playerId;
 	private int inimigoId;
 	
-	public Monarca() {
-		deck = new Deck();
+	public Monarca(int playerId, ArrayList<Carta> deckInicial) {
+		deck = new Deck(deckInicial);
 		mao = new GrupoCartas();
 		cemiterio = new GrupoCartas();
 		mana = 5;
@@ -28,6 +30,14 @@ public class Monarca implements IMonarca{
 		}
 		catch(EmptyDeckException error) {
 			System.err.println("*** Error: " + error.getMessage());
+		}
+		
+		this.playerId = playerId;
+		
+		if(playerId == 0) {
+			inimigoId = 1;
+		} else {
+			inimigoId = 0;
 		}
 	}
 	
