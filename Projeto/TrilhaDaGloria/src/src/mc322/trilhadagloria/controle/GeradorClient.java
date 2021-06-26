@@ -7,7 +7,7 @@ import mc322.trilhadagloria.monarch.Monarca;
 
 public class GeradorClient { 
 	
-	public static Controle gerarJogo(Packet init) {
+	public static Controle gerarJogo(Mensagem init) {
 		
 		int inimigoId;
 		

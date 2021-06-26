@@ -141,8 +141,8 @@ public class GeradorServer {
 			return "Caverna";
 	}
 	
-	public Packet gerarPacoteInicial(int playerId) {
-		Packet pi = new Packet();
+	public Mensagem gerarPacoteInicial(int playerId) {
+		Mensagem pi = new Mensagem();
 		
 		pi.playerId = playerId;
 		pi.command = "inicializar";

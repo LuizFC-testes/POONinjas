@@ -1,10 +1,5 @@
 package mc322.trilhadagloria.controle;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
-
 public class TrilhaDaGloriaClient {	
 	private ClientSideConnection csc;
 	private int playerId;
@@ -15,49 +10,34 @@ public class TrilhaDaGloriaClient {
 	
 	public void connectToServer(String address, int port) {
 		csc = new ClientSideConnection(address, port);
+		
+		// Mensagem com inicializações
+		Mensagem msg = csc.lerPacote();
+		
+		control = GeradorClient.gerarJogo(msg);
+		
+		playerId = msg.playerId;
+		System.out.println("Conectado ao servidor como jogador #" + playerId + ".");
+		
 	}
 	
-	private class ClientSideConnection {
-		private Socket socket;
-		private ObjectInputStream dataIn;
-		private ObjectOutputStream dataOut;
-		
-		public ClientSideConnection(String address, int port) {
-			System.out.println("-----CLIENTE-----");
+	public void aguardarOponente() {
+		Thread t = new Thread(new Runnable() {
+
+			public void run() {
+				// Aguarda nesta linha até receber uma nova mensagem do servidor
+				Mensagem msg = csc.lerPacote();
+				
+				switch(msg.command) {
+				case "invocar":
+				case "sacrificar":
+				case "passarfase":
+				}
+			}
 			
-			try {
-				socket = new Socket(address, port);
-				dataIn = new ObjectInputStream(socket.getInputStream());
-				dataOut = new ObjectOutputStream(socket.getOutputStream());
-				
-				// Recebe pacote de inicialização do jogo
-				Packet pi = (Packet) dataIn.readObject();
-				System.out.println("SERVER: " + pi.msg);
-				
-				control = GeradorClient.gerarJogo(pi);
-				playerId = pi.playerId;
-				System.out.println("Conectado ao servidor como jogador #" + playerId + ".");
-				
-			} catch(IOException e) {
-				System.err.println("Não foi possível conectar ao servidor tcp://" + address + ":" + port);
-			} catch(ClassNotFoundException e) {
-				System.err.println("Erro ao ler objeto 'PacketInicial'");
-				e.printStackTrace();
-			}
-		}
+		});
 		
-		
-		@SuppressWarnings("unused")
-		public void closeConnection() {
-			try {
-				dataIn.close();
-				dataOut.close();
-				socket.close();
-				System.out.println("----CONNECTION CLOSED----");
-			} catch(IOException e) {
-				e.printStackTrace();
-			}
-		}
+		t.start();
 	}
 	
 	public static void main(String args[]) {
@@ -68,5 +48,8 @@ public class TrilhaDaGloriaClient {
 		
 		TrilhaDaGloriaClient client = new TrilhaDaGloriaClient();
 		client.connectToServer(args[0], Integer.parseInt(args[1]));
+		
+		// Evita desconexão do cliente durante desenvolvimento
+		while(true);
 	}
 }

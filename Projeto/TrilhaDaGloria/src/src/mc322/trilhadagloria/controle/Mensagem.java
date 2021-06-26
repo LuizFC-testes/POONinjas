@@ -2,7 +2,8 @@ package mc322.trilhadagloria.controle;
 
 import java.io.Serializable;
 
-public class Packet implements Serializable {
+public class Mensagem implements Serializable {
+
 	private static final long serialVersionUID = -3407614460412459989L;
 
 	public int playerId;
@@ -13,5 +14,14 @@ public class Packet implements Serializable {
 	public String[][] tabuleiro;
 	public String[] deck;
 	public String[] deckInimigo;
+	
+	public Mensagem() {
+		
+	}
+	
+	public Mensagem(String string) {
+		this.msg = string;
+	}
+	
 	
 }
