@@ -1,16 +1,7 @@
 package mc322.trilhadagloria.monarch;
 
+import mc322.trilhadagloria.battlefield.Terreno;
+
 public class Magia extends Carta{
-
-	private int preco;
-	
-	public int getPreco() {
-		return preco;
-	}
-
-	
-	public void invocar() {
-		invocada = true;
-	}
 
 }

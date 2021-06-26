@@ -3,14 +3,17 @@ package mc322.trilhadagloria.monarch;
 import mc322.trilhadagloria.battlefield.ISummon;
 import mc322.trilhadagloria.battlefield.Terreno;
 import mc322.trilhadagloria.exceptions.EmptyDeckException;
+import mc322.trilhadagloria.exceptions.GameExceptions;
+import mc322.trilhadagloria.exceptions.NotEnoughManaException;
 
 public class Monarca implements IMonarca{
 	private Deck deck;
 	private GrupoCartas mao;
 	private GrupoCartas cemiterio;
 	private ISummon battleField;
-	
 	private int mana;
+	private int playerId;
+	private int inimigoId;
 	
 	public Monarca() {
 		deck = new Deck();
@@ -28,6 +31,18 @@ public class Monarca implements IMonarca{
 		}
 	}
 	
+	public int getMana() {
+		return this.mana;
+	}
+	
+	public int getInimigoId() {
+		return inimigoId;
+	}
+	
+	public void setInimigoId(int id) {
+		inimigoId = id;
+	}
+	
 	public void comprarCarta() throws EmptyDeckException {
 		Carta c = deck.comprarCarta();
 		mao.adicionarCarta(c);
@@ -37,19 +52,17 @@ public class Monarca implements IMonarca{
 		cemiterio.adicionarCarta(c);
 	}
 
-	public void invocarCarta(Carta c, Terreno t) {
+	public void invocarCarta(Carta c, Terreno t) throws GameExceptions {
 		if(battleField != null) {
-			if(c instanceof Armadilha) {
-				if(((Armadilha) c).getPreco() > this.mana) {
-					return;
-				}
-			} else if(c instanceof Magia) {
-				if(((Magia) c).getPreco() > this.mana) {
-					return;
-				}
+			if(mana < c.getPreco()) {
+				throw new NotEnoughManaException("Não foi possível invocar. Mana insuficiente");
+			} else {
+				battleField.invocarCarta(c, t);
+				mao.removerCarta(c);
+				mana -= c.getPreco();
 			}
-			battleField.invocarCarta(c, t);
-			mao.removerCarta(c);
+		} else {
+			System.err.println("Impossivel invocar carta, battlefield não está conectado ao monarca.");
 		}
 	}
 	
@@ -62,5 +75,17 @@ public class Monarca implements IMonarca{
 
 	public void connect(ISummon battleField) {
 		this.battleField = battleField;
+	}
+
+	public void setMana(int mana) {
+		this.mana = mana;
+	}
+	
+	public void setPlayerId(int id) {
+		playerId = id;
+	}
+	
+	public int getPlayerId() {
+		return playerId;
 	}
 }
