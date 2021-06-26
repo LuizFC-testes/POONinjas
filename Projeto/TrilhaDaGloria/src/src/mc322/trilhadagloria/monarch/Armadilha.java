@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import mc322.trilhadagloria.battlefield.Terreno;
 
 public class Armadilha extends Carta {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 7403894689941848907L;
 	private boolean armada;
 	private int alcance;
 	private Efeito efeito;

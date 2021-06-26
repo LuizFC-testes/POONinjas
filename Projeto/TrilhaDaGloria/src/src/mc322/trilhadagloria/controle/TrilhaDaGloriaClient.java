@@ -29,11 +29,10 @@ public class TrilhaDaGloriaClient {
 				dataIn = new ObjectInputStream(socket.getInputStream());
 				dataOut = new ObjectOutputStream(socket.getOutputStream());
 				
-				PacketInicial pi = (PacketInicial) dataIn.readObject();
-//				playerId = pi.playerId;
-//				System.out.println("SERVER: " + pi.msg);
-//				System.out.println("Conectado ao servidor como jogador #" + (playerId+1) + ".");
-//				System.out.println("" + pi.tabuleiro[0]);
+				Packet pi = (Packet) dataIn.readObject();
+				playerId = pi.playerId;
+				System.out.println("SERVER: " + pi.msg);
+				System.out.println("Conectado ao servidor como jogador #" + playerId + ".");
 				
 			} catch(IOException e) {
 				System.err.println("Não foi possível conectar ao servidor tcp://" + address + ":" + port);

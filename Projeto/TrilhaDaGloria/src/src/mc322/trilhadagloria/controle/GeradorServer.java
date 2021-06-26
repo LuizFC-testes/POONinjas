@@ -4,48 +4,29 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-import mc322.trilhadagloria.battlefield.Caverna;
-import mc322.trilhadagloria.battlefield.Deserto;
-import mc322.trilhadagloria.battlefield.Floresta;
-import mc322.trilhadagloria.battlefield.Montanha;
-import mc322.trilhadagloria.battlefield.Oceano;
-import mc322.trilhadagloria.battlefield.Planicie;
 import mc322.trilhadagloria.battlefield.Tabuleiro;
-import mc322.trilhadagloria.battlefield.Terreno;
-import mc322.trilhadagloria.battlefield.Tundra;
-import mc322.trilhadagloria.battlefield.Vulcanico;
-import mc322.trilhadagloria.monarch.Armadilha;
-import mc322.trilhadagloria.monarch.Barbaro;
-import mc322.trilhadagloria.monarch.Bardo;
-import mc322.trilhadagloria.monarch.Carta;
-import mc322.trilhadagloria.monarch.Clerigo;
 import mc322.trilhadagloria.monarch.Dominio;
-import mc322.trilhadagloria.monarch.Druida;
-import mc322.trilhadagloria.monarch.Guerreiro;
-import mc322.trilhadagloria.monarch.Ladino;
-import mc322.trilhadagloria.monarch.Magia;
-import mc322.trilhadagloria.monarch.Mago;
-import mc322.trilhadagloria.monarch.Monge;
-import mc322.trilhadagloria.monarch.Paladino;
-import mc322.trilhadagloria.monarch.Ranger;
-import mc322.trilhadagloria.monarch.Sorcerer;
-import mc322.trilhadagloria.monarch.Warlock;
 
 public class GeradorServer {
-	private ArrayList<Carta> deckPlayer0;
-	private ArrayList<Carta> deckPlayer1;
-	private ArrayList<Terreno> tabuleiro;
+	private static int cartaId = 0;
+	
+	private String[] deckPlayer0;
+	private String[] deckPlayer1;
+	private String[][] tabuleiro;
+	
 	
 	public GeradorServer() {
 		// Gerar decks
-		deckPlayer0 = gerarDeck(20,5,5);
-		deckPlayer1 = gerarDeck(20,5,5);
+		deckPlayer0 = gerarDeck(30,0,0);
+		deckPlayer1 = gerarDeck(30,0,0);
 		
 		// Gerar terrenos
-		tabuleiro = new ArrayList<Terreno>();
+		tabuleiro = new String[Tabuleiro.MAPSIZE][Tabuleiro.MAPSIZE];
 		
-		for(int i = 0; i < Tabuleiro.MAPSIZE*Tabuleiro.MAPSIZE; i++) {
-			tabuleiro.add(gerarTerreno());
+		for(int i = 0; i < Tabuleiro.MAPSIZE; i++) {
+			for(int j = 0; j < Tabuleiro.MAPSIZE; j++) {
+				tabuleiro[i][j] = gerarTerreno();
+			}
 		}
 	}
 	
@@ -56,104 +37,127 @@ public class GeradorServer {
 	 * @param nArmadilhas - número de cartas do tipo Armadilha
 	 * @return ArrayList de cartas geradas aleatoriamente conforme especificado 
 	 */
-	private ArrayList<Carta> gerarDeck(int nHerois, int nMagias, int nArmadilhas) {
-		ArrayList<Carta> deck = new ArrayList<Carta>();
+	private String[] gerarDeck(int nHerois, int nMagias, int nArmadilhas) {
+		ArrayList<String> deck = new ArrayList<String>();
 		
 		for(int i = 0; i < nHerois; i++) {
 			deck.add(gerarHeroi());
 		}
-		
 		for(int i = 0; i < nMagias; i++) {
 			deck.add(gerarMagia());
 		}
-		
 		for(int i = 0; i < nArmadilhas; i++) {
 			deck.add(gerarArmadilha());
 		}
 		
 		Collections.shuffle(deck);
 		
-		return deck;
+		String[] array = new String[deck.size()];
+		
+		array = deck.toArray(array);
+		
+		return array;
 	}
 	
 	/**
 	 * Gera aleatoriamente um objeto do tipo Heroi. Os Herois possuem probabilidade iguais de geração.
 	 * @return  objeto do tipo Carta/Heroi
 	 */
-	private Carta gerarHeroi() {
+	private String gerarHeroi() {
 		Random rnd = new Random();
+		String s = cartaId + ";";
+		cartaId++;
 		
 		// Escolhe um dominio aleatório
 		Dominio dom = Dominio.values()[rnd.nextInt(Dominio.values().length)];
 		
 		switch(rnd.nextInt(12)) {
 		case 0:
-			return new Warlock(dom);
+			return s+"warlock;" + dom.toString() + ";";
 		case 1:
-			return new Bardo(dom);
+			return s+"bardo;" + dom.toString() + ";";
 		case 2:
-			return new Clerigo(dom);
+			return s+"clerigo;" + dom.toString() + ";";
 		case 3:
-			return new Druida(dom);
+			return s+"druida;" + dom.toString() + ";";
 		case 4:
-			return new Guerreiro(dom);
+			return s+"guerreiro;" + dom.toString() + ";";
 		case 5:
-			return new Ladino(dom);
+			return s+"ladino;" + dom.toString() + ";";
 		case 6:
-			return new Mago(dom);
+			return s+"mago;" + dom.toString() + ";";
 		case 7:
-			return new Monge(dom);
+			return s+"monge;" + dom.toString() + ";";
 		case 8:
-			return new Paladino(dom);
+			return s+"paladino;" + dom.toString() + ";";
 		case 9:
-			return new Ranger(dom);
+			return s+"ranger;" + dom.toString() + ";";
 		case 10:
-			return new Sorcerer(dom);
+			return s+"sorcerer;" + dom.toString() + ";";
 		default:
-			return new Barbaro(dom);
+			return s+"barbaro;" + dom.toString() + ";";
 		}
 	}
 	
-	private Carta gerarMagia() {
-		return new Magia();
+	private String gerarMagia() {
+		String s = cartaId + ";";
+		cartaId++;
+		return s+"m;";
 	}
 	
-	private Carta gerarArmadilha() {
-		return new Armadilha();
+	private String gerarArmadilha() {
+		String s = cartaId + ";";
+		cartaId++;
+		return s+"a;";
 	}
 	
-	private Terreno gerarTerreno() {
+	private String gerarTerreno() {
 		Random rnd = new Random();
 		int p = rnd.nextInt(100);
 		
+		// Deserto
 		if(p < 13)
-			return new Deserto();
+			return "Deserto";
+		// Floresta
 		else if(p >= 13 && p < 25)
-			return new Floresta();
+			return "Floresta";
+		// Tundra
 		else if(p >= 25 && p < 37)
-			return new Tundra();
+			return "Tundra";
+		// Oceano
 		else if(p >= 37 && p < 50)
-			return new Oceano();
+			return "Oceano";
+		// Vulcanico
 		else if(p >= 50 && p < 63)
-			return new Vulcanico();
+			return "Vulcanico";
+		// Montanha
 		else if(p >= 63 && p < 76)
-			return new Montanha();
+			return "Montanha";
+		// Planicie
 		else if(p >= 76 && p < 86)
-			return new Planicie();
+			return "Planicie";
+		// Caverna
 		else
-			return new Caverna();
+			return "Caverna";
 	}
 	
-	public PacketInicial gerarPacoteInicial(int playerId) {
-		PacketInicial pi = new PacketInicial(playerId);
+	public Packet gerarPacoteInicial(int playerId) {
+		Packet pi = new Packet();
 		
-		pi.deckPlayer0 = new Carta[this.deckPlayer0.size()];
-		pi.deckPlayer1 = new Carta[this.deckPlayer1.size()];
-		pi.tabuleiro = new Terreno[this.tabuleiro.size()];
+		pi.playerId = playerId;
+		pi.command = "inicializar";
+		pi.msg = "Inicializando cartas e terrenos";
+		pi.cartaId = -1;
+		pi.posTabuleiro = null;
+		pi.tabuleiro = tabuleiro;
 		
-		pi.deckPlayer0 = this.deckPlayer0.toArray(pi.deckPlayer0);
-		pi.deckPlayer1 = this.deckPlayer1.toArray(pi.deckPlayer1);
-		pi.tabuleiro = this.tabuleiro.toArray(pi.tabuleiro);
+		if(playerId == 0) {
+			pi.deck = deckPlayer0;
+			pi.deckInimigo = deckPlayer1;
+		} else {
+			pi.deck = deckPlayer1;
+			pi.deckInimigo = deckPlayer0;
+		}
 		
 		return pi;
 	}

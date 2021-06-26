@@ -3,10 +3,6 @@ package mc322.trilhadagloria.battlefield;
 import mc322.trilhadagloria.monarch.Dominio;
 
 public class Vulcanico extends Terreno {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 6097554928286276496L;
 
 	public float getBonus(Dominio d) {
 		switch(d) {

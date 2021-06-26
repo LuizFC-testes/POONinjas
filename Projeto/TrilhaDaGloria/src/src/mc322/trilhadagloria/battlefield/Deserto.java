@@ -3,11 +3,6 @@ package mc322.trilhadagloria.battlefield;
 import mc322.trilhadagloria.monarch.Dominio;
 
 public class Deserto extends Terreno {
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 6017353294866146979L;
 
 	public float getBonus(Dominio d) {
 		switch(d) {

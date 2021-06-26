@@ -3,10 +3,6 @@ package mc322.trilhadagloria.battlefield;
 import mc322.trilhadagloria.monarch.Dominio;
 
 public class Planicie extends Terreno {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 2518323627385877709L;
 
 	public float getBonus(Dominio d) {
 		switch(d) {
