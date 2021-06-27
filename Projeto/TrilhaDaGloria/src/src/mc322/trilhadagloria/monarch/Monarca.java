@@ -2,11 +2,11 @@ package mc322.trilhadagloria.monarch;
 
 import java.util.ArrayList;
 
-import mc322.trilhadagloria.battlefield.ISummon;
-import mc322.trilhadagloria.battlefield.Terreno;
 import mc322.trilhadagloria.exceptions.EmptyDeckException;
 import mc322.trilhadagloria.exceptions.GameExceptions;
 import mc322.trilhadagloria.exceptions.NotEnoughManaException;
+import mc322.trilhadagloria.field.ISummon;
+import mc322.trilhadagloria.field.Terreno;
 
 public class Monarca implements IMonarca{
 	private Deck deck;

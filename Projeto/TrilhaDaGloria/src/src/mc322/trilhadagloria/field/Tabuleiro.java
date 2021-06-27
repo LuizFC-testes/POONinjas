@@ -1,4 +1,4 @@
-package mc322.trilhadagloria.battlefield;
+package mc322.trilhadagloria.field;
 
 import java.util.ArrayList;
 
@@ -21,7 +21,7 @@ public class Tabuleiro implements IBattleField {
 		// Cria terrenos a partir de dados enviados pelo servidor
 		for(int i = 0; i < MAPSIZE; i++) {
 			for(int j = 0; j < MAPSIZE; j++) {
-				mapa[i][j] = gerarTerreno(tabuleiro[i][j]);
+				mapa[i][j] = new Terreno(Bioma.valueOf(tabuleiro[i][j]));
 				mapa[i][j].setPosicao(i, j);
 			}
 		}
@@ -76,35 +76,5 @@ public class Tabuleiro implements IBattleField {
 
 	public ArrayList<Armadilha> getArmadilhas() {
 		return armadilhas;
-	}
-	
-	private Terreno gerarTerreno(String code) {
-		// Deserto
-		switch(code) {
-		case "Deserto":
-			return new Deserto();
-		// Floresta
-		case "Floresta":
-			return new Floresta();
-		// Tundra
-		case "Tundra":
-			return new Tundra();
-		// Oceano
-		case "Oceano":
-			return new Oceano();
-		// Vulcanico
-		case "Vulcanico":
-			return new Vulcanico();
-		// Montanha
-		case "Montanha":
-			return new Montanha();
-		// Planicie
-		case "Planicie":
-			return new Planicie();
-		// Caverna
-		case "Caverna":
-			return new Caverna();
-		}
-		return null;
 	}
 }

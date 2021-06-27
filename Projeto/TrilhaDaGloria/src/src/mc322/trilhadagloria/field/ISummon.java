@@ -1,4 +1,4 @@
-package mc322.trilhadagloria.battlefield;
+package mc322.trilhadagloria.field;
 
 import mc322.trilhadagloria.exceptions.GameExceptions;
 import mc322.trilhadagloria.monarch.Carta;

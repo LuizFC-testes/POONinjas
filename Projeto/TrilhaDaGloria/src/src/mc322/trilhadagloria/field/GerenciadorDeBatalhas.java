@@ -1,4 +1,4 @@
-package mc322.trilhadagloria.battlefield;
+package mc322.trilhadagloria.field;
 
 import java.util.ArrayList;
 

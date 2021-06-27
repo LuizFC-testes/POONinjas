@@ -1,6 +1,6 @@
 package mc322.trilhadagloria.controle;
 
-import mc322.trilhadagloria.battlefield.IBattle;
+import mc322.trilhadagloria.field.IBattle;
 import mc322.trilhadagloria.monarch.Carta;
 import mc322.trilhadagloria.monarch.ICommand;
 

@@ -2,8 +2,9 @@ package mc322.trilhadagloria.monarch;
 
 import java.util.ArrayList;
 
-import mc322.trilhadagloria.battlefield.Batalha;
-import mc322.trilhadagloria.battlefield.Terreno;
+import mc322.trilhadagloria.field.Batalha;
+import mc322.trilhadagloria.field.BonusBioma;
+import mc322.trilhadagloria.field.Terreno;
 
 public abstract class Heroi extends Carta {
 	protected int forca[];
@@ -120,8 +121,8 @@ public abstract class Heroi extends Carta {
 		}
 		
 		// Aplica bonus do bioma
-		resBonus[0] *= terreno.getBonus(dominio);
-		resBonus[1] *= terreno.getBonus(dominio);;
+		resBonus[0] *= BonusBioma.getBonusHeroi(terreno.getBioma(), dominio);
+		resBonus[1] *= BonusBioma.getBonusHeroi(terreno.getBioma(), dominio);
 		
 		return resBonus;
 	}
@@ -140,8 +141,8 @@ public abstract class Heroi extends Carta {
 		}
 		
 		// Aplica bonus do bioma
-		forBonus[0] *= terreno.getBonus(dominio);
-		forBonus[1] *= terreno.getBonus(dominio);;
+		forBonus[0] *= BonusBioma.getBonusHeroi(terreno.getBioma(), dominio);
+		forBonus[1] *= BonusBioma.getBonusHeroi(terreno.getBioma(), dominio);
 		
 		return forBonus;
 	}

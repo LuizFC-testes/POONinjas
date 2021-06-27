@@ -1,18 +1,20 @@
-package mc322.trilhadagloria.battlefield;
+package mc322.trilhadagloria.field;
 
 import mc322.trilhadagloria.exceptions.GameExceptions;
 import mc322.trilhadagloria.monarch.Carta;
 import mc322.trilhadagloria.monarch.Dominio;
 
-public abstract class Terreno {
+public class Terreno {
 	private Carta cartas[];
 	private Terreno vizinhos[];
 	private int posicaoI;
 	private int posicaoJ;
+	private Bioma bioma;
 	
-	public Terreno() {
+	public Terreno(Bioma bioma) {
 		cartas = new Carta[2];
 		vizinhos = new Terreno[4];
+		this.bioma = bioma;
 	}
 	
 	public void setPosicao(int i, int j) {
@@ -20,7 +22,9 @@ public abstract class Terreno {
 		posicaoJ = j;
 	}
 	
-	public abstract float getBonus(Dominio d);
+	public Bioma getBioma() {
+		return bioma;
+	}
 	
 	public void invocarCarta(Carta c) throws GameExceptions {
 		if(cartas[c.getDono().getPlayerId()] != null) {

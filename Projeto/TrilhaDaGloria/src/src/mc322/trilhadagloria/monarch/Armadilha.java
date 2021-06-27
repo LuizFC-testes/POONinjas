@@ -1,7 +1,8 @@
 package mc322.trilhadagloria.monarch;
 
 import java.util.ArrayList;
-import mc322.trilhadagloria.battlefield.Terreno;
+
+import mc322.trilhadagloria.field.Terreno;
 
 public class Armadilha extends Carta {
 	private boolean armada;

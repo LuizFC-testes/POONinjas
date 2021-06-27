@@ -1,11 +1,12 @@
 package mc322.trilhadagloria.monarch;
 
+import mc322.trilhadagloria.field.Bioma;
+
 public class teste {
 
 	public static void main(String[] args) {
-		Heroi h = new Barbaro(0, Dominio.AGUA);
 		
-		System.out.println("Barbaro instanceof Heroi " + (h instanceof Carta));
+		System.out.println("" + Bioma.valueOf("VULCANICO"));
 	}
 
 }

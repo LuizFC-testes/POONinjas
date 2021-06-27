@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-import mc322.trilhadagloria.battlefield.Tabuleiro;
+import mc322.trilhadagloria.field.Tabuleiro;
 import mc322.trilhadagloria.monarch.Dominio;
 
 public class GeradorServer {
@@ -117,28 +117,28 @@ public class GeradorServer {
 		
 		// Deserto
 		if(p < 13)
-			return "Deserto";
+			return "DESERTO";
 		// Floresta
 		else if(p >= 13 && p < 25)
-			return "Floresta";
+			return "FLORESTA";
 		// Tundra
 		else if(p >= 25 && p < 37)
-			return "Tundra";
+			return "TUNDRA";
 		// Oceano
 		else if(p >= 37 && p < 50)
-			return "Oceano";
+			return "OCEANO";
 		// Vulcanico
 		else if(p >= 50 && p < 63)
-			return "Vulcanico";
+			return "VULCANICO";
 		// Montanha
 		else if(p >= 63 && p < 76)
-			return "Montanha";
+			return "MONTANHA";
 		// Planicie
 		else if(p >= 76 && p < 86)
-			return "Planicie";
+			return "PLANICIE";
 		// Caverna
 		else
-			return "Caverna";
+			return "CAVERNA";
 	}
 	
 	public Mensagem gerarPacoteInicial(int playerId) {
