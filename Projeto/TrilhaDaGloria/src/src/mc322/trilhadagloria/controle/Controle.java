@@ -192,13 +192,11 @@ public class Controle implements IControle {
 
 
 	private void sacrificarCarta(int cartaId) {
-		// TODO Auto-generated method stub
-		
+		inimigo.sacrificarCarta(cartaId);
 	}
 
 
 	private void invocarCarta(int cartaId, int[] posTabuleiro) {
-		// TODO Auto-generated method stub
-		
+		inimigo.invocarCarta(cartaId, posTabuleiro);
 	}
 }
