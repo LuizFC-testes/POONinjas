@@ -20,4 +20,5 @@ public class Barbaro extends Heroi {
 	public String getHabAt() {
 		return "Não possui.";
 	}
+
 }

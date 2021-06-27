@@ -29,12 +29,14 @@ public class Batalha {
 		// Realiza ataque e verifica se atacante ganhou
 		if(atacante.atacar(defensor, bonusAtaque, bonusDefesa)) {
 			defensor.morrer();
+			atacante.conquistarTerreno();
 			return defensor;
 		}
 		
 		// Caso atacante perdeu, verifica se combate foi a distancia ou nao
 		if(atacante.getTerreno() == defensor.getTerreno()) {
 			atacante.morrer();
+			defensor.conquistarTerreno();
 			return atacante;
 		}
 		

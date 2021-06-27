@@ -1,5 +1,7 @@
 package mc322.trilhadagloria.monarch;
 
+import java.awt.Color;
+
 import mc322.trilhadagloria.exceptions.EmptyDeckException;
 import mc322.trilhadagloria.exceptions.GameExceptions;
 import mc322.trilhadagloria.exceptions.NotEnoughManaException;
@@ -15,6 +17,7 @@ public class Monarca implements IMonarca{
 	private int playerId;
 	private int inimigoId;
 	private int nTerritoriosConquistados;
+	private Color cor;
 	
 	public Monarca(int playerId, String[] deck) {
 		this.deck = new Deck(deck, this);
@@ -36,7 +39,9 @@ public class Monarca implements IMonarca{
 		
 		if(playerId == 0) {
 			inimigoId = 1;
+			cor = Color.BLUE;
 		} else {
+			cor = Color.RED;
 			inimigoId = 0;
 		}
 	}
@@ -103,5 +108,12 @@ public class Monarca implements IMonarca{
 		return nTerritoriosConquistados;
 	}
 
+	@Override
+	public void setTerritoriosConquistados(int n) {
+		nTerritoriosConquistados = n;
+	}
 
+	public Color getColor() {
+		return cor;
+	}
 }
