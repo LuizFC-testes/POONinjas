@@ -29,8 +29,13 @@ public class TestePainelCarta {
         frame.setSize(600,600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pane = frame.getContentPane();
+        Monarca monarca = new Monarca(0, new String[] {"0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO",});
+        
+        Heroi h = new Barbaro(0, Dominio.AGUA);
+        h.setDono(monarca);
+        
         PainelCartaEst carta = new PainelCartaEst();
-        carta.connectHeroi(new Paladino(0, Dominio.AGUA));
+        carta.connectHeroi(h);
         carta.gerarCarta();
         JScrollPane scroll = new JScrollPane(carta);
         scroll.setSize(600, 600);
