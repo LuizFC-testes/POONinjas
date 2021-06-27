@@ -26,6 +26,12 @@ public class ImgAjust extends ImageIcon {
         setImage(dimg);
     }
 
+    public void redimensionar(int novaLarg, int novaAlt) {
+        Image dimg = img.getScaledInstance(novaLarg, novaAlt,
+        Image.SCALE_SMOOTH);
+        setImage(dimg);
+    }
+
     public String toString() {
         return ASSETS;
     }

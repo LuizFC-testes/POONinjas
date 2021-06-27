@@ -100,15 +100,28 @@ public class PainelCartaEst extends JLayeredPane implements IRStatusHeroi {
 
         JPanel alcance = new JPanel();
         alcance.setLayout(new FlowLayout());
-        alcance.add(new JLabel(new ImgAjust("IconeOlho.png")));
+        ImgAjust iconeOlho = new ImgAjust("IconeOlho.png");
+        iconeOlho.redimensionar(50, 50);
+        alcance.add(new JLabel(iconeOlho));
         alcance.add(new JLabel("" + hero.getAlcance()));
         atributos.add(alcance);
 
-        /*JPanel forca = new JPanel();
+        JPanel forca = new JPanel();
         forca.setLayout(new FlowLayout());
-        forca.add*/
-        //FIXME
-        
+        ImgAjust iconeEspada = new ImgAjust("IconeEspada.png");
+        forca.add(new JLabel(iconeEspada));
+        int[] forcas = hero.getForcaBase();
+        forca.add(new JLabel(forcas[0] + " (" + forcas[1] + ")"));
+        atributos.add(forca);
+
+        JPanel resist = new JPanel();
+        resist.setLayout(new FlowLayout());
+        ImgAjust escudo = new ImgAjust("IconeEscudo.webp");
+        escudo.redimensionar(50, 50);
+        resist.add(new JLabel(escudo));
+        int[] res = hero.getResistBase();
+        resist.add(new JLabel(res[0] + " (" + res[1] + ")"));
+        atributos.add(resist);
 
         atributos.setLocation(425, 175);
         add(atributos, PALETTE_LAYER);
