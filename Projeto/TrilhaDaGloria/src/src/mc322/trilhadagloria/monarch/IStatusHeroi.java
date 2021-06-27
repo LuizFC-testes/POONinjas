@@ -1,6 +1,10 @@
 package mc322.trilhadagloria.monarch;
 
+import java.awt.color.*;
+
 public interface IStatusHeroi {
+
+    public Color getCorReino();
 
     public String getClasse();
 
