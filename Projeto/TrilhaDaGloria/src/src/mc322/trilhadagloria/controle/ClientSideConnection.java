@@ -44,4 +44,13 @@ public class ClientSideConnection {
 			e.printStackTrace();
 		}
 	}
+
+	public void enviarPacote(Mensagem msg) {
+		try {
+			dataOut.writeObject(msg);
+			dataOut.flush();
+		} catch (IOException e) {
+			System.err.println("*** Erro ao enviar pacote ao servidor: " + e.getMessage());
+		}
+	}
 }
