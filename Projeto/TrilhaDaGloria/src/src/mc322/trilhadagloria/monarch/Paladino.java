@@ -50,4 +50,20 @@ public class Paladino extends Heroi {
 		
 	}
 	
+	@Override
+	public String getClasse() {
+		return "Paladino";
+	}
+
+
+	@Override
+	public String getHabPass() {
+		return "Concede +10% de bonus para aliados adjacentes.";
+	}
+
+
+	@Override
+	public String getHabAt() {
+		return "Não possui.";
+	}
 }

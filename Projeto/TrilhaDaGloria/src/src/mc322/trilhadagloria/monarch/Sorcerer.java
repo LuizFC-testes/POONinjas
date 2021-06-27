@@ -24,4 +24,20 @@ public class Sorcerer extends Heroi implements HabilidadeEspecial {
 		}
 	}
 
+	@Override
+	public String getClasse() {
+		return "Sorcerer";
+	}
+
+
+	@Override
+	public String getHabPass() {
+		return "Recebe o dobro de efeito de bioma.";
+	}
+
+
+	@Override
+	public String getHabAt() {
+		return "Não possui.";
+	}
 }

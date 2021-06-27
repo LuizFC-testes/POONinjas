@@ -25,4 +25,20 @@ public class Guerreiro extends Heroi implements HabilidadeEspecial {
 		bonusTerritorio = new Efeito(bonus, bonus, null);
 	}
 
+	@Override
+	public String getClasse() {
+		return "Guerreiro";
+	}
+
+
+	@Override
+	public String getHabPass() {
+		return "Recebe +10% de bonus de território para cada território conquistado (máx +50%).";
+	}
+
+
+	@Override
+	public String getHabAt() {
+		return "Não possui.";
+	}
 }

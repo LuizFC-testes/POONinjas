@@ -10,4 +10,20 @@ public class Mago extends Heroi {
 		alcance = 1;
 	}
 
+	@Override
+	public String getClasse() {
+		return "Mago";
+	}
+
+
+	@Override
+	public String getHabPass() {
+		return "Não possui.";
+	}
+
+
+	@Override
+	public String getHabAt() {
+		return "Não possui.";
+	}
 }

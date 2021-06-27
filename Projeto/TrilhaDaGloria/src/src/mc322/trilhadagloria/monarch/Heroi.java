@@ -3,21 +3,38 @@ package mc322.trilhadagloria.monarch;
 import java.util.ArrayList;
 
 import mc322.trilhadagloria.battle.Batalha;
+import mc322.trilhadagloria.field.BonusDatabase;
 import mc322.trilhadagloria.field.Terreno;
 
-public abstract class Heroi extends Carta {
+public abstract class Heroi extends Carta implements IStatusHeroi {
 	protected int forca[];
 	protected int resistencia[];
 	protected int alcance;
 	private Dominio dominio;
 	private Efeito efeitoBioma;
-	private ArrayList<Efeito> sobEfeito;
+	protected ArrayList<Efeito> sobEfeito;
 	
 	
 	public Heroi(int id, Dominio dominio) {
 		super(id);
 		this.dominio = dominio;
 		preco = 0;
+	}
+	
+	public int getAlcance() {
+		return alcance;
+	}
+
+	public int[] getForcaBase() {
+		return forca;
+	}
+
+	public int[] getResistBase() {
+		return resistencia;
+	}
+	
+	public float[] getBonusHero() {
+		return BonusDatabase.getBonusDeBiomaPara(dominio);
 	}
 	
 	public Dominio getDominio() {

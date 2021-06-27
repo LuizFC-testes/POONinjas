@@ -15,4 +15,20 @@ public class Ranger extends Heroi {
 		return super.cairNaArmadilha(armadilha, bonusArmadilha-(0.3f));
 	}
 
+	@Override
+	public String getClasse() {
+		return "Ranger";
+	}
+
+
+	@Override
+	public String getHabPass() {
+		return "Poder das armadilhas é reduzido em 30% contra esse heroi.";
+	}
+
+
+	@Override
+	public String getHabAt() {
+		return "Não possui.";
+	}
 }

@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import mc322.trilhadagloria.field.Terreno;
 
 public class Bardo extends Heroi implements HabilidadeEspecial {
-	ArrayList<Heroi> aliadosSobEfeito;
-	ArrayList<Efeito> efeitosGerados;
+	ArrayList<Efeito> efeitosModificados;
 	
 	
 	public Bardo(int id, Dominio dominio) {
@@ -17,8 +16,7 @@ public class Bardo extends Heroi implements HabilidadeEspecial {
 		alcance = 1;
 		
 		
-		aliadosSobEfeito = new ArrayList<Heroi>();
-		efeitosGerados = new ArrayList<Efeito>();
+		efeitosModificados = new ArrayList<Efeito>();
 	}
 
 
@@ -31,13 +29,11 @@ public class Bardo extends Heroi implements HabilidadeEspecial {
 				
 				Heroi h = (Heroi) c;
 				
-				if(!aliadosSobEfeito.contains(h)) {
-					aliadosSobEfeito.add(h);
-					
-					Efeito ef = new Efeito(0.1f, 0.1f, null);
-					ef.aplicarEfeito(h);
-					
-					efeitosGerados.add(ef);
+				for(Efeito ef : h.sobEfeito) {
+					if(!efeitosModificados.contains(ef)) {
+						efeitosModificados.add(ef);
+						ef.modificarEfeito(0.1f, 0.1f);
+					}
 				}
 			}
 		}
@@ -47,9 +43,26 @@ public class Bardo extends Heroi implements HabilidadeEspecial {
 	public void morrer() {
 		super.morrer();
 		
-		for(Efeito ef : efeitosGerados) {
-			ef.eliminar();;
+		for(Efeito ef : efeitosModificados) {
+			ef.modificarEfeito(-0.1f, -0.1f);
 		}
-		
+	}
+
+
+	@Override
+	public String getClasse() {
+		return "Bardo";
+	}
+
+
+	@Override
+	public String getHabPass() {
+		return "Concede +10% de bonus para cada efeito aplicado nos aliados adjacentes.";
+	}
+
+
+	@Override
+	public String getHabAt() {
+		return "Não possui.";
 	}
 }

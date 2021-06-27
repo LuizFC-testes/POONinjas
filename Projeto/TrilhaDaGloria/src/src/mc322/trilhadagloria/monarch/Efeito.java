@@ -46,4 +46,9 @@ public class Efeito {
 			}
 		}
 	}
+
+	public void modificarEfeito(float forca, float resistencia) {
+		bonusDeForca += forca;
+		bonusDeResistencia += resistencia;
+	}
 }
