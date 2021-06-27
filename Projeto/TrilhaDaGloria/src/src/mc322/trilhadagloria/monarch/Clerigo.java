@@ -10,4 +10,21 @@ public class Clerigo extends Heroi {
 		alcance = 0;
 	}
 
+	@Override
+	public String getClasse() {
+		return "Clerigo";
+	}
+
+
+	@Override
+	public String getHabPass() {
+		return "Não possui.";
+	}
+
+
+	@Override
+	public String getHabAt() {
+		return "Não possui.";
+	}
+
 }

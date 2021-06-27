@@ -9,4 +9,15 @@ public class Barbaro extends Heroi {
 		alcance = 0;
 	}
 
+	public String getClasse() {
+		return "Barbaro";
+	}
+
+	public String getHabPass() {
+		return "Não possui.";
+	}
+
+	public String getHabAt() {
+		return "Não possui.";
+	}
 }
