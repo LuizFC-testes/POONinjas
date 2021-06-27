@@ -13,4 +13,8 @@ public interface ICommand {
 	public void invocarCarta(Carta c, Terreno t) throws NotEnoughManaException, GameExceptions;
 	
 	public void sacrificarCarta(Carta c);
+
+	public void sacrificarCarta(int cartaId);
+
+	public void invocarCarta(int cartaId, int[] posTabuleiro);
 }
