@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import mc322.trilhadagloria.field.IBattleField;
 import mc322.trilhadagloria.monarch.Armadilha;
+import mc322.trilhadagloria.monarch.HabilidadeEspecial;
 import mc322.trilhadagloria.monarch.Heroi;
 
 public class GerenciadorDeBatalhas implements IBattle {
@@ -86,6 +87,15 @@ public class GerenciadorDeBatalhas implements IBattle {
 			a.buscarAlvo();
 			if(a.estaArmada())
 				armadilhasArmadas.add(a);
+		}
+	}
+	
+	public void ativarHabilidadesPassivas() {
+		for(Heroi h : tabuleiro.getHeroisInvocados()) {
+			if(h instanceof HabilidadeEspecial) {
+				HabilidadeEspecial hs = (HabilidadeEspecial) h;
+				hs.passiva();
+			}
 		}
 	}
 

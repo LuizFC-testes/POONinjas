@@ -1,5 +1,8 @@
 package mc322.trilhadagloria.field;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import mc322.trilhadagloria.exceptions.GameExceptions;
 import mc322.trilhadagloria.monarch.Carta;
 import mc322.trilhadagloria.monarch.Efeito;
@@ -65,5 +68,13 @@ public class Terreno {
 
 	public void setCarta(int playerId, Carta carta) {
 		cartas[playerId] = carta;
+	}
+
+	public ArrayList<Terreno> getVizinhos() {
+		ArrayList<Terreno> list = new ArrayList<Terreno>();
+		
+		list.addAll(Arrays.asList(vizinhos));
+		
+		return list;
 	}
 }

@@ -14,12 +14,14 @@ public class Monarca implements IMonarca{
 	private int mana;
 	private int playerId;
 	private int inimigoId;
+	private int nTerritoriosConquistados;
 	
 	public Monarca(int playerId, String[] deck) {
 		this.deck = new Deck(deck, this);
 		mao = new GrupoCartas();
 		cemiterio = new GrupoCartas();
 		mana = 5;
+		nTerritoriosConquistados = 0;
 	
 		try {
 			for(int i = 0; i < 5; i++) {
@@ -95,6 +97,10 @@ public class Monarca implements IMonarca{
 
 	public void connect(ISummon tabuleiro) {
 		this.tabuleiro = tabuleiro;
+	}
+
+	public int getQtdTerritoriosConquistados() {
+		return nTerritoriosConquistados;
 	}
 
 

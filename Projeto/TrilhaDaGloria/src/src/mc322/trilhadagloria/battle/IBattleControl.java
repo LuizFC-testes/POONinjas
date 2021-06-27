@@ -6,4 +6,6 @@ public interface IBattleControl {
 	public void ativarArmadilhas();
 	
 	public void iniciarBatalhas();
+	
+	public void ativarHabilidadesPassivas();
 }
