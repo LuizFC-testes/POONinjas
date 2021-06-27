@@ -41,7 +41,7 @@ public class Terreno {
 	}
 	
 	private void aplicarEfeitoBioma(Heroi h) {
-		Efeito efBioma = new Efeito(BonusDatabase.getBonusHeroi(bioma, h.getDominio()), BonusDatabase.getBonusHeroi(bioma, h.getDominio()), null);
+		Efeito efBioma = new Efeito(BonusDatabase.getBonusBiomaHeroi(bioma, h.getDominio()), BonusDatabase.getBonusBiomaHeroi(bioma, h.getDominio()), null);
 		efBioma.aplicarEfeitoBioma(h);
 	}
 

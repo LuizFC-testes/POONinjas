@@ -23,11 +23,21 @@ public class BonusDatabase {
 															{0.00f,     0.00f,    0.00f,   0.00f,   0.00f,   0.00f,-0.20f,  0.20f},
 															{0.00f,     0.00f,    0.00f,   0.00f,   0.00f,   0.00f, 0.20f, -0.20f}};
 	
-	public static float getBonusHeroi(Bioma bio, Dominio dom) {
+	public static float getBonusBiomaHeroi(Bioma bio, Dominio dom) {
 		return BONUSBIOMA[dom.getValue()][bio.getValue()];
 	}
 	
 	public static float getBonusArmadilhaPoder(Dominio armadilha, Dominio heroi) {
 		return BONUSARMADILHAPODER[armadilha.getValue()][heroi.getValue()];
+	}
+	
+	public static float[] getBonusDeBiomaPara(Dominio dom) {
+		float[] bonus = new float[BONUSBIOMA.length];
+		
+		for(int i = 0; i < BONUSBIOMA.length; i++) {
+			bonus[i] = BONUSBIOMA[dom.getValue()][i];
+		}
+		
+		return bonus;
 	}
 }
