@@ -68,7 +68,6 @@ public class GerenciadorDeBatalhas implements IBattle {
 		while(armadilhasArmadas.size() > 0) {
 			Armadilha a = armadilhasArmadas.remove(0);
 			
-			a.setVisibilidadeAoInimigo(true);
 			Heroi morto = a.ativar();
 			
 			if(morto != null) {
@@ -80,13 +79,15 @@ public class GerenciadorDeBatalhas implements IBattle {
 		}
 	}
 
-	public void atualizarArmadilhas() {
+	public void revelarArmadilhas() {
 		armadilhasArmadas.clear();
 		
 		for(Armadilha a : tabuleiro.getArmadilhasInvocadas()) {
 			a.buscarAlvo();
-			if(a.estaArmada())
+			if(a.estaArmada()) {
+				a.setVisibilidadeAoInimigo(true);
 				armadilhasArmadas.add(a);
+			}
 		}
 	}
 	

@@ -20,7 +20,7 @@ public class GeradorClient {
 		}
 		
 		
-		Controle control = new Controle();
+		Controle control = new Controle(init.playerId);
 		IBattle battle = new GerenciadorDeBatalhas();
 		IField tabuleiro = new Tabuleiro(init.tabuleiro);
 		ICommand player = new Monarca(init.playerId, init.deck);

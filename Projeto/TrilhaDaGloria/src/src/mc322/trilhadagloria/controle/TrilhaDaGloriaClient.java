@@ -1,6 +1,6 @@
 package mc322.trilhadagloria.controle;
 
-public class TrilhaDaGloriaClient {	
+public class TrilhaDaGloriaClient implements IRemoteEnemy {	
 	private ClientSideConnection csc;
 	private int playerId;
 	private Controle control;
@@ -21,23 +21,23 @@ public class TrilhaDaGloriaClient {
 		
 	}
 	
-	public void aguardarOponente() {
+	public void ouvirOponente() {
 		Thread t = new Thread(new Runnable() {
 
 			public void run() {
-				// Aguarda nesta linha até receber uma nova mensagem do servidor
 				Mensagem msg = csc.lerPacote();
 				
-				switch(msg.command) {
-				case "invocar":
-				case "sacrificar":
-				case "passarfase":
-				}
+				control.mensagemRemota(msg);
+
 			}
-			
 		});
 		
 		t.start();
+	}
+	
+	
+	public void enviarMensagem(Mensagem msg) {
+		csc.enviarPacote(msg);
 	}
 	
 	public static void main(String args[]) {
@@ -52,4 +52,6 @@ public class TrilhaDaGloriaClient {
 		// Evita desconexão do cliente durante desenvolvimento
 		while(true);
 	}
+
+
 }

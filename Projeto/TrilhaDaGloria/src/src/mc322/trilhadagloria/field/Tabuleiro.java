@@ -110,7 +110,7 @@ public class Tabuleiro implements IField {
 		return false;
 	}
 	
-	public boolean verificarCaminhoRecursivo(Terreno atual, int playerId, ArrayList<Terreno> visitados) {
+	private boolean verificarCaminhoRecursivo(Terreno atual, int playerId, ArrayList<Terreno> visitados) {
 		visitados.add(atual);
 		
 		// Cancela busca se territorio não estiver consquisatado
