@@ -1,6 +1,6 @@
 package mc322.trilhadagloria.monarch;
 
-import java.awt.color.*;
+import java.awt.Color;
 
 public interface IStatusHeroi {
 

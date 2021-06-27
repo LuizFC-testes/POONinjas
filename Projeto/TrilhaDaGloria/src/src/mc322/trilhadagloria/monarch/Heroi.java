@@ -1,5 +1,6 @@
 package mc322.trilhadagloria.monarch;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 import mc322.trilhadagloria.battle.Batalha;
@@ -184,5 +185,9 @@ public abstract class Heroi extends Carta implements IStatusHeroi {
 	
 	public void conquistarTerreno() {
 		terreno.conquistar(dono.getPlayerId());
+	}
+	
+	public Color getCorReino() {
+		return dono.getColor();
 	}
 }
