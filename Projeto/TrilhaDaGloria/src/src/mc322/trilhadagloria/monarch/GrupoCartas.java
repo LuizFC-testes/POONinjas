@@ -25,4 +25,13 @@ public class GrupoCartas {
 		
 		return false;
 	}
+
+	public Carta buscarCartaPorId(int cartaId) {
+		for(Carta c : cartas) {
+			if(c.getId() == cartaId) {
+				return c;
+			}
+		}
+		return null;
+	}
 }

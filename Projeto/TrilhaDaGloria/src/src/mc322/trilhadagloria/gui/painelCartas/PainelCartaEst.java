@@ -116,7 +116,7 @@ public class PainelCartaEst extends JLayeredPane implements IRStatusHeroi {
 
         JPanel resist = new JPanel();
         resist.setLayout(new FlowLayout());
-        ImgAjust escudo = new ImgAjust("IconeEscudo.webp");
+        ImgAjust escudo = new ImgAjust("IconeEscudo.png");
         escudo.redimensionar(50, 50);
         resist.add(new JLabel(escudo));
         int[] res = hero.getResistBase();

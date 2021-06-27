@@ -116,4 +116,23 @@ public class Monarca implements IMonarca{
 	public Color getColor() {
 		return cor;
 	}
+
+	@Override
+	public void sacrificarCarta(int cartaId) {
+		Carta c = mao.buscarCartaPorId(cartaId);
+		
+		if(mao.removerCarta(c)) {
+			enviarCemiterio(c);
+			mana++;
+		}
+	}
+
+	@Override
+	public void invocarCarta(int cartaId, int[] posTabuleiro) throws NotEnoughManaException, GameExceptions {
+		Carta c = mao.buscarCartaPorId(cartaId);
+		
+		Terreno t = tabuleiro.getTerreno(posTabuleiro[0], posTabuleiro[1]);
+		
+		invocarCarta(c, t);
+	}
 }

@@ -88,6 +88,14 @@ public class Controle implements IControle {
 			}
 		}
 	}
+	
+	private void invocarCarta(int cartaId, int[] posTabuleiro) {
+		try {
+			inimigo.invocarCarta(cartaId, posTabuleiro);
+		} catch (GameExceptions e) {
+			System.err.println("*** Erro ao invocar carta: " + e.getMessage());
+		}
+	}
 
 
 	public void passarFase() {
@@ -151,6 +159,8 @@ public class Controle implements IControle {
 		
 		view.mensagemFimDeJogo(s);
 		stm = ControlStateMachine.FimDeJogo;
+		
+		remote.fimDeJogo();
 	}
 
 
@@ -184,7 +194,7 @@ public class Controle implements IControle {
 			}
 		}
 		
-		if(!suaVez) {
+		if(!suaVez && !(stm == ControlStateMachine.FimDeJogo)) {
 			remote.ouvirOponente();
 		}
 		
@@ -196,7 +206,5 @@ public class Controle implements IControle {
 	}
 
 
-	private void invocarCarta(int cartaId, int[] posTabuleiro) {
-		inimigo.invocarCarta(cartaId, posTabuleiro);
-	}
+
 }
