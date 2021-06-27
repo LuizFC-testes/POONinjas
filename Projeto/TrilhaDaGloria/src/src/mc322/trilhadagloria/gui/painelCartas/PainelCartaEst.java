@@ -134,9 +134,16 @@ public class PainelCartaEst extends JLayeredPane implements IRStatusHeroi {
         bonus.setSize(200, 250);
         bonus.setLayout(new GridLayout(4, 2));
 
-        //FIXME
-
-        
+        ImgAjust[] imgDoms = gerarIconesDominios();
+        float[] porc = hero.getBonusHero();
+        for (int i = 0; i < 8; i++) {
+            String bon = "" + (porc[i] * 100) + "%";
+            JPanel bonusD = new JPanel();
+            bonusD.setLayout(new FlowLayout());
+            bonusD.add(new JLabel(imgDoms[i]));
+            bonusD.add(new JLabel(bon));
+            bonus.add(bonusD);
+        }
 
         bonus.setLocation(425, 375);
         add(bonus, PALETTE_LAYER);
@@ -157,6 +164,17 @@ public class PainelCartaEst extends JLayeredPane implements IRStatusHeroi {
 
         habilidade.setLocation(25, 625);
         add(habilidade, PALETTE_LAYER);
+    }
+
+    private ImgAjust[] gerarIconesDominios() {
+        String []doms = new String[] {"Terra", "Flora", "Gelo", "Agua",
+                                    "Fogo", "Ar", "Luz", "Sombra"};
+        ImgAjust[] iconesDom = new ImgAjust[8];
+        for (int i = 0; i < 8; i++) {
+            iconesDom[i] = new ImgAjust("IconeDominio" + doms[i] + ".png");
+            iconesDom[i].redimensionar(50, 50);
+        }
+        return iconesDom;
     }
 
 
