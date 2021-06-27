@@ -1,3 +1,5 @@
+package mc322.trilhadagloria.gui.painelCartas;
+
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
