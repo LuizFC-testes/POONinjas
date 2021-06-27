@@ -86,7 +86,7 @@ public class PainelCartaEst extends JLayeredPane implements IRStatusHeroi {
         ImgAjust img = new ImgAjust(asset);
         imagemCarta.add(new JLabel(img));
 
-        imagemCarta.setLocation(175, 25);
+        imagemCarta.setLocation(25, 175);
         add(imagemCarta, PALETTE_LAYER);
     }
 
@@ -172,7 +172,7 @@ public class PainelCartaEst extends JLayeredPane implements IRStatusHeroi {
         ImgAjust[] iconesDom = new ImgAjust[8];
         for (int i = 0; i < 8; i++) {
             iconesDom[i] = new ImgAjust("IconeDominio" + doms[i] + ".png");
-            iconesDom[i].redimensionar(50, 50);
+            iconesDom[i].redimensionar(20, 20);
         }
         return iconesDom;
     }
