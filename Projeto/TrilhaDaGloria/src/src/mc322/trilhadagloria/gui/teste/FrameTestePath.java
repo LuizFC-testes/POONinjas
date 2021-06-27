@@ -15,6 +15,9 @@ public class FrameTestePath extends JFrame {
         painel = getContentPane();
         painel.setLayout(new FlowLayout(FlowLayout.CENTER));
         painel.add(new JLabel(DIRETORIO));
+        int tamStrDir = DIRETORIO.length();
+        String outrodir = DIRETORIO.substring(0, tamStrDir - 6);
+        painel.add(new JLabel(outrodir));
         setVisible(true);
     }
 
