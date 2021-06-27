@@ -2,7 +2,8 @@ package mc322.trilhadagloria.field;
 
 import mc322.trilhadagloria.exceptions.GameExceptions;
 import mc322.trilhadagloria.monarch.Carta;
-import mc322.trilhadagloria.monarch.Dominio;
+import mc322.trilhadagloria.monarch.Efeito;
+import mc322.trilhadagloria.monarch.Heroi;
 
 public class Terreno {
 	private Carta cartas[];
@@ -26,13 +27,22 @@ public class Terreno {
 		return bioma;
 	}
 	
-	public void invocarCarta(Carta c) throws GameExceptions {
-		if(cartas[c.getDono().getPlayerId()] != null) {
+	public void invocarCarta(Carta c, int playerId) throws GameExceptions {
+		if(cartas[playerId] != null) {
 			throw new GameExceptions("Player já possui uma carta invocada nesse terreno");
 		} else {
-			cartas[c.getDono().getPlayerId()] = c;
+			cartas[playerId] = c;
 			c.invocar(this);
+			
+			if(c instanceof Heroi) {
+				aplicarEfeitoBioma((Heroi)c);
+			}
 		}
+	}
+	
+	private void aplicarEfeitoBioma(Heroi h) {
+		Efeito efBioma = new Efeito(BonusDatabase.getBonusHeroi(bioma, h.getDominio()), BonusDatabase.getBonusHeroi(bioma, h.getDominio()), null);
+		efBioma.aplicarEfeitoBioma(h);
 	}
 
 	public void setVizinho(int indice, Terreno t) {
@@ -41,23 +51,12 @@ public class Terreno {
 		}
 	}
 
-	public boolean temDuasCartas() {
-		if(cartas[0] != null && cartas[1] != null) {
-			return true;
-		}
-		return false;
-	}
-
 	public Terreno getVizinho(int indice) {
 		return vizinhos[indice];
 	}
 	
 	public Carta getCarta(int playerId) {
 		return cartas[playerId];
-	}
-	
-	public int distanciaAte(Terreno t) {
-		return Math.abs(t.posicaoI - posicaoI) + Math.abs(t.posicaoJ - posicaoJ);
 	}
 
 	public int[] getPosicao() {

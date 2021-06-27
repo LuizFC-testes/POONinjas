@@ -1,32 +1,33 @@
-package mc322.trilhadagloria.field;
+package mc322.trilhadagloria.battle;
 
 import java.util.ArrayList;
 
+import mc322.trilhadagloria.field.IBattleField;
 import mc322.trilhadagloria.monarch.Armadilha;
 import mc322.trilhadagloria.monarch.Heroi;
 
-public class GerenciadorDeBatalhas {
-	Tabuleiro tabuleiro;
+public class GerenciadorDeBatalhas implements IBattle {
+	IBattleField tabuleiro;
 	ArrayList<Batalha> filaDeBatalhas;
-	ArrayList<Armadilha> armadilhas;
+	ArrayList<Armadilha> armadilhasArmadas;
 
-	public GerenciadorDeBatalhas(Tabuleiro tabuleiro) {
-		this.tabuleiro = tabuleiro;
+	public GerenciadorDeBatalhas() {
 		filaDeBatalhas = new ArrayList<Batalha>();
+		armadilhasArmadas = new ArrayList<Armadilha>();
+	}
+	
+	public void conecta(IBattleField bf) {
+		this.tabuleiro = bf;
 	}
 
 	public void gerarBatalhas(int atacanteId) {
+		filaDeBatalhas.clear();
 		// Percorre todas as cartas atacantes
-		for(int i = 0; i < Tabuleiro.MAPSIZE; i++) {
-			for(int j = 0; j < Tabuleiro.MAPSIZE; j++) {
-				if(tabuleiro.getTerreno(i,j).getCarta(atacanteId) != null) {
-					
-					// Para cada heroi, cria uma lista de batalhas e adiciona a fila
-					if(tabuleiro.getTerreno(i,j).getCarta(atacanteId) instanceof Heroi) {
-						Heroi heroi = (Heroi) tabuleiro.getTerreno(i,j).getCarta(atacanteId);
-						filaDeBatalhas.addAll(heroi.procurarBatalhas());
-					}
-				}
+		for(Heroi h : tabuleiro.getHeroisInvocados()) {
+			
+			// Para cada heroi, cria uma lista de batalhas e adiciona a fila
+			if(h.getDono().getPlayerId() == atacanteId) {
+				filaDeBatalhas.addAll(h.procurarBatalhas());
 			}
 		}
 	}
@@ -63,16 +64,29 @@ public class GerenciadorDeBatalhas {
 	}
 
 	public void ativarArmadilhas() {
-		for(Armadilha a : tabuleiro.getArmadilhas()) {
-			a.ativar();
+		while(armadilhasArmadas.size() > 0) {
+			Armadilha a = armadilhasArmadas.remove(0);
+			
+			a.setVisibilidadeAoInimigo(true);
+			Heroi morto = a.ativar();
+			
+			if(morto != null) {
+				tabuleiro.remover(morto);
+			}
+			
+			tabuleiro.remover(a);
+			a.morrer();
 		}
 	}
 
 	public void atualizarArmadilhas() {
-		for(Armadilha a : tabuleiro.getArmadilhas()) {
-			a.armar(a.buscarAlvo());
+		armadilhasArmadas.clear();
+		
+		for(Armadilha a : tabuleiro.getArmadilhasInvocadas()) {
+			a.buscarAlvo();
+			if(a.estaArmada())
+				armadilhasArmadas.add(a);
 		}
 	}
-	
 
 }

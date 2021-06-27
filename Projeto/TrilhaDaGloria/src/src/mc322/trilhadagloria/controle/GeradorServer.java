@@ -108,7 +108,12 @@ public class GeradorServer {
 	private String gerarArmadilha() {
 		String s = cartaId + ";";
 		cartaId++;
-		return s+"armadilha;";
+		
+		// Escolhe um dominio aleatório
+		Random rnd = new Random();
+		Dominio dom = Dominio.values()[rnd.nextInt(Dominio.values().length)];
+		
+		return s+"armadilha;" + dom.toString() + ";";
 	}
 	
 	private String gerarTerreno() {

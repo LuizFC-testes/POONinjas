@@ -7,13 +7,12 @@ import mc322.trilhadagloria.monarch.Armadilha;
 import mc322.trilhadagloria.monarch.Carta;
 import mc322.trilhadagloria.monarch.Heroi;
 
-public class Tabuleiro implements IBattleField {
+public class Tabuleiro implements IField {
 	public static final int MAPSIZE = 5;
 	
 	private Terreno mapa[][];
 	private ArrayList<Heroi> herois;
 	private ArrayList<Armadilha> armadilhas;
-	private GerenciadorDeBatalhas gdb;
 	
 	public Tabuleiro(String[][] tabuleiro) {
 		mapa = new Terreno[MAPSIZE][MAPSIZE];
@@ -38,29 +37,16 @@ public class Tabuleiro implements IBattleField {
 					mapa[i][j].setVizinho(3, mapa[i][j-1]);
 			}
 		}
-		
-		gdb = new GerenciadorDeBatalhas(this);
 	}
 
-	public void invocarCarta(Carta c, Terreno t) throws GameExceptions {
-		t.invocarCarta(c);
+	public void invocarCarta(Carta c, Terreno t, int playerId) throws GameExceptions {
+		t.invocarCarta(c, playerId);
 		
 		if(c instanceof Heroi) {
 			herois.add((Heroi)c);
 		} else if(c instanceof Armadilha) {
 			armadilhas.add((Armadilha)c);
 		}
-	}
-
-	public void iniciarBatalha(int atacanteId) {
-		gdb.gerarBatalhas(atacanteId);
-		gdb.gerarFlanqueamento();
-		gdb.iniciarBatalhas();
-	}
-	
-	public void ativarArmadilhas() {
-		gdb.atualizarArmadilhas();
-		gdb.ativarArmadilhas();
 	}
 
 	public Terreno getTerreno(int i, int j) {
@@ -71,10 +57,30 @@ public class Tabuleiro implements IBattleField {
 		if(carta != null) {
 			int posicao[] = carta.getTerreno().getPosicao();
 			mapa[posicao[0]][posicao[1]].setCarta(carta.getDono().getPlayerId(), null);
+			
+			if(carta instanceof Heroi) {
+				herois.remove(carta);
+			} else if(carta instanceof Armadilha) {
+				armadilhas.remove(carta);
+			}
 		}
 	}
 
-	public ArrayList<Armadilha> getArmadilhas() {
+	public ArrayList<Armadilha> getArmadilhasInvocadas() {
 		return armadilhas;
+	}
+
+	public void incrementarTurnoCartasInvocadas() {
+		for(Armadilha a : armadilhas) {
+			a.proximoTurno();
+		}
+		
+		for(Heroi h : herois) {
+			h.proximoTurno();
+		}
+	}
+
+	public ArrayList<Heroi> getHeroisInvocados() {
+		return herois;
 	}
 }

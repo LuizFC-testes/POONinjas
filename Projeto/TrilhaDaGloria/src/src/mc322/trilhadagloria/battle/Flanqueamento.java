@@ -1,18 +1,14 @@
-package mc322.trilhadagloria.field;
+package mc322.trilhadagloria.battle;
 
 import java.util.ArrayList;
 
-import mc322.trilhadagloria.monarch.Heroi;
-
 public class Flanqueamento extends Batalha {
-	ArrayList<Batalha> mesmoInimigo;
-	private int numAtacantes;
 
 	public Flanqueamento(ArrayList<Batalha> mesmoInimigo) {
-		this.mesmoInimigo = mesmoInimigo;
 		this.defensor = mesmoInimigo.get(0).defensor;
-		numAtacantes = mesmoInimigo.size();
+		int numAtacantes = mesmoInimigo.size();
 		
+		// Extrai heroi mais forte para ser o atacante e receber o bonus
 		Batalha maisForte = mesmoInimigo.get(0);
 		boolean corpoACorpo = (maisForte.atacante.getTerreno() == defensor.getTerreno());
 		
@@ -49,15 +45,7 @@ public class Flanqueamento extends Batalha {
 		}
 		
 		atacante = maisForte.atacante;
-	}
-	
-	public Heroi batalhar() {
-		if(atacante.atacar(defensor, numAtacantes)) {
-			defensor.morrer();
-			return defensor;
-		} else {
-			atacante.morrer();
-			return atacante;
-		}
+		
+		this.bonusAtaque = 0.05f * (numAtacantes-1);
 	}
 }

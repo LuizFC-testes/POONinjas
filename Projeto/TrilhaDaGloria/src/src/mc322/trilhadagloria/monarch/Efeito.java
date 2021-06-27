@@ -1,41 +1,49 @@
 package mc322.trilhadagloria.monarch;
 
-import java.util.ArrayList;
+public class Efeito {
+	private Heroi alvo;
+	private Integer turnosRestantes;
+	private float bonusDeResistencia;
+	private float bonusDeForca;
+	
+	public Efeito(float bonusResistencia, float bonusForca, Integer turnos) {
+		bonusDeResistencia = bonusResistencia;
+		bonusDeForca = bonusForca;
+		turnosRestantes = turnos;
+	}
+	
+	public void aplicarEfeito(Heroi alvo) {
+		this.alvo = alvo;
+		alvo.adicionarEfeito(this);
+	}
+	
+	public void aplicarEfeitoBioma(Heroi alvo) {
+		this.alvo = alvo;
+		alvo.adicionarEfeitoBioma(this);
+	}
 
-public abstract class Efeito {
-	protected Carta carta;
-	protected ArrayList<Heroi> alvos;
-	protected ArrayList<Heroi> aliados;
-	protected int turnosRestantes;
-	protected int numeroMaximoDeAlvos;
-	protected int numeroMaximoDeAliados;
-	protected int alcance;
-	
-	public abstract void passiva();
-	
-	public abstract void ativa();
-	
-	public abstract void eliminar();
+	public float getBonusDeResistencia() {
+		return bonusDeResistencia;
+	}
 
-	public void adicionarHeroi(Heroi heroi) {
-		if(heroi.getDono().getPlayerId() == carta.getDono().getPlayerId()) {
-			if(aliados.size() < numeroMaximoDeAliados) {
-				aliados.add(heroi);
-			}
-		} else {
-			if(alvos.size() < numeroMaximoDeAlvos) {
-				alvos.add(heroi);
+	public float getBonusDeForca() {
+		return bonusDeForca;
+	}
+
+	public void eliminar() {
+		alvo.removerEfeito(this);
+	}
+	
+	public void updateTurno() {
+		// Se turno for null, então efeito é permanente
+		if(turnosRestantes != null) {
+			
+			// Se efeito chegou ao fim, elimina-o
+			turnosRestantes--;
+			
+			if(turnosRestantes <= 0) {
+				eliminar();
 			}
 		}
 	}
-	
-	public int getAlcance() {
-		return alcance;
-	}
-
-	public abstract int bonusResistencia(Heroi h);
-
-	public abstract float bonusForca(Heroi h);
-
-	protected abstract void ativarEfeitoPreCombate();
 }

@@ -1,7 +1,5 @@
 package mc322.trilhadagloria.monarch;
 
-import java.util.ArrayList;
-
 import mc322.trilhadagloria.exceptions.EmptyDeckException;
 import mc322.trilhadagloria.exceptions.GameExceptions;
 import mc322.trilhadagloria.exceptions.NotEnoughManaException;
@@ -12,13 +10,13 @@ public class Monarca implements IMonarca{
 	private Deck deck;
 	private GrupoCartas mao;
 	private GrupoCartas cemiterio;
-	private ISummon battleField;
+	private ISummon tabuleiro;
 	private int mana;
 	private int playerId;
 	private int inimigoId;
 	
 	public Monarca(int playerId, String[] deck) {
-		this.deck = new Deck(deck);
+		this.deck = new Deck(deck, this);
 		mao = new GrupoCartas();
 		cemiterio = new GrupoCartas();
 		mana = 5;
@@ -53,6 +51,18 @@ public class Monarca implements IMonarca{
 		inimigoId = id;
 	}
 	
+	public void setMana(int mana) {
+		this.mana = mana;
+	}
+	
+	public void setPlayerId(int id) {
+		playerId = id;
+	}
+	
+	public int getPlayerId() {
+		return playerId;
+	}
+	
 	public void comprarCarta() throws EmptyDeckException {
 		Carta c = deck.comprarCarta();
 		mao.adicionarCarta(c);
@@ -63,11 +73,11 @@ public class Monarca implements IMonarca{
 	}
 
 	public void invocarCarta(Carta c, Terreno t) throws GameExceptions {
-		if(battleField != null) {
+		if(tabuleiro != null) {
 			if(mana < c.getPreco()) {
-				throw new NotEnoughManaException("Não foi possível invocar. Mana insuficiente");
+				throw new NotEnoughManaException("Mana insuficiente");
 			} else {
-				battleField.invocarCarta(c, t);
+				tabuleiro.invocarCarta(c, t, this.playerId);
 				mao.removerCarta(c);
 				mana -= c.getPreco();
 			}
@@ -83,19 +93,9 @@ public class Monarca implements IMonarca{
 		}
 	}
 
-	public void connect(ISummon battleField) {
-		this.battleField = battleField;
+	public void connect(ISummon tabuleiro) {
+		this.tabuleiro = tabuleiro;
 	}
 
-	public void setMana(int mana) {
-		this.mana = mana;
-	}
-	
-	public void setPlayerId(int id) {
-		playerId = id;
-	}
-	
-	public int getPlayerId() {
-		return playerId;
-	}
+
 }

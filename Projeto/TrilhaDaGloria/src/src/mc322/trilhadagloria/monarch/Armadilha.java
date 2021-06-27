@@ -2,85 +2,88 @@ package mc322.trilhadagloria.monarch;
 
 import java.util.ArrayList;
 
+import mc322.trilhadagloria.field.BonusDatabase;
 import mc322.trilhadagloria.field.Terreno;
 
 public class Armadilha extends Carta {
-	private boolean armada;
 	private int alcance;
-	private Efeito efeito;
 	private Heroi alvo;
+	private int poder;
+	private Dominio dominio;
 	
-	public Armadilha(int id) {
+	public Armadilha(int id, Dominio dom) {
 		super(id);
-		this.preco = 1;
-		armada = false;
-	}
-	
-	public void armar(Heroi heroi) {
-		if(heroi != null) {
-			armada = true;
-			alvo = heroi;
-		}
+		preco = 1;
+		alvo = null;
+		poder = 100;
+		dominio = dom;
 	}
 
 	public boolean estaArmada() {
-		return armada;
-	}
-	
-	public int getAlcance() {
-		return alcance;
+		return alvo != null;
 	}
 
-	public Heroi buscarAlvo() {
-		if(!armada) {
+	public void buscarAlvo() {
+		if(!estaArmada()) {
 			ArrayList<Terreno> visitados = new ArrayList<Terreno>();
 			ArrayList<Heroi> inimigos = new ArrayList<Heroi>();
 		
 			// Procura oponentes dentro do alcance que foram invocados após a armadilha
-			return buscarHeroisRecursivo(terreno, inimigos, visitados, getDono().getInimigoId(), 0);
+			alvo = buscarAlvoRecursivo(terreno, inimigos, visitados, getDono().getInimigoId(), 0);
 		}
-		return null;
 	}
 	
-	private Heroi buscarHeroisRecursivo(Terreno atual, ArrayList<Heroi> batalhas, ArrayList<Terreno> visitados, int playerId, int alcanceRecursivo) {
+	private Heroi buscarAlvoRecursivo(Terreno atual, ArrayList<Heroi> batalhas, ArrayList<Terreno> visitados, int inimigoId, int alcanceRecursivo) {
 		// Verifica se terreno ainda não foi visitado
-		if(!armada && atual != null && !visitados.contains(atual)) {
+		if(atual != null && !visitados.contains(atual)) {
 			// Adiciona terreno atual na lista de visitados
 			visitados.add(atual);
 	
-			// Se o heroi alcançar o terreno atual e houver uma carta inimiga, cria uma nova batalha
+			// Verifica a existencia de um possível alvo
 			if(alcanceRecursivo <= this.alcance) {
-				if(atual.getCarta(playerId) != null) {
-					if(atual.getCarta(playerId) instanceof Heroi && atual.getCarta(playerId).turnosInvocada < this.turnosInvocada)
-						return (Heroi) atual.getCarta(playerId);
+				if(atual.getCarta(inimigoId) != null) {
+					if(atual.getCarta(inimigoId) instanceof Heroi && atual.getCarta(inimigoId).turnosInvocada < this.turnosInvocada)
+						return (Heroi) atual.getCarta(inimigoId);
 				}
 			}
 	
 			// Se o herói alcançar, procura recursivamente nos terrenos vizinhos
-			if(!armada && alcanceRecursivo < this.alcance) {
-				Heroi h = buscarHeroisRecursivo(atual.getVizinho(0), batalhas, visitados, playerId, alcanceRecursivo+1);
-				if(h != null) {
+			if(alcanceRecursivo < this.alcance) {
+				Heroi h = buscarAlvoRecursivo(atual.getVizinho(0), batalhas, visitados, inimigoId, alcanceRecursivo+1);
+				if(h != null)
 					return h;
-				}
-				h = buscarHeroisRecursivo(atual.getVizinho(1), batalhas, visitados, playerId, alcanceRecursivo+1);
-				if(h != null) {
+				
+				h = buscarAlvoRecursivo(atual.getVizinho(1), batalhas, visitados, inimigoId, alcanceRecursivo+1);
+				if(h != null)
 					return h;
-				}
-				h = buscarHeroisRecursivo(atual.getVizinho(2), batalhas, visitados, playerId, alcanceRecursivo+1);
-				if(h != null) {
+
+				h = buscarAlvoRecursivo(atual.getVizinho(2), batalhas, visitados, inimigoId, alcanceRecursivo+1);
+				if(h != null)
 					return h;
-				}
-				h = buscarHeroisRecursivo(atual.getVizinho(3), batalhas, visitados, playerId, alcanceRecursivo+1);
-				if(h != null) {
-					return h;
-				}
+				
+				return buscarAlvoRecursivo(atual.getVizinho(3), batalhas, visitados, inimigoId, alcanceRecursivo+1);
 			}
 		}
 		return null;
 	}
 
-	public void ativar() {
-		efeito.adicionarHeroi(alvo);
-		efeito.ativarEfeitoPreCombate();
+	public Heroi ativar() {
+		if(estaArmada()) {
+			float bonus = 0;
+			
+			if(dominio != null) {
+				bonus = BonusDatabase.getBonusArmadilhaPoder(this.dominio, alvo.getDominio());
+			}
+			
+			if(alvo.cairNaArmadilha(this, bonus)) {
+				alvo.morrer();
+				return alvo;
+			}
+		}
+		return null;
+	}
+
+	public float getPoder() {
+		return poder;
 	}
 }
