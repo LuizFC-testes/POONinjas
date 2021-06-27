@@ -1,20 +1,25 @@
 package mc322.trilhadagloria.gui.painelCartas;
 
-import javax.swing.JPanel;
-import javax.swing.JLayeredPane;
-import javax.swing.JLabel;
-import javax.swing.border.*;
-import javax.swing.BorderFactory;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
-import mc322.trilhadagloria.gui.painelCartas.IRStatusHeroi;
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
+
 import mc322.trilhadagloria.monarch.IStatusHeroi;
+
 
 public class PainelCartaEst extends JLayeredPane implements IRStatusHeroi {
 
-    private IStatusHeroi hero;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4719899253774223149L;
+
+	private IStatusHeroi hero;
 
     JPanel iconePlayer,
            nomeCarta,
@@ -96,7 +101,7 @@ public class PainelCartaEst extends JLayeredPane implements IRStatusHeroi {
         JPanel alcance = new JPanel();
         alcance.setLayout(new FlowLayout());
         alcance.add(new JLabel(new ImgAjust("IconeOlho.png")));
-        alcance.add(new JLabel(hero.getAlcance));
+        alcance.add(new JLabel("" + hero.getAlcance()));
         atributos.add(alcance);
 
         /*JPanel forca = new JPanel();
