@@ -14,11 +14,14 @@ public class Terreno {
 	private int posicaoI;
 	private int posicaoJ;
 	private Bioma bioma;
+	private boolean conquistado;
+	private int playerIdDono;
 	
 	public Terreno(Bioma bioma) {
 		cartas = new Carta[2];
 		vizinhos = new Terreno[4];
 		this.bioma = bioma;
+		conquistado = false;
 	}
 	
 	public void setPosicao(int i, int j) {
@@ -69,6 +72,10 @@ public class Terreno {
 	public void setCarta(int playerId, Carta carta) {
 		cartas[playerId] = carta;
 	}
+	
+	public void removerCarta(int playerId) {
+		cartas[playerId] = null;
+	}
 
 	public ArrayList<Terreno> getVizinhos() {
 		ArrayList<Terreno> list = new ArrayList<Terreno>();
@@ -76,5 +83,18 @@ public class Terreno {
 		list.addAll(Arrays.asList(vizinhos));
 		
 		return list;
+	}
+
+	public void conquistar(int playerId) {
+		conquistado = true;
+		playerIdDono = playerId;
+	}
+
+	public boolean estaConquistado() {
+		return conquistado;
+	}
+
+	public int getIdDono() {
+		return playerIdDono;
 	}
 }

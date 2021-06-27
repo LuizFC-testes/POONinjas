@@ -103,5 +103,8 @@ public class Monarca implements IMonarca{
 		return nTerritoriosConquistados;
 	}
 
-
+	@Override
+	public void setTerritoriosConquistados(int n) {
+		nTerritoriosConquistados = n;
+	}
 }

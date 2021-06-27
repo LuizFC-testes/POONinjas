@@ -172,4 +172,17 @@ public abstract class Heroi extends Carta implements IStatusHeroi {
 	public float[] getForcaComBonus() {
 		return new float[] { forca[0] * (1+getBonusDeEfeitosForca()), forca[1]*(1+getBonusDeEfeitosForca()) };
 	}
+	
+	@Override
+	public void proximoTurno() {
+		super.proximoTurno();
+		
+		if(turnosInvocada >= 5) {
+			conquistarTerreno();
+		}
+	}
+	
+	public void conquistarTerreno() {
+		terreno.conquistar(dono.getPlayerId());
+	}
 }
