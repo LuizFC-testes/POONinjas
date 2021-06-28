@@ -1,18 +1,14 @@
 package mc322.trilhadagloria.controle;
 
 import mc322.trilhadagloria.battle.GerenciadorDeBatalhas;
-import mc322.trilhadagloria.battle.IBattle;
-import mc322.trilhadagloria.field.IField;
-import mc322.trilhadagloria.field.IFieldControl;
 import mc322.trilhadagloria.field.Tabuleiro;
-import mc322.trilhadagloria.gui.IViewControl;
-import mc322.trilhadagloria.monarch.ICommand;
 import mc322.trilhadagloria.monarch.Monarca;
+import mc322.trilhadagloria.serverclient.IRemoteEnemy;
 import mc322.trilhadagloria.serverclient.Mensagem;
 
 public class GeradorClient { 
 	
-	public static Controle gerarJogo(Mensagem init) {
+	public static Controle gerarJogo(Mensagem init, IRemoteEnemy remote) {
 		
 		int inimigoId;
 		
@@ -35,6 +31,7 @@ public class GeradorClient {
 		control.conectaPlayer(player);
 		control.conectaInimigo(inimigo);
 		control.conecta(tabuleiro);
+		control.conecta(remote);
 //		control.conecta(view);
 		
 		

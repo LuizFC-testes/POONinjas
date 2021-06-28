@@ -64,6 +64,10 @@ public class Controle implements IControle {
 		this.tabuleiro = tabuleiro;
 	}
 	
+	@Override
+	public void conecta(IRemoteEnemy inimigo) {
+		this.remote = inimigo;
+	}
 	
 	/*** Métodos da interface gráfica e input dos jogadores ***/
 	@Override
@@ -224,6 +228,8 @@ public class Controle implements IControle {
 	private void sacrificarCarta(int cartaId) {
 		inimigo.sacrificarCarta(cartaId);
 	}
+
+
 
 
 
