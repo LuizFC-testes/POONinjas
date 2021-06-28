@@ -160,112 +160,204 @@ O vídeo a seguir apresenta um detalhamento de um projeto baseado em componentes
 # Diagramas
 
 ## Diagrama Geral do Projeto
-O jogo é construído seguindo a arquitetura Model-View-Control. O controle é responsável pelo fluxo e consistência do jogo. O view faz a exibição do jogo na tela, assim como captura as ações do usuário. Já o modelo é composto por dois principais componentes: o Monarch representa um player e suas tropas (cartas); e o BattleField que representa o tabuleiro com os terrenos e construções e é responsável por modelizar os combates entre as cartas invocadas.
-
-Na figura abaixo, estes componentes estão detalhados juntos com as interfaces de comunicação.
-![Diagrama geral dos principais componentes](assets/componentes2.png)
-
-> <Apresente um diagrama geral de organização da organização do seu sistema. O formato é livre. A escolha de um ou mais estilos arquiteturais será considerado um diferencial.>
-
-> <Faça uma breve descrição do diagrama.>
+O jogo é construído seguindo a arquitetura Model-View-Control. O controle é responsável pelo fluxo, sincronização entre os players e consistência do jogo. O view faz a exibição do jogo na tela, assim como captura as ações do usuário. Já o modelo é composto por três principais componentes: o `Monarch` representa um player e suas tropas (`Cartas`); e o `Field` que representa o tabuleiro com os terrenos, e o `Battle` que é responsável por modelizar os combates entre as cartas invocadas e resolver os efeitos.
 
 ## Diagrama Geral de Componentes
-Logo abaixo, está um modelo mais aprofundado do componente Monarch, responsável por modelizar o player e suas cartas.
-![Diagrama do componente Monarch](assets/monarch.png)
+Logo abaixo, está um modelo geral de componentes do sistema.
+![Diagrama geral de componentes](assets/diagrama-geral-componentes.png)
 
-### Exemplo 1
+## Componente `Control`
 
-Este é o diagrama compondo componentes para análise:
-
-![Diagrama Analise](diagrama-componentes-analise.png)
-
-### Exemplo 2
-
-Este é um diagrama inicial do projeto de jogos:
-
-![Diagrama Jogos](diagrama-componentes-jogos.png)
-
-### Exemplo 3
-
-Este é outro diagrama de um projeto de vendas:
-
-![Diagrama Vendas](diagrama-componentes-vendas.png)
-
-Para cada componente será apresentado um documento conforme o modelo a seguir:
-
-## Componente `<Nome do Componente>`
-
-> <Resumo do papel do componente e serviços que ele oferece.>
-
-![Componente](diagrama-componente.png)
+Este componente é responsável por controlar o fluxo e ações do jogo, como decidir em qual momento ativar armadilhas ou resolver combates. Além disso, ele realiza a sincronização com o jogador que está remotamente.
 
 **Ficha Técnica**
 item | detalhamento
 ----- | -----
-Classe | `<caminho completo da classe com pacotes>` <br> Exemplo: `pt.c08componentes.s20catalog.s10ds.DataSetComponent`
-Autores | `<nome dos membros que criaram o componente>`
-Interfaces | `<listagem das interfaces do componente>`
+Classe | `mc322.trilhadagloria.control.Controle`
+Autores | João Victor Matoso <br> Luiz Felipe Cezar
+Interfaces | `IUserInput` 
 
 ### Interfaces
-
-Interfaces associadas a esse componente:
-
-![Diagrama Interfaces](diagrama-interfaces.png)
 
 Interface agregadora do componente em Java:
 
 ~~~java
-public interface IDataSet extends ITableProducer, IDataSetProperties {
+public interface IControle extends IRBattle, IRCommand, IUserInput, IRViewControl, IRFieldControl, IRRemoteEnemy {
 }
 ~~~
 
 ## Detalhamento das Interfaces
 
-### Interface `<nome da interface>`
+### Interface `IUserInput`
 
-`<Resumo do papel da interface.>`
+Utilizada pela interface para entrada de comandos do jogador local.
 
 ~~~
-<Interface em Java.>
-~~~
-
-Método | Objetivo
--------| --------
-`<id do método em Java>` | `<objetivo do método e descrição dos parâmetros>`
-
-## Exemplo:
-
-### Interface `ITableProducer`
-
-Interface provida por qualquer fonte de dados que os forneça na forma de uma tabela.
-
-~~~java
-public interface ITableProducer {
-  String[] requestAttributes();
-  String[][] requestInstances();
+public interface IUserInput {
+	public void comprarCarta();
+	public void invocarCarta(Carta c, Terreno t);
+	public void passarFase();
+	public void sacrificarCarta(Carta c);
 }
 ~~~
 
-Método | Objetivo
--------| --------
-`requestAttributes` | Retorna um vetor com o nome de todos os atributos (colunas) da tabela.
-`requestInstances` | Retorna uma matriz em que cada linha representa uma instância e cada coluna o valor do respectivo atributo (a ordem dos atributos é a mesma daquela fornecida por `requestAttributes`.
+## Componente `Monarch`
 
-### Interface `IDataSetProperties`
+Este componente é responsável por modelar o jogador e suas cartas.
 
-Define o recurso (usualmente o caminho para um arquivo em disco) que é a fonte de dados.
+**Ficha Técnica**
+item | detalhamento
+----- | -----
+Classe | `mc322.trilhadagloria.monarch.Monarca`
+Autores | João Victor Matoso <br> Luiz Felipe Cezar
+Interfaces | `ICommand` 
+
+### Interfaces
+
+Interface agregadora do componente em Java:
 
 ~~~java
-public interface IDataSetProperties {
-  public String getDataSource();
-  public void setDataSource(String dataSource);
+public interface IMonarca extends ICommand, IRSummon {
 }
 ~~~
 
-Método | Objetivo
--------| --------
-`getDataSource` | Retorna o caminho da fonte de dados.
-`setDataSource` | Define o caminho da fonte de dados, informado através do parâmetro `dataSource`.
+## Detalhamento das Interfaces
+
+### Interface `ICommand`
+
+Utilizada pelo `Controle` para entrada de comandos do jogador.
+
+~~~
+public interface ICommand {
+	public void comprarCarta() throws EmptyDeckException;
+	public void enviarCemiterio(Carta c);
+	public void invocarCarta(Carta c, Terreno t) throws NotEnoughManaException, GameExceptions;
+	public void sacrificarCarta(Carta c);
+	public void sacrificarCarta(int cartaId);
+	public void invocarCarta(int cartaId, int[] posTabuleiro) throws NotEnoughManaException, GameExceptions;
+}
+~~~
+
+## Componente `Battle`
+
+Este componente é responsável por modelar as batalhas do jogo.
+
+**Ficha Técnica**
+item | detalhamento
+----- | -----
+Classe | `mc322.trilhadagloria.battle.GerenciadorDeBatalhas`
+Autores | João Victor Matoso <br> Luiz Felipe Cezar
+Interfaces | `IBattleControl`
+
+### Interfaces
+
+Interface agregadora do componente em Java:
+
+~~~java
+public interface IBattle extends IBattleControl, IRBattleField {
+}
+~~~
+
+## Detalhamento das Interfaces
+
+### Interface `IBattleControl`
+
+Utilizada pelo `Controle` para entrada de comandos de resolução de batalhas.
+
+~~~
+public interface IBattleControl {
+	public void revelarArmadilhas();
+	public void ativarArmadilhas();
+	public void gerarBatalhas(int atacanteId);
+	public void iniciarBatalhas();
+	public void ativarHabilidadesPassivas();
+}
+~~~
+
+## Componente `Field`
+
+Este componente é responsável por modelar o tabuleiro do jogo.
+
+**Ficha Técnica**
+item | detalhamento
+----- | -----
+Classe | `mc322.trilhadagloria.field.Tabuleiro`
+Autores | João Victor Matoso <br> Luiz Felipe Cezar
+Interfaces | `IBattleField` <br> `IFieldControl` <br> `ISummon`
+
+### Interfaces
+
+Interface agregadora do componente em Java:
+
+~~~java
+public interface IField extends ISummon, IBattleField, IFieldControl, IRTabConnect {
+}
+~~~
+
+## Detalhamento das Interfaces
+
+### Interface `IBattleField`
+
+Utilizada pelo `Battle` para obtenção das cartas invocadas e remoção de cartas após o combate.
+~~~
+public interface IBattleField {
+	public ArrayList<Armadilha> getArmadilhasInvocadas();
+	public ArrayList<Heroi> getHeroisInvocados();
+	public void remover(Carta carta);
+}
+~~~
+
+### Interface `ISummon`
+
+Utilizada pelo `Monarch` para invocar cartas no tabuleiro.
+~~~
+public interface ISummon {
+	public void invocarCarta(Carta c, Terreno t, int playerId) throws GameExceptions;
+	public Terreno getTerreno(int i, int j);
+}
+~~~
+
+### Interface `IFieldControl`
+
+Utilizada pelo `Controle` para controle de turnos e verificar condições de vitória e fim de jogo.
+~~~
+public interface IFieldControl {
+	public void incrementarTurnoCartasInvocadas();
+	public boolean verificarCaminhoFechado(int playerId);
+}
+~~~
+
+## Componente `View`
+
+Este componente é responsável pela interface gráfica do jogo.
+
+**Ficha Técnica**
+item | detalhamento
+----- | -----
+Classe | `mc322.trilhadagloria.gui.telaPrinc.`
+Autores | João Victor Matoso <br> Luiz Felipe Cezar
+Interfaces | 
+
+### Interfaces
+
+Interface agregadora do componente em Java:
+
+~~~java
+
+~~~
+
+## Detalhamento das Interfaces
+
+### Interface 
+
+Utilizada pelo `Controle` para entrada de comandos de resolução de batalhas.
+
+~~~java
+
+~~~
+
+
+
 
 # Plano de Exceções
 
