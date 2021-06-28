@@ -6,7 +6,7 @@ import mc322.trilhadagloria.carta.Armadilha;
 import mc322.trilhadagloria.carta.Carta;
 import mc322.trilhadagloria.carta.Heroi;
 import mc322.trilhadagloria.exceptions.GameExceptions;
-import mc322.trilhadagloria.monarch.IPlayerEffects;
+import mc322.trilhadagloria.gui.telaPrinc.ITabConnect;
 
 public class Tabuleiro implements IField {
 	public static final int MAPSIZE = 5;
@@ -87,11 +87,6 @@ public class Tabuleiro implements IField {
 	}
 
 	@Override
-	public void conecta(IPlayerEffects monarca) {
-		
-	}
-
-	@Override
 	public boolean verificarCaminhoFechado(int playerId) {
 		for(Heroi h : herois) {
 			if(h.getDono().getPlayerId() == playerId) {
@@ -135,5 +130,13 @@ public class Tabuleiro implements IField {
 		}
 		
 		return false;
+	}
+
+	public void conecta(ITabConnect view) {
+		for(int i = 0; i < MAPSIZE; i++) {
+			for(int j = 0; j < MAPSIZE; j++) {
+				mapa[i][j].conecta(view.getViewTerreno(i, j));
+			}
+		}
 	}
 }

@@ -1,5 +1,5 @@
 package mc322.trilhadagloria.monarch;
 
-public interface IMonarca extends ICommand, IPlayerEffects, IRSummon {
+public interface IMonarca extends ICommand, IRSummon {
 
 }

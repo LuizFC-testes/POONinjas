@@ -185,6 +185,7 @@ public abstract class Heroi extends Carta implements IStatusHeroi {
 	
 	public void conquistarTerreno() {
 		terreno.conquistar(dono.getPlayerId());
+		dono.conquistarTerreno();
 	}
 	
 	public Color getCorReino() {
