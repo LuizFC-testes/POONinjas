@@ -2,17 +2,18 @@ package mc322.trilhadagloria.gui.painelCartas;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+import mc322.trilhadagloria.carta.Dominio;
 import mc322.trilhadagloria.carta.IStatusHeroi;
 
 
-public class PainelCartaEst extends JLayeredPane implements IRStatusHeroi {
+public class PainelCartaEst extends JPanel implements IRStatusHeroi {
 
     /**
 	 * 
@@ -32,6 +33,7 @@ public class PainelCartaEst extends JLayeredPane implements IRStatusHeroi {
         super();
         setSize(650, 900);
         setOpaque(true);
+        setLayout(null);
     }
 
     public void connectHeroi(IStatusHeroi hero) {
@@ -39,7 +41,8 @@ public class PainelCartaEst extends JLayeredPane implements IRStatusHeroi {
     }
 
     public void gerarCarta() {
-        representarPlayer();
+    	setBackground(hero.getDominio().getCor());
+    	representarPlayer();
         mostrarClasse();
         mostrarImagem();
         mostrarAtributos();
@@ -56,12 +59,14 @@ public class PainelCartaEst extends JLayeredPane implements IRStatusHeroi {
 
         iconePlayer.setSize(100, 100);
         iconePlayer.setLocation(25, 25);
-        add(iconePlayer, PALETTE_LAYER);
+        add(iconePlayer);
     }
 
     private void mostrarClasse() {
         String classe = hero.getClasse().toUpperCase();
         JLabel label = new JLabel(classe);
+        
+        label.setFont(new Font("Serif", Font.BOLD, 48));
 
         nomeCarta = new JPanel();
         nomeCarta.setOpaque(true);
@@ -72,7 +77,7 @@ public class PainelCartaEst extends JLayeredPane implements IRStatusHeroi {
 
         nomeCarta.setSize(500, 100);
         nomeCarta.setLocation(125, 25);
-        add(nomeCarta, PALETTE_LAYER);
+        add(nomeCarta);
     }
 
     private void mostrarImagem() {
@@ -80,14 +85,18 @@ public class PainelCartaEst extends JLayeredPane implements IRStatusHeroi {
 
         imagemCarta = new JPanel();
         imagemCarta.setOpaque(true);
-        imagemCarta.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
+        imagemCarta.setLayout(null);
+        imagemCarta.setBorder(BorderFactory.createLineBorder(Color.BLACK,10));
         imagemCarta.setSize(400, 400);
 
         ImgAjust img = new ImgAjust(asset);
-        imagemCarta.add(new JLabel(img));
+        JLabel label = new JLabel(img);
+        label.setSize(380,380);
+        label.setLocation(10, 10);
+        imagemCarta.add(label);
 
         imagemCarta.setLocation(25, 175);
-        add(imagemCarta, PALETTE_LAYER);
+        add(imagemCarta);
     }
 
     private void mostrarAtributos() {
@@ -99,15 +108,14 @@ public class PainelCartaEst extends JLayeredPane implements IRStatusHeroi {
         atributos.setLayout(new GridLayout(3, 1));
 
         JPanel alcance = new JPanel();
-        alcance.setLayout(new FlowLayout());
+        alcance.setLayout(new FlowLayout(FlowLayout.LEFT));
         ImgAjust iconeOlho = new ImgAjust("IconeOlho.png");
-        iconeOlho.redimensionar(50, 50);
         alcance.add(new JLabel(iconeOlho));
         alcance.add(new JLabel("" + hero.getAlcance()));
         atributos.add(alcance);
 
         JPanel forca = new JPanel();
-        forca.setLayout(new FlowLayout());
+        forca.setLayout(new FlowLayout(FlowLayout.LEFT));
         ImgAjust iconeEspada = new ImgAjust("IconeEspada.png");
         forca.add(new JLabel(iconeEspada));
         int[] forcas = hero.getForcaBase();
@@ -115,16 +123,15 @@ public class PainelCartaEst extends JLayeredPane implements IRStatusHeroi {
         atributos.add(forca);
 
         JPanel resist = new JPanel();
-        resist.setLayout(new FlowLayout());
+        resist.setLayout(new FlowLayout(FlowLayout.LEFT));
         ImgAjust escudo = new ImgAjust("IconeEscudo.png");
-        escudo.redimensionar(50, 50);
         resist.add(new JLabel(escudo));
         int[] res = hero.getResistBase();
         resist.add(new JLabel(res[0] + " (" + res[1] + ")"));
         atributos.add(resist);
 
         atributos.setLocation(425, 175);
-        add(atributos, PALETTE_LAYER);
+        add(atributos);
     }
 
     private void mostrarBonus() {
@@ -137,33 +144,39 @@ public class PainelCartaEst extends JLayeredPane implements IRStatusHeroi {
         ImgAjust[] imgDoms = gerarIconesDominios();
         float[] porc = hero.getBonusHero();
         for (int i = 0; i < 8; i++) {
-            String bon = "" + (porc[i] * 100) + "%";
+            String bon = "" + (int)(porc[i] * 100) + "%";
+            
             JPanel bonusD = new JPanel();
-            bonusD.setLayout(new FlowLayout());
+            bonusD.setLayout(new FlowLayout(FlowLayout.LEFT));
             bonusD.add(new JLabel(imgDoms[i]));
             bonusD.add(new JLabel(bon));
             bonus.add(bonusD);
         }
 
-        bonus.setLocation(425, 375);
-        add(bonus, PALETTE_LAYER);
+        bonus.setLocation(425, 325);
+        add(bonus);
     }
 
     private void mostrarHabilidades() {
         JLabel passivas = new JLabel("Habilidades passivas: " + hero.getHabPass());
         JLabel ativas = new JLabel("Habilidades ativas: " + hero.getHabAt());
         
+        Font fonte = new Font(Font.SERIF, Font.PLAIN, 24);
+        
+        passivas.setFont(fonte);
+        ativas.setFont(fonte);
+        
         habilidade = new JPanel();
         habilidade.setOpaque(true);
         habilidade.setBorder(BorderFactory.createLineBorder(Color.BLACK, 10));
-        habilidade.setSize(600, 250);
+        habilidade.setSize(600, 210);
         habilidade.setLayout(new GridLayout(2, 1));
 
         habilidade.add(passivas);
         habilidade.add(ativas);
 
         habilidade.setLocation(25, 625);
-        add(habilidade, PALETTE_LAYER);
+        add(habilidade);
     }
 
     private ImgAjust[] gerarIconesDominios() {
@@ -176,6 +189,4 @@ public class PainelCartaEst extends JLayeredPane implements IRStatusHeroi {
         }
         return iconesDom;
     }
-
-
 }

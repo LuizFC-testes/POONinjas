@@ -8,8 +8,14 @@ import javax.imageio.ImageIO;
 import java.io.IOException;
 
 public class ImgAjust extends ImageIcon {
+<<<<<<< HEAD
 	
     protected static String DIRETORIO = ImgAjust.class.getResource(".").getPath();
+=======
+	private static final long serialVersionUID = 1839372829191312171L;
+	
+	protected static String DIRETORIO = ImgAjust.class.getResource(".").getPath();
+>>>>>>> b16ba73ffb5e9c54e75a326bb39db31c5240604c
     protected static String PACOTE = DIRETORIO.split("/")[DIRETORIO.split("/").length - 1];
     protected String ASSETS = DIRETORIO.substring(0, DIRETORIO.length() - PACOTE.length() - 1) + "assets/";
     protected BufferedImage img;

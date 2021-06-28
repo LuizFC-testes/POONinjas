@@ -130,34 +130,15 @@ public void passiva() {
 }
 ~~~
 
-# Destaques de Pattern
-`<Destaque de patterns adotados pela equipe. Sugestão de estrutura:>`
-
-## Diagrama do Pattern
-`<Diagrama do pattern dentro do contexto da aplicação.>`
-
-## Código do Pattern
-~~~java
-// Recorte do código do pattern seguindo as mesmas diretrizes de outros destaques
-public void algoInteressante(…) {
-   …
-   trechoInteressante = 100;
-}
-~~~
-
-> <Explicação de como o pattern foi adotado e quais suas vantagens, referenciando o diagrama.>
-
 # Conclusões e Trabalhos Futuros
 
-> <Apresente aqui as conclusões do projeto e propostas de trabalho futuro. Esta é a oportunidade em que você pode indicar melhorias no projeto a partir de lições aprendidas e conhecimentos adquiridos durante a realização do projeto, mas que não puderam ser implementadas por questões de tempo. Por exemplo, há design patterns aprendidos no final do curso que provavelmente não puderam ser implementados no jogo -- este é o espaço onde você pode apresentar como aplicaria o pattern no futuro para melhorar o jogo.>
+Concluímos com esse projeto que o desenvolvimento de um grande jogo, com muitas regras e exceções, exige um planejamento muito preciso e visão a longo prazo aguçada. Projetos grandes precisam ser bem estruturados para facilitar o trabalho colaborativo, implementação de novos recursos e depuração de erros.
+
+Gostariamos de ter tido mais tempo para a realização desse projeto. Existem algumas melhorias que podem ser feitas a nível de design, como a criação de um componente para as cartas, e também a implementação de magias e novas habilidades para os heróis.
+
+Para que habilidades e efeitos criativos possam ser implementados, o código precisa ser flexível e bem estruturado, e acreditamos que ainda há muito espaço para isto. Apesar da disciplina ter chegado ao fim, continuaremos o desenvolvimento e a implementação das funções inicialmente planejadas e de novas habilidades!
 
 # Documentação dos Componentes
-
-O vídeo a seguir apresenta um detalhamento de um projeto baseado em componentes:
-
-[![Projeto baseado em Componentes](http://img.youtube.com/vi/1LcSghlin6o/0.jpg)](https://youtu.be/1LcSghlin6o)
-
-# Diagramas
 
 ## Diagrama Geral do Projeto
 O jogo é construído seguindo a arquitetura Model-View-Control. O controle é responsável pelo fluxo, sincronização entre os players e consistência do jogo. O view faz a exibição do jogo na tela, assim como captura as ações do usuário. Já o modelo é composto por três principais componentes: o `Monarch` representa um player e suas tropas (`Cartas`); e o `Field` que representa o tabuleiro com os terrenos, e o `Battle` que é responsável por modelizar os combates entre as cartas invocadas e resolver os efeitos.
@@ -362,17 +343,16 @@ Utilizada pelo `Controle` para entrada de comandos de resolução de batalhas.
 # Plano de Exceções
 
 ## Diagrama da hierarquia de exceções
-`<Elabore um diagrama com a hierarquia de exceções como detalhado abaixo>`
 
-![Hierarquia Exceções](exception-hierarchy.png)
+![Hierarquia Exceções](assets/exception.png)
 
 ## Descrição das classes de exceção
 
-`<Monte uma tabela descritiva seguindo o exemplo>:`
-
 Classe | Descrição
 ----- | -----
-DivisaoInvalida | Engloba todas as exceções de divisões não aceitas.
-DivisaoInutil | Indica que a divisão por 1 é inútil.
-DivisaoNaoInteira | Indica uma divisão não inteira.
+GameException | Engloba todas as exceções de jogo não aceitas.
+NotEnoughManaException | Indica que a impossibilidade de invocar uma carta devido a falta de *mana*.
+EmptyDeckException | Indica a tentativa de comprar uma carta sem cartas disponiveis.
+OccupiedTerrainException | Indica a impossibilidade de invocar uma carta em um terreno pois já existe uma outra carta ali invocada.
+CardSummonNotAllowedException | Indica a impossibilidade de invocar uma carta
 

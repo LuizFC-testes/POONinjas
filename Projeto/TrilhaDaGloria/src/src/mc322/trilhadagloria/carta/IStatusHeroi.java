@@ -19,5 +19,7 @@ public interface IStatusHeroi {
     public String getHabPass();
 
     public String getHabAt();
+    
+    public Dominio getDominio();
 
 }

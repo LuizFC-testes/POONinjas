@@ -30,21 +30,19 @@ public class TestePainelCarta {
 
     public static void main(String[] args) {
         frame = new JFrame("Frame Teste Painel");
-        frame.setSize(600,600);
+        frame.setSize(650, 900);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pane = frame.getContentPane();
+        pane.setLayout(null);
         Monarca monarca = new Monarca(0, new String[] {"0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO",});
         
-        Heroi h = new Barbaro(0, Dominio.AGUA);
+        Heroi h = new Barbaro(0, Dominio.GELO);
         h.setDono(monarca);
         
         PainelCartaEst carta = new PainelCartaEst();
         carta.connectHeroi(h);
         carta.gerarCarta();
-        JScrollPane scroll = new JScrollPane(carta);
-        scroll.setSize(600, 600);
-        pane.add(scroll);
+        pane.add(carta);
         frame.setVisible(true);
     }
-
 }
