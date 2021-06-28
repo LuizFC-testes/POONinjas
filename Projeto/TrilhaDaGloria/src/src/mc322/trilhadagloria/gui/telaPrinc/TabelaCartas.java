@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
-import javax.swing.event.*;
-import javax.swing.event.ListSelectionEvent;
 
 import mc322.trilhadagloria.carta.IStatusCarta;
 
