@@ -42,7 +42,7 @@ public class TabelaCartas extends JTable {
 	}
 	
 	public void adicionarCarta(IStatusCarta nova) {
-		cardIDs.add(nova.getID());
+		cardIDs.add(nova.getId());
 		tmc.addRow(getCardInfos(nova));
 	}
 	
@@ -50,11 +50,12 @@ public class TabelaCartas extends JTable {
 		String []cardInfos = new String[3];
 		cardInfos[0] = nova.getTipo();
 		cardInfos[1] = nova.getNome();
-		cardInfos[2] = nova.getDominio();
+		cardInfos[2] = nova.getDominio().toString();
+		return cardInfos;
 	}
 	
 	public void removerCarta(IStatusCarta elim) {
-		int idx = cardIDs.indexOf(elim.getID());
+		int idx = cardIDs.indexOf(elim.getId());
 		cardIDs.remove(idx);
 		tmc.removeRow(idx);
 	}
