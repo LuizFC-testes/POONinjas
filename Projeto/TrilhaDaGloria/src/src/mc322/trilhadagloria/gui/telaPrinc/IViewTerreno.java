@@ -7,6 +7,8 @@ public interface IViewTerreno {
 
     public void connect(IVisualField terreno);
 
+    public void gerarImgBio(String bio);
+
     public void adicionarHeroiAcima(IStatusHeroi heroi);
 
     public void adicionarHeroiAbaixo(IStatusHeroi heroi);

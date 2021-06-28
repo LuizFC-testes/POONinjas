@@ -8,26 +8,18 @@ import mc322.trilhadagloria.field.Bioma;
 import javax.swing.JLayeredPane;
 import javax.swing.JLabel;
 
-import javax.swing.JLayeredPane;
 
 public class ViewTerreno extends JLayeredPane implements IViewTerreno {
 
-    protected IVisualField terreno;
-
-    public ViewTerreno() {
+    public ViewTerreno(int x, int y) {
         super();
         setSize(100, 100);
         setOpaque(true);
     }
 
-    public void connect(IVisualField terreno) {
-        this.terreno = terreno;
-        gerarImgBio();
-    }
 
-    private void gerarImgBio() {
-        String bioma = terreno.getBioma().getSimpleName().toLowerCase();
-        bioma += ".png";
+    public void gerarImgBio(String bio) {
+        String bioma = bio + ".png";
         ImgAjust imgBio = new ImgAjust(bioma);
         imgBio.redimensionar(100, 100);
         add(new JLabel(imgBio), DEFAULT_LAYER);
