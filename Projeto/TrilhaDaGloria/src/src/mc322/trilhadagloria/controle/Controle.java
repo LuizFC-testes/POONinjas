@@ -21,6 +21,7 @@ public class Controle implements IControle {
 	private boolean suaVez;
 	private ControlStateMachine stm;
 	
+	/*** Contrutor da classe ***/
 	public Controle (int playerId) {
 		this.playerId = playerId;
 		
@@ -35,19 +36,35 @@ public class Controle implements IControle {
 		stm = ControlStateMachine.AguardandoCompra;
 	}
 	
-
+	/*** Metodos de conexão com componentes ***/
+	@Override
 	public void conecta(IBattle battle) {
 		this.battle = battle;
 	}
 
+	@Override
 	public void conectaPlayer(ICommand player) {
 		this.player = player;
 	}
 	
+	@Override
 	public void conectaInimigo(ICommand inimigo) {
 		this.inimigo = inimigo;
 	}
-
+	
+	@Override
+	public void conecta(IViewControl view) {
+		this.view = view;
+	}
+	
+	@Override
+	public void conecta(IFieldControl tabuleiro) {
+		this.tabuleiro = tabuleiro;
+	}
+	
+	
+	/*** Métodos da interface gráfica e input dos jogadores ***/
+	@Override
 	public void comprarCarta() {
 		if(stm == ControlStateMachine.AguardandoCompra) {
 			try {
@@ -70,8 +87,15 @@ public class Controle implements IControle {
 			System.err.println("*** Erro de sincronização: fase atual = " + stm);
 		}
 	}
-
 	
+	@Override
+	public void sacrificarCarta(Carta c) {
+		if(suaVez && stm == ControlStateMachine.Invocacao) {
+			player.sacrificarCarta(c);
+		}
+	}
+
+	@Override
 	public void invocarCarta(Carta c, Terreno t) {
 		
 		if(suaVez && stm == ControlStateMachine.Invocacao) {
@@ -88,16 +112,8 @@ public class Controle implements IControle {
 			}
 		}
 	}
-	
-	private void invocarCarta(int cartaId, int[] posTabuleiro) {
-		try {
-			inimigo.invocarCarta(cartaId, posTabuleiro);
-		} catch (GameExceptions e) {
-			System.err.println("*** Erro ao invocar carta: " + e.getMessage());
-		}
-	}
 
-
+	@Override
 	public void passarFase() {
 		stm = stm.proximoEstado();
 		
@@ -127,6 +143,14 @@ public class Controle implements IControle {
 			break;
 		default:
 			break;
+		}
+	}
+	
+	private void invocarCarta(int cartaId, int[] posTabuleiro) {
+		try {
+			inimigo.invocarCarta(cartaId, posTabuleiro);
+		} catch (GameExceptions e) {
+			System.err.println("*** Erro ao invocar carta: " + e.getMessage());
 		}
 	}
 
@@ -164,16 +188,10 @@ public class Controle implements IControle {
 	}
 
 
-	public void sacrificarCarta(Carta c) {
-		if(suaVez && stm == ControlStateMachine.Invocacao) {
-			player.sacrificarCarta(c);
-		}
-	}
 
 
-	public void conecta(IFieldControl tabuleiro) {
-		this.tabuleiro = tabuleiro;
-	}
+
+
 
 
 	public void mensagemRemota(Mensagem msg) {

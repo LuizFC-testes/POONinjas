@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import mc322.trilhadagloria.exceptions.EmptyDeckException;
 import mc322.trilhadagloria.monarch.Monarca;
 
-public class Deck extends GrupoCartas{
+public class Deck extends GrupoCartas implements IDeckMonarch {
 	
 	public Deck(String[] deck, Monarca dono) {
 		this.cartas = gerarDeck(deck, dono);
