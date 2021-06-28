@@ -2,10 +2,10 @@ package mc322.trilhadagloria.field;
 
 import java.util.ArrayList;
 
+import mc322.trilhadagloria.carta.Armadilha;
+import mc322.trilhadagloria.carta.Carta;
+import mc322.trilhadagloria.carta.Heroi;
 import mc322.trilhadagloria.exceptions.GameExceptions;
-import mc322.trilhadagloria.monarch.Armadilha;
-import mc322.trilhadagloria.monarch.Carta;
-import mc322.trilhadagloria.monarch.Heroi;
 import mc322.trilhadagloria.monarch.IPlayerEffects;
 
 public class Tabuleiro implements IField {

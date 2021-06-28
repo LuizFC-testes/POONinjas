@@ -1,7 +1,8 @@
-package mc322.trilhadagloria.monarch;
+package mc322.trilhadagloria.carta;
 
 import java.util.ArrayList;
 import mc322.trilhadagloria.exceptions.EmptyDeckException;
+import mc322.trilhadagloria.monarch.Monarca;
 
 public class Deck extends GrupoCartas{
 	

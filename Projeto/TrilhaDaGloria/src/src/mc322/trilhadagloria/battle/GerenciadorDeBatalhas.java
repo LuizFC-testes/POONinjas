@@ -2,10 +2,10 @@ package mc322.trilhadagloria.battle;
 
 import java.util.ArrayList;
 
+import mc322.trilhadagloria.carta.Armadilha;
+import mc322.trilhadagloria.carta.Heroi;
 import mc322.trilhadagloria.field.IBattleField;
-import mc322.trilhadagloria.monarch.Armadilha;
 import mc322.trilhadagloria.monarch.HabilidadeEspecial;
-import mc322.trilhadagloria.monarch.Heroi;
 
 public class GerenciadorDeBatalhas implements IBattle {
 	IBattleField tabuleiro;

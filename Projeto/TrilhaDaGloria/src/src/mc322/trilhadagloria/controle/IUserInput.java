@@ -1,7 +1,7 @@
 package mc322.trilhadagloria.controle;
 
+import mc322.trilhadagloria.carta.Carta;
 import mc322.trilhadagloria.field.Terreno;
-import mc322.trilhadagloria.monarch.Carta;
 
 public interface IUserInput {
 	public void comprarCarta();

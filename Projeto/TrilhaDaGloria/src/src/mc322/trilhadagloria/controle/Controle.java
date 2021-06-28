@@ -1,12 +1,12 @@
 package mc322.trilhadagloria.controle;
 
 import mc322.trilhadagloria.battle.IBattle;
+import mc322.trilhadagloria.carta.Carta;
 import mc322.trilhadagloria.exceptions.EmptyDeckException;
 import mc322.trilhadagloria.exceptions.GameExceptions;
 import mc322.trilhadagloria.field.IFieldControl;
 import mc322.trilhadagloria.field.Terreno;
 import mc322.trilhadagloria.gui.IViewControl;
-import mc322.trilhadagloria.monarch.Carta;
 import mc322.trilhadagloria.monarch.ICommand;
 
 public class Controle implements IControle {

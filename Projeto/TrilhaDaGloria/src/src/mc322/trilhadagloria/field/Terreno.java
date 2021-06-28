@@ -3,10 +3,10 @@ package mc322.trilhadagloria.field;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import mc322.trilhadagloria.carta.Carta;
+import mc322.trilhadagloria.carta.Efeito;
+import mc322.trilhadagloria.carta.Heroi;
 import mc322.trilhadagloria.exceptions.GameExceptions;
-import mc322.trilhadagloria.monarch.Carta;
-import mc322.trilhadagloria.monarch.Efeito;
-import mc322.trilhadagloria.monarch.Heroi;
 
 public class Terreno {
 	private Carta cartas[];

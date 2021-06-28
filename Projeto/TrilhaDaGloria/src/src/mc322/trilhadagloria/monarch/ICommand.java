@@ -1,5 +1,6 @@
 package mc322.trilhadagloria.monarch;
 
+import mc322.trilhadagloria.carta.Carta;
 import mc322.trilhadagloria.exceptions.EmptyDeckException;
 import mc322.trilhadagloria.exceptions.GameExceptions;
 import mc322.trilhadagloria.exceptions.NotEnoughManaException;

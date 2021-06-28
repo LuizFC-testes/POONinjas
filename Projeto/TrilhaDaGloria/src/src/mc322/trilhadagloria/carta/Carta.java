@@ -1,6 +1,7 @@
-package mc322.trilhadagloria.monarch;
+package mc322.trilhadagloria.carta;
 
 import mc322.trilhadagloria.field.Terreno;
+import mc322.trilhadagloria.monarch.Monarca;
 
 public abstract class Carta {
 	private int id;

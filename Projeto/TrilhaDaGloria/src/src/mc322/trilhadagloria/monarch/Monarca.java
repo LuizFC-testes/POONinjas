@@ -2,6 +2,9 @@ package mc322.trilhadagloria.monarch;
 
 import java.awt.Color;
 
+import mc322.trilhadagloria.carta.Carta;
+import mc322.trilhadagloria.carta.Deck;
+import mc322.trilhadagloria.carta.GrupoCartas;
 import mc322.trilhadagloria.exceptions.EmptyDeckException;
 import mc322.trilhadagloria.exceptions.GameExceptions;
 import mc322.trilhadagloria.exceptions.NotEnoughManaException;

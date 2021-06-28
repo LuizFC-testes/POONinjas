@@ -1,6 +1,6 @@
 package mc322.trilhadagloria.battle;
 
-import mc322.trilhadagloria.monarch.Heroi;
+import mc322.trilhadagloria.carta.Heroi;
 
 public class Batalha {
 	protected Heroi atacante;
