@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 import java.io.IOException;
 
 public class ImgAjust extends ImageIcon {
+	
     protected static String DIRETORIO = ImgAjust.class.getResource(".").getPath();
     protected static String PACOTE = DIRETORIO.split("/")[DIRETORIO.split("/").length - 1];
     protected String ASSETS = DIRETORIO.substring(0, DIRETORIO.length() - PACOTE.length() - 1) + "assets/";
