@@ -44,6 +44,12 @@ public class Terreno implements IRViewTerreno {
 			
 			if(c instanceof Heroi) {
 				aplicarEfeitoBioma((Heroi)c);
+				
+				if(c.getDono().getPlayerId() == 0) {
+					viewTerreno.adicionarHeroiAbaixo((Heroi)c);
+				} else {
+					viewTerreno.adicionarHeroiAcima((Heroi)c);
+				}
 			}
 		}
 	}
