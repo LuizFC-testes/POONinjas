@@ -8,7 +8,6 @@ public class TableModelCartas extends DefaultTableModel {
 	
 	public TableModelCartas() {
 		super();
-		set
 	}
 	
 	public boolean isCellEditable(int linha, int coluna) {
