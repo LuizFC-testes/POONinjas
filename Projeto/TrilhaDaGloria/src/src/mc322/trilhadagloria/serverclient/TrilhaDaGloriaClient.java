@@ -3,7 +3,7 @@ package mc322.trilhadagloria.serverclient;
 import java.util.Scanner;
 
 import mc322.trilhadagloria.controle.Controle;
-import mc322.trilhadagloria.controle.GeradorClient;
+import mc322.trilhadagloria.gerador.GeradorClient;
 
 /**
  * Classe Cliente de Trilha da Glória

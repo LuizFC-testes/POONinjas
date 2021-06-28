@@ -1,6 +1,7 @@
-package mc322.trilhadagloria.controle;
+package mc322.trilhadagloria.gerador;
 
 import mc322.trilhadagloria.battle.GerenciadorDeBatalhas;
+import mc322.trilhadagloria.controle.Controle;
 import mc322.trilhadagloria.field.Tabuleiro;
 import mc322.trilhadagloria.monarch.Monarca;
 import mc322.trilhadagloria.serverclient.IRemoteEnemy;

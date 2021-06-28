@@ -1,4 +1,4 @@
-package mc322.trilhadagloria.controle;
+package mc322.trilhadagloria.gerador;
 
 import java.util.ArrayList;
 import java.util.Collections;

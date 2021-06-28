@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import mc322.trilhadagloria.controle.GeradorServer;
+import mc322.trilhadagloria.gerador.GeradorServer;
 
 /**
  * Servidor de Trilha da Glória
