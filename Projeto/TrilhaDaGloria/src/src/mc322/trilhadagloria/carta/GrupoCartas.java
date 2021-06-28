@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import mc322.trilhadagloria.gui.telaPrinc.ITableCartas;
 
-public class GrupoCartas {
+public class GrupoCartas implements IRTableCartas {
 	ITableCartas view;
 	protected ArrayList<Carta> cartas;
 	
@@ -45,5 +45,9 @@ public class GrupoCartas {
 			}
 		}
 		return null;
+	}
+	
+	public void conecta(ITableCartas view) {
+		this.view = view;
 	}
 }

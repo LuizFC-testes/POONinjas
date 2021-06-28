@@ -44,7 +44,9 @@ public class GeradorClient {
 		
 		// Conecta monarca
 		player.connect(tabuleiro);
+		player.conecta(null, null);
 		inimigo.connect(tabuleiro);
+		inimigo.conecta(null, null);
 		
 		
 		return control;

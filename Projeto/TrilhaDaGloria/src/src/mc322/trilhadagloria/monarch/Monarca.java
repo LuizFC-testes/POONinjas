@@ -5,11 +5,13 @@ import java.awt.Color;
 import mc322.trilhadagloria.carta.Carta;
 import mc322.trilhadagloria.carta.Deck;
 import mc322.trilhadagloria.carta.GrupoCartas;
+import mc322.trilhadagloria.carta.IRTableCartas;
 import mc322.trilhadagloria.exceptions.EmptyDeckException;
 import mc322.trilhadagloria.exceptions.GameExceptions;
 import mc322.trilhadagloria.exceptions.NotEnoughManaException;
 import mc322.trilhadagloria.field.ISummon;
 import mc322.trilhadagloria.field.Terreno;
+import mc322.trilhadagloria.gui.telaPrinc.ITableCartas;
 
 public class Monarca implements IMonarca{
 	private Deck deck;
@@ -135,5 +137,11 @@ public class Monarca implements IMonarca{
 
 	public void conquistarTerreno() {
 		qtdTerritoriosConquistados++;
+	}
+
+	@Override
+	public void conecta(ITableCartas mao, ITableCartas cemiterio) {
+		((IRTableCartas)mao).conecta(mao);
+		((IRTableCartas)cemiterio).conecta(cemiterio);
 	}
 }

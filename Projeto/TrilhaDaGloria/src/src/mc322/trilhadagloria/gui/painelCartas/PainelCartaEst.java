@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import mc322.trilhadagloria.carta.IStatusCarta;
 import mc322.trilhadagloria.carta.IStatusHeroi;
 
 
@@ -63,7 +64,7 @@ public class PainelCartaEst extends JPanel implements IRStatusHeroi {
     }
 
     private void mostrarClasse() {
-        String classe = hero.getNome().toUpperCase();
+        String classe = ((IStatusCarta)hero).getNome().toUpperCase();
         JLabel label = new JLabel(classe);
         
         label.setFont(new Font("Serif", Font.BOLD, 48));
@@ -81,7 +82,7 @@ public class PainelCartaEst extends JPanel implements IRStatusHeroi {
     }
 
     private void mostrarImagem() {
-        String asset = "IconeCarta" + hero.getNome() + ".png";
+        String asset = "IconeCarta" + ((IStatusCarta)hero).getNome() + ".png";
 
         imagemCarta = new JPanel();
         imagemCarta.setOpaque(true);
