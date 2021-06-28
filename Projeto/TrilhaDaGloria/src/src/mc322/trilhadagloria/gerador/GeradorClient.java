@@ -2,6 +2,7 @@ package mc322.trilhadagloria.gerador;
 
 import mc322.trilhadagloria.battle.GerenciadorDeBatalhas;
 import mc322.trilhadagloria.controle.Controle;
+import mc322.trilhadagloria.field.IBattleField;
 import mc322.trilhadagloria.field.Tabuleiro;
 import mc322.trilhadagloria.monarch.Monarca;
 import mc322.trilhadagloria.serverclient.IRemoteEnemy;
@@ -27,13 +28,24 @@ public class GeradorClient {
 		Monarca inimigo = new Monarca(inimigoId, init.deckInimigo);
 //		VisualInterface view = new VisualInterface();
 		
-		// Conecta componentes
+		// Conecta control
 		control.conecta(battle);
 		control.conectaPlayer(player);
 		control.conectaInimigo(inimigo);
 		control.conecta(tabuleiro);
 		control.conecta(remote);
 //		control.conecta(view);
+		
+		// Conecta battle
+		battle.conecta(tabuleiro);
+		
+		// Conecta tabuleiro
+//		tabuleiro.conecta(view);
+//		tabuleiro.conecta(tabView);
+		
+		// Conecta monarca
+		player.connect(tabuleiro);
+		inimigo.connect(tabuleiro);
 		
 		
 		return control;

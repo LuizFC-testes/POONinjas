@@ -19,7 +19,7 @@ public class Monarca implements IMonarca{
 	private int mana;
 	private int playerId;
 	private int inimigoId;
-	private int nTerritoriosConquistados;
+	private int qtdTerritoriosConquistados;
 	private Color cor;
 	
 	public Monarca(int playerId, String[] deck) {
@@ -27,7 +27,6 @@ public class Monarca implements IMonarca{
 		mao = new GrupoCartas();
 		cemiterio = new GrupoCartas();
 		mana = 5;
-		nTerritoriosConquistados = 0;
 	
 		try {
 			for(int i = 0; i < 5; i++) {
@@ -107,15 +106,6 @@ public class Monarca implements IMonarca{
 		this.tabuleiro = tabuleiro;
 	}
 
-	public int getQtdTerritoriosConquistados() {
-		return nTerritoriosConquistados;
-	}
-
-	@Override
-	public void setTerritoriosConquistados(int n) {
-		nTerritoriosConquistados = n;
-	}
-
 	public Color getColor() {
 		return cor;
 	}
@@ -137,5 +127,13 @@ public class Monarca implements IMonarca{
 		Terreno t = tabuleiro.getTerreno(posTabuleiro[0], posTabuleiro[1]);
 		
 		invocarCarta(c, t);
+	}
+
+	public float getQtdTerritoriosConquistados() {
+		return qtdTerritoriosConquistados;
+	}
+
+	public void conquistarTerreno() {
+		qtdTerritoriosConquistados++;
 	}
 }

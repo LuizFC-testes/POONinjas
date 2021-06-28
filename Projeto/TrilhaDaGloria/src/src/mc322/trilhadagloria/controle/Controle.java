@@ -123,6 +123,7 @@ public class Controle implements IControle {
 	public void passarFase() {
 		stm = stm.proximoEstado();
 		
+		// Sincroniza ações com o player remoto
 		if(suaVez) {
 			Mensagem msg = new Mensagem();
 			msg.command = "passar";

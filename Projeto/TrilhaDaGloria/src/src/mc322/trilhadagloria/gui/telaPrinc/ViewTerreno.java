@@ -1,18 +1,15 @@
 package mc322.trilhadagloria.gui.telaPrinc;
 
-import mc322.trilhadagloria.gui.painelCartas.ImgAjust;
-import mc322.trilhadagloria.field.IVisualField;
-import mc322.trilhadagloria.carta.IStatusHeroi;
-import mc322.trilhadagloria.field.Bioma;
-
-import javax.swing.JLayeredPane;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
+
+import mc322.trilhadagloria.carta.IStatusHeroi;
+import mc322.trilhadagloria.gui.painelCartas.ImgAjust;
 
 
 public class ViewTerreno extends JLayeredPane implements IViewTerreno {
-
-
-    private JLabel superior, inferior;
+	private static final long serialVersionUID = 5803721669252952639L;
+	private JLabel superior, inferior;
 
     public ViewTerreno() {
         super();

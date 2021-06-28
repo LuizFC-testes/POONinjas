@@ -4,8 +4,8 @@ import javax.swing.JPanel;
 import java.awt.GridLayout;
 
 public class TabView extends JPanel implements ITabConnect {
-	
-    ViewTerreno[][] terrenos;
+	private static final long serialVersionUID = -8532928923000517928L;
+	ViewTerreno[][] terrenos;
 
     public TabView() {
         super();
