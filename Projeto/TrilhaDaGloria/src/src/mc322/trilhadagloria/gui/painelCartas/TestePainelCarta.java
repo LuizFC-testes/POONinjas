@@ -36,7 +36,7 @@ public class TestePainelCarta {
         pane.setLayout(null);
         Monarca monarca = new Monarca(0, new String[] {"0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO",});
         
-        Heroi h = new Barbaro(0, Dominio.AGUA);
+        Heroi h = new Barbaro(0, Dominio.GELO);
         h.setDono(monarca);
         
         PainelCartaEst carta = new PainelCartaEst();
@@ -45,5 +45,4 @@ public class TestePainelCarta {
         pane.add(carta);
         frame.setVisible(true);
     }
-
 }

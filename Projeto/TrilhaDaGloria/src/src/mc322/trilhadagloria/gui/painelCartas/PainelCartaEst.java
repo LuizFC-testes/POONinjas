@@ -9,6 +9,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import mc322.trilhadagloria.carta.Dominio;
 import mc322.trilhadagloria.carta.IStatusHeroi;
 
 
@@ -40,6 +41,7 @@ public class PainelCartaEst extends JPanel implements IRStatusHeroi {
     }
 
     public void gerarCarta() {
+    	setBackground(hero.getDominio().getCor());
     	representarPlayer();
         mostrarClasse();
         mostrarImagem();
@@ -142,7 +144,7 @@ public class PainelCartaEst extends JPanel implements IRStatusHeroi {
         ImgAjust[] imgDoms = gerarIconesDominios();
         float[] porc = hero.getBonusHero();
         for (int i = 0; i < 8; i++) {
-            String bon = "" + (porc[i] * 100) + "%";
+            String bon = "" + (int)(porc[i] * 100) + "%";
             
             JPanel bonusD = new JPanel();
             bonusD.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -187,6 +189,4 @@ public class PainelCartaEst extends JPanel implements IRStatusHeroi {
         }
         return iconesDom;
     }
-
-
 }
