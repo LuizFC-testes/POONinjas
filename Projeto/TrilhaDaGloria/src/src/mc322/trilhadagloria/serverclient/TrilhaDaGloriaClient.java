@@ -1,4 +1,7 @@
-package mc322.trilhadagloria.controle;
+package mc322.trilhadagloria.serverclient;
+
+import mc322.trilhadagloria.controle.Controle;
+import mc322.trilhadagloria.controle.GeradorClient;
 
 public class TrilhaDaGloriaClient implements IRemoteEnemy {	
 	private ClientSideConnection csc;
