@@ -7,7 +7,7 @@ Trilha da Glória é um jogo multiplayer de dois jogadores e necessita de um ser
 
 Execute a classe `mc322.trilhadagloria.serverclient.TrilhaDaGloriaServer.java` para iniciar o servidor.
 
-*Dica:* Pode ser usado um túnel de conexão para disponibilizar seu servidor local a um amigo (ex. [ngrok](https://ngrok.com/)).
+*Dica:* Pode ser usado um túnel de conexão para disponibilizar seu servidor tcp local a um amigo (ex. [ngrok](https://ngrok.com/)).
 
 
 ## Cliente
