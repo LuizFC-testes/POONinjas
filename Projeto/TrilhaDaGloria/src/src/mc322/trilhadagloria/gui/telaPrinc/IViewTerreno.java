@@ -1,14 +1,14 @@
 package mc322.trilhadagloria.gui.telaPrinc;
 
-import mc322.trilhadagloria.carta.IStatusHeroi;
+import mc322.trilhadagloria.carta.IStatusCarta;
 
 public interface IViewTerreno {
 
     public void gerarImgBio(String bio);
 
-    public void adicionarHeroiAcima(IStatusHeroi heroi);
+    public void adicionarCartaAcima(IStatusCarta carta);
 
-    public void adicionarHeroiAbaixo(IStatusHeroi heroi);
+    public void adicionarCartaAbaixo(IStatusCarta carta);
     
     public void removerCartaSuperior();
     	

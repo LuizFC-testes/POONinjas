@@ -9,7 +9,6 @@ public class Armadilha extends Carta {
 	private int alcance;
 	private Heroi alvo;
 	private int poder;
-	private Dominio dominio;
 	
 	public Armadilha(int id, Dominio dom) {
 		super(id);
@@ -85,5 +84,15 @@ public class Armadilha extends Carta {
 
 	public float getPoder() {
 		return poder;
+	}
+	
+	@Override
+	public String getTipo() {
+		return "Armadilha";
+	}
+
+	@Override
+	public String getNome() {
+		return "Armadilha de " + dominio.toString().toLowerCase();
 	}
 }

@@ -1,13 +1,13 @@
 package mc322.trilhadagloria.gui.painelCartas;
 
-import javax.swing.JFrame;
 import java.awt.Container;
-import javax.swing.JScrollPane;
 
-import mc322.trilhadagloria.carta.Barbaro;
+import javax.swing.JFrame;
+
+import mc322.trilhadagloria.carta.Clerigo;
 import mc322.trilhadagloria.carta.Dominio;
 import mc322.trilhadagloria.carta.Heroi;
-import mc322.trilhadagloria.monarch.*;
+import mc322.trilhadagloria.monarch.Monarca;
 
 public class TestePainelCarta {
 
@@ -36,7 +36,7 @@ public class TestePainelCarta {
         pane.setLayout(null);
         Monarca monarca = new Monarca(0, new String[] {"0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO","0;Barbaro;FOGO",});
         
-        Heroi h = new Barbaro(0, Dominio.GELO);
+        Heroi h = new Clerigo(0, Dominio.SOMBRA);
         h.setDono(monarca);
         
         PainelCartaEst carta = new PainelCartaEst();

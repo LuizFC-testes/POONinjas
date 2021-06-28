@@ -6,4 +6,14 @@ public class Magia extends Carta{
 		super(id);
 	}
 
+	@Override
+	public String getTipo() {
+		return "Magia";
+	}
+
+	@Override
+	public String getNome() {
+		return "Magia de " + dominio.toString().toLowerCase();
+	}
+
 }

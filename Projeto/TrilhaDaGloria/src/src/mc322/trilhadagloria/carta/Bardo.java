@@ -51,7 +51,7 @@ public class Bardo extends Heroi implements HabilidadeEspecial {
 
 
 	@Override
-	public String getClasse() {
+	public String getNome() {
 		return "Bardo";
 	}
 

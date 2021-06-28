@@ -3,13 +3,14 @@ package mc322.trilhadagloria.carta;
 import mc322.trilhadagloria.field.Terreno;
 import mc322.trilhadagloria.monarch.Monarca;
 
-public abstract class Carta {
-	private int id;
+public abstract class Carta implements IStatusCarta {
+	private Integer id;
 	protected int turnosInvocada = 0;
 	protected Terreno terreno = null;
 	protected int preco;
 	protected Monarca dono;
 	private boolean visivelAoInimigo = false;
+	protected Dominio dominio;
 	
 	public Carta(int id) {
 		this.id = id;
@@ -19,7 +20,11 @@ public abstract class Carta {
 		turnosInvocada++;
 	}
 	
-	public int getId() {
+	public Dominio getDominio() {
+		return dominio;
+	}
+	
+	public Integer getId() {
 		return id;
 	}
 	

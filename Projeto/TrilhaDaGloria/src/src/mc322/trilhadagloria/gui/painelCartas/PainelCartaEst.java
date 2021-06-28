@@ -8,8 +8,8 @@ import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
-import mc322.trilhadagloria.carta.Dominio;
 import mc322.trilhadagloria.carta.IStatusHeroi;
 
 
@@ -63,7 +63,7 @@ public class PainelCartaEst extends JPanel implements IRStatusHeroi {
     }
 
     private void mostrarClasse() {
-        String classe = hero.getClasse().toUpperCase();
+        String classe = hero.getNome().toUpperCase();
         JLabel label = new JLabel(classe);
         
         label.setFont(new Font("Serif", Font.BOLD, 48));
@@ -81,7 +81,7 @@ public class PainelCartaEst extends JPanel implements IRStatusHeroi {
     }
 
     private void mostrarImagem() {
-        String asset = "IconeCarta" + hero.getClasse() + ".png";
+        String asset = "IconeCarta" + hero.getNome() + ".png";
 
         imagemCarta = new JPanel();
         imagemCarta.setOpaque(true);
@@ -158,10 +158,17 @@ public class PainelCartaEst extends JPanel implements IRStatusHeroi {
     }
 
     private void mostrarHabilidades() {
-        JLabel passivas = new JLabel("Habilidades passivas: " + hero.getHabPass());
-        JLabel ativas = new JLabel("Habilidades ativas: " + hero.getHabAt());
+    	JTextArea passivas = new JTextArea("Habilidades passivas: " + hero.getHabPass());
+    	JTextArea ativas = new JTextArea("Habilidades ativas: " + hero.getHabAt());
         
-        Font fonte = new Font(Font.SERIF, Font.PLAIN, 24);
+        Font fonte = new Font(Font.SERIF, Font.PLAIN, 20);
+        
+        passivas.setEditable(false);
+        passivas.setLineWrap(true);
+        passivas.setWrapStyleWord(true);
+        ativas.setEditable(false);
+        ativas.setLineWrap(true);
+        ativas.setWrapStyleWord(true);
         
         passivas.setFont(fonte);
         ativas.setFont(fonte);

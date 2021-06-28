@@ -11,7 +11,7 @@ public class Monge extends Heroi {
 	}
 
 	@Override
-	public String getClasse() {
+	public String getNome() {
 		return "Monge";
 	}
 

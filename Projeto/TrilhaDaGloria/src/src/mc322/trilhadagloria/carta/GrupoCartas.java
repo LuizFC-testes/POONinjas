@@ -2,7 +2,10 @@ package mc322.trilhadagloria.carta;
 
 import java.util.ArrayList;
 
+import mc322.trilhadagloria.gui.telaPrinc.ITableCartas;
+
 public class GrupoCartas {
+	ITableCartas view;
 	protected ArrayList<Carta> cartas;
 	
 	public GrupoCartas() {
@@ -15,11 +18,20 @@ public class GrupoCartas {
 
 	public void adicionarCarta(Carta c) {
 		cartas.add(c);
+		
+		if(view != null) {
+			view.adicionarCarta(c);
+		}
 	}
 
 	public boolean removerCarta(Carta c) {
 		if(cartas.contains(c)) {
 			cartas.remove(c);
+			
+			if(view != null) {
+				view.removerCarta(c);
+			}
+			
 			return true;
 		}
 		

@@ -9,7 +9,7 @@ public class Barbaro extends Heroi {
 		alcance = 0;
 	}
 
-	public String getClasse() {
+	public String getNome() {
 		return "Barbaro";
 	}
 

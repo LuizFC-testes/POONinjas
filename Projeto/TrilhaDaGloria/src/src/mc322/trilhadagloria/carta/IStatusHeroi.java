@@ -6,8 +6,6 @@ public interface IStatusHeroi {
 
     public Color getCorReino();
 
-    public String getClasse();
-
     public int getAlcance();
 
     public int[] getForcaBase();

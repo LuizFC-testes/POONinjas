@@ -11,7 +11,7 @@ public class Warlock extends Heroi {
 	}
 
 	@Override
-	public String getClasse() {
+	public String getNome() {
 		return "Warlock";
 	}
 
