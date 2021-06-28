@@ -7,8 +7,9 @@ import mc322.trilhadagloria.carta.Carta;
 import mc322.trilhadagloria.carta.Efeito;
 import mc322.trilhadagloria.carta.Heroi;
 import mc322.trilhadagloria.exceptions.GameExceptions;
+import mc322.trilhadagloria.gui.telaPrinc.IViewTerreno;
 
-public class Terreno {
+public class Terreno implements IRViewTerreno {
 	private Carta cartas[];
 	private Terreno vizinhos[];
 	private int posicaoI;
@@ -16,6 +17,7 @@ public class Terreno {
 	private Bioma bioma;
 	private boolean conquistado;
 	private int playerIdDono;
+	private IViewTerreno viewTerreno;
 	
 	public Terreno(Bioma bioma) {
 		cartas = new Carta[2];
@@ -96,5 +98,11 @@ public class Terreno {
 
 	public int getIdDono() {
 		return playerIdDono;
+	}
+
+	@Override
+	public void conecta(IViewTerreno viewTerreno) {
+		this.viewTerreno = viewTerreno;
+		viewTerreno.gerarImgBio(bioma.toString());
 	}
 }

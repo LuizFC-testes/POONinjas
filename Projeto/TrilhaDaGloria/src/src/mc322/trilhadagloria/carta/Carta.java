@@ -35,7 +35,7 @@ public abstract class Carta {
 		return preco;
 	}
 	
-	public boolean ehVisivelAoInimigo() {
+	public boolean estaVisivelAoOponente() {
 		return visivelAoInimigo;
 	}
 	
