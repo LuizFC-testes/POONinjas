@@ -76,13 +76,15 @@ public class Terreno implements IRViewTerreno {
 	public int[] getPosicao() {
 		return new int[] {posicaoI, posicaoJ};
 	}
-
-	public void setCarta(int playerId, Carta carta) {
-		cartas[playerId] = carta;
-	}
 	
 	public void removerCarta(int playerId) {
 		cartas[playerId] = null;
+		
+		if(playerId == 0) {
+			viewTerreno.removerCartaInferior();
+		} else {
+			viewTerreno.removerCartaSuperior();
+		}
 	}
 
 	public ArrayList<Terreno> getVizinhos() {
