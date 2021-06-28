@@ -3,7 +3,7 @@ package mc322.trilhadagloria.gui.telaPrinc;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
-import mc322.trilhadagloria.carta.IStatusHeroi;
+import mc322.trilhadagloria.carta.IStatusCarta;
 import mc322.trilhadagloria.gui.painelCartas.ImgAjust;
 
 
@@ -25,14 +25,14 @@ public class ViewTerreno extends JLayeredPane implements IViewTerreno {
         add(new JLabel(imgBio), DEFAULT_LAYER);
     }
 
-    public void adicionarHeroiAcima(IStatusHeroi carta) {
-        superior = criarIconeHeroi(carta.getClasse());
+    public void adicionarCartaAcima(IStatusCarta carta) {
+        superior = criarIconeHeroi(carta.getNome());
         superior.setLocation(55, 5);
         add(superior, PALETTE_LAYER);
     }
 
-    public void adicionarHeroiAbaixo(IStatusHeroi carta) {
-        inferior = criarIconeHeroi(carta.getClasse());
+    public void adicionarCartaAbaixo(IStatusCarta carta) {
+        inferior = criarIconeHeroi(carta.getNome());
         inferior.setLocation(55, 55);
         add(inferior, PALETTE_LAYER);
     }
@@ -57,5 +57,4 @@ public class ViewTerreno extends JLayeredPane implements IViewTerreno {
     		inferior = null;
     	}
     }
-    
 }

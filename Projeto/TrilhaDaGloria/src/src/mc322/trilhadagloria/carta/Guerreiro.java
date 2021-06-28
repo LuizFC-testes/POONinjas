@@ -28,7 +28,7 @@ public class Guerreiro extends Heroi implements HabilidadeEspecial {
 	}
 
 	@Override
-	public String getClasse() {
+	public String getNome() {
 		return "Guerreiro";
 	}
 

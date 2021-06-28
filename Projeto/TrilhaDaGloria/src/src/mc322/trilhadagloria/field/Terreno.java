@@ -46,9 +46,9 @@ public class Terreno implements IRViewTerreno {
 				aplicarEfeitoBioma((Heroi)c);
 				
 				if(c.getDono().getPlayerId() == 0) {
-					viewTerreno.adicionarHeroiAbaixo((Heroi)c);
+					viewTerreno.adicionarCartaAbaixo((Heroi)c);
 				} else {
-					viewTerreno.adicionarHeroiAcima((Heroi)c);
+					viewTerreno.adicionarCartaAcima((Heroi)c);
 				}
 			}
 		}

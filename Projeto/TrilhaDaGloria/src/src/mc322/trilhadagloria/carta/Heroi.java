@@ -11,7 +11,7 @@ public abstract class Heroi extends Carta implements IStatusHeroi {
 	protected int forca[];
 	protected int resistencia[];
 	protected int alcance;
-	private Dominio dominio;
+	
 	private Efeito efeitoBioma;
 	protected ArrayList<Efeito> sobEfeito;
 	
@@ -36,10 +36,6 @@ public abstract class Heroi extends Carta implements IStatusHeroi {
 	
 	public float[] getBonusHero() {
 		return BonusDatabase.getBonusDeBiomaPara(dominio);
-	}
-	
-	public Dominio getDominio() {
-		return dominio;
 	}
 	
 	public void adicionarEfeito(Efeito efeito) {
@@ -190,5 +186,10 @@ public abstract class Heroi extends Carta implements IStatusHeroi {
 	
 	public Color getCorReino() {
 		return dono.getColor();
+	}
+	
+	@Override
+	public String getTipo() {
+		return "Heroi";
 	}
 }
