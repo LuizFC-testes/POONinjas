@@ -6,6 +6,9 @@ import mc322.trilhadagloria.carta.IStatusHeroi;
 import mc322.trilhadagloria.field.Bioma;
 
 import javax.swing.JLayeredPane;
+import javax.swing.JLabel;
+
+import javax.swing.JLayeredPane;
 
 public class ViewTerreno extends JLayeredPane implements IViewTerreno {
 
