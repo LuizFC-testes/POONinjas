@@ -1,4 +1,4 @@
-package mc322.trilhadagloria.controle;
+package mc322.trilhadagloria.serverclient;
 
 public interface IRemoteEnemy {
 	public void ouvirOponente();

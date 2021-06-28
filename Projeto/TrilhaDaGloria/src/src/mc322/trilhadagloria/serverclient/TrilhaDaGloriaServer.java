@@ -1,8 +1,10 @@
-package mc322.trilhadagloria.controle;
+package mc322.trilhadagloria.serverclient;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+
+import mc322.trilhadagloria.controle.GeradorServer;
 
 public class TrilhaDaGloriaServer {
 	

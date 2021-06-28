@@ -1,4 +1,4 @@
-package mc322.trilhadagloria.controle;
+package mc322.trilhadagloria.serverclient;
 
 import java.io.Serializable;
 

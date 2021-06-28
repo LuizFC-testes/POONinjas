@@ -8,6 +8,8 @@ import mc322.trilhadagloria.field.IFieldControl;
 import mc322.trilhadagloria.field.Terreno;
 import mc322.trilhadagloria.gui.IViewControl;
 import mc322.trilhadagloria.monarch.ICommand;
+import mc322.trilhadagloria.serverclient.IRemoteEnemy;
+import mc322.trilhadagloria.serverclient.Mensagem;
 
 public class Controle implements IControle {
 	private IBattle battle;

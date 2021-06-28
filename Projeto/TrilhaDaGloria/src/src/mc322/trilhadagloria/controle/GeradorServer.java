@@ -6,6 +6,7 @@ import java.util.Random;
 
 import mc322.trilhadagloria.carta.Dominio;
 import mc322.trilhadagloria.field.Tabuleiro;
+import mc322.trilhadagloria.serverclient.Mensagem;
 
 public class GeradorServer {
 	private static int cartaId = 0;
