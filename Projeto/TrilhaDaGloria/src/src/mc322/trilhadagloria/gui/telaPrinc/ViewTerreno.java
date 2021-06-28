@@ -11,7 +11,10 @@ import javax.swing.JLabel;
 
 public class ViewTerreno extends JLayeredPane implements IViewTerreno {
 
-    public ViewTerreno(int x, int y) {
+
+    private JLabel superior, inferior;
+
+    public ViewTerreno() {
         super();
         setSize(100, 100);
         setOpaque(true);
@@ -25,16 +28,16 @@ public class ViewTerreno extends JLayeredPane implements IViewTerreno {
         add(new JLabel(imgBio), DEFAULT_LAYER);
     }
 
-    public void adicionarHeroiAcima(IStatusHeroi heroi) {
-        JLabel labelHero = criarIconeHeroi(heroi.getClasse());
-        labelHero.setLocation(55, 5);
-        add(labelHero, PALETTE_LAYER);
+    public void adicionarHeroiAcima(IStatusHeroi carta) {
+        superior = criarIconeHeroi(carta.getClasse());
+        superior.setLocation(55, 5);
+        add(superior, PALETTE_LAYER);
     }
 
-    public void adicionarHeroiAbaixo(IStatusHeroi heroi) {
-        JLabel labelHero = criarIconeHeroi(heroi.getClasse());
-        labelHero.setLocation(55, 55);
-        add(labelHero, PALETTE_LAYER);
+    public void adicionarHeroiAbaixo(IStatusHeroi carta) {
+        inferior = criarIconeHeroi(carta.getClasse());
+        inferior.setLocation(55, 55);
+        add(inferior, PALETTE_LAYER);
     }
 
     private JLabel criarIconeHeroi(String classeHeroi) {
@@ -42,6 +45,20 @@ public class ViewTerreno extends JLayeredPane implements IViewTerreno {
         ImgAjust imgHero = new ImgAjust(nomeImg);
         imgHero.redimensionar(40, 40);
         return new JLabel(imgHero);
+    }
+    
+    public void removerCartaSuperior() {
+    	if (superior != null) {
+    	remove(superior);
+    	superior = null;
+    	}
+    }
+    	
+    public void removerCartaInferior() {
+    	if (inferior != null) {
+    		remove(inferior);
+    		inferior = null;
+    	}
     }
     
 }
