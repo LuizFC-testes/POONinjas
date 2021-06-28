@@ -315,30 +315,52 @@ Este componente é responsável pela interface gráfica do jogo.
 **Ficha Técnica**
 item | detalhamento
 ----- | -----
-Classe | `mc322.trilhadagloria.gui.telaPrinc.`
+Classe | `mc322.trilhadagloria.gui.telaPrinc.TelaPrincipal.java` <br> `mc322.trilhadagloria.gui.telaPrinc.TabView.java` <br> `mc322.trilhadagloria.gui.telaPrinc.BatalhaView.java` 
 Autores | João Victor Matoso <br> Luiz Felipe Cezar
-Interfaces | 
-
-### Interfaces
-
-Interface agregadora do componente em Java:
-
-~~~java
-
-~~~
+Interfaces | `IViewTerreno` <br> `ITableCartas` <br> `IManaView` <br> `ICardCount` 
 
 ## Detalhamento das Interfaces
-
-### Interface 
-
-Utilizada pelo `Controle` para entrada de comandos de resolução de batalhas.
+### Interface `IViewTerreno`
+Utilizada pelos `Terrenos` para atualizar o bioma e as cartas invocadas na interface gráfica.
 
 ~~~java
-
+public interface IViewTerreno {
+    public void gerarImgBio(String bio);
+    public void adicionarCartaAcima(IStatusCarta carta);
+    public void adicionarCartaAbaixo(IStatusCarta carta);
+    public void removerCartaSuperior();
+    public void removerCartaInferior();
+}
 ~~~
 
+### Interface `ITableCartas`
 
+Utilizada pelo `GrupoCartas` para atualizar as cartas da mão e do cemitério na interface gráfica sempre que houver uma mudança.
 
+~~~java
+public interface ITableCartas {
+	public void adicionarCarta(IStatusCarta carta);
+	public void removerCarta(IStatusCarta carta);
+}
+~~~
+### Interface `IManaView`
+
+Utilizada pelo `Monarca` para atualizar a quantidade de mana disponível.
+
+~~~java
+public interface IManaView {
+	public void atualizarMana(int qtd);
+}
+~~~
+### Interface `ICardCount`
+
+Utilizada pelo `Deck` para atualizar a quantidade de cartas restantes no Deck.
+
+~~~java
+public interface ICardCount {
+	public void reduzirContador();
+}
+~~~
 
 # Plano de Exceções
 
