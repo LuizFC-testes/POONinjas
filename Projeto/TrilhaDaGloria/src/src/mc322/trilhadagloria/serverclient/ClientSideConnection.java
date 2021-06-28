@@ -5,11 +5,21 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+/**
+ * Classe ClientSideConnection gerencia a comunicação com o servidor
+ * @author João Victor Matoso
+ * @author Luiz Felipe Cezar
+ */
 public class ClientSideConnection {
 	private Socket socket;
 	private ObjectInputStream dataIn;
 	private ObjectOutputStream dataOut;
 	
+	/**
+	 * Construtor da classe inicia uma conexão com o servidor, e cria Streams de comunicação
+	 * @param address - endereço do servidor
+	 * @param port - porta de conexão do servidor
+	 */
 	public ClientSideConnection(String address, int port) {
 		System.out.println("-----CLIENTE-----");
 		
@@ -23,6 +33,10 @@ public class ClientSideConnection {
 		}
 	}
 	
+	/**
+	 * Lê um pacote de dados e retorna. Método bloqueia o código até ler um objeto.
+	 * @return mensagem enviada pelo servidor
+	 */
 	public Mensagem lerPacote() {
 		try {
 			return (Mensagem) dataIn.readObject();
@@ -32,19 +46,23 @@ public class ClientSideConnection {
 		return null;
 	}
 	
-	
-	@SuppressWarnings("unused")
+	/**
+	 * Encerra conexão com o servidor
+	 */
 	public void closeConnection() {
 		try {
 			dataIn.close();
 			dataOut.close();
 			socket.close();
-			System.out.println("----CONNECTION CLOSED----");
+			System.out.println("----CONEXÃO ENCERRADA----");
 		} catch(IOException e) {
 			e.printStackTrace();
 		}
 	}
 
+	/**
+	 * Envia um pacote de mensagem para o servidor
+	 */
 	public void enviarPacote(Mensagem msg) {
 		try {
 			dataOut.writeObject(msg);

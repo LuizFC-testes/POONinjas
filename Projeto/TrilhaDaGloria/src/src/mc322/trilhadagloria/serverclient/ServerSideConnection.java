@@ -5,15 +5,25 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+/**
+ * Gerencia a conexão com um cliente
+ * @author João Victor E. Matoso
+ * @author Luiz Felipe Cezar
+ */
 public class ServerSideConnection implements Runnable {
 	private Socket socket;
 	private ObjectInputStream dataIn;
 	private ObjectOutputStream dataOut;
 	private int playerId;
 	private ServerSideConnection enemy;
-	
-	public ServerSideConnection(Socket s, int id) {
-		socket = s;
+
+	/**
+	 * Construtor da classe, cria streams de comunicação com o cliente
+	 * @param socket - socket de comunicação estabelecida pelo servidor
+	 * @param id - codigo de indentificação único do cliente
+	 */
+	public ServerSideConnection(Socket socket, int id) {
+		this.socket = socket;
 		playerId = id;
 		
 		try {
@@ -25,19 +35,19 @@ public class ServerSideConnection implements Runnable {
 	}
 	
 	/**
-	 * Função a ser chamada na thread de comunicação
+	 * Função a ser chamada na thread de comunicação,
+	 * escuta mensagens de um cliente, e encaminha mensagem ao outro cliente
 	 */
 	public void run() {
 		try {
 			while(true) {
 				// Aguarda comunicação do cliente
-				Mensagem pkt;
-				while((pkt = (Mensagem) dataIn.readObject()) == null);
+				Mensagem pkt = (Mensagem) dataIn.readObject();
 				
-				System.out.println(pkt.msg);
+				System.out.println("Player #" + playerId + ": " + pkt.command);
 				
 				// Verifica se jogo acabou
-				if(pkt.msg.equals("gameover")) {
+				if(pkt.command.equals("gameover")) {
 					// Quebra loop da thread
 					break;
 				} else {
@@ -56,6 +66,10 @@ public class ServerSideConnection implements Runnable {
 		closeConnection();
 	}
 	
+	/**
+	 * Envia uma mensagem ao cliente
+	 * @param pkt - mensagem a ser enviada
+	 */
 	public void enviarPacote(Mensagem pkt) {
 		try {
 			dataOut.writeObject(pkt);
@@ -65,21 +79,31 @@ public class ServerSideConnection implements Runnable {
 		}
 	}
 	
+	/**
+	 * Encerra a conexão com o cliente
+	 */
 	public void closeConnection() {
 		try {
 			dataIn.close();
 			dataOut.close();
 			socket.close();
-			System.out.println("Conexão com player #" + playerId + " terminada");
+			System.out.println("------ Conexão com player #" + playerId + " terminada --------");
 		} catch(IOException e) {
 			System.err.println("*** Erro ao fechar conexão com player #" + playerId + ": " + e.getMessage());
 		}
 	}
 
+	/**
+	 * Conecta os dois oponentes para envio de mensagems
+	 * @param enemy - handler de comunicação do oponente
+	 */
 	public void connectEnemy(ServerSideConnection enemy) {
 		this.enemy = enemy;
 	}
 	
+	/**
+	 * Retorna o id do player
+	 */
 	public int getPlayerId() {
 		return this.playerId;
 	}

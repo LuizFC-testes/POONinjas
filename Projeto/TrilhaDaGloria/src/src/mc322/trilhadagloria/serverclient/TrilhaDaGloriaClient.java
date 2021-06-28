@@ -5,10 +5,16 @@ import java.util.Scanner;
 import mc322.trilhadagloria.controle.Controle;
 import mc322.trilhadagloria.controle.GeradorClient;
 
+/**
+ * Classe Cliente de Trilha da Glória
+ * @author João Victor E. Matoso
+ * @author Luiz Felipe Cezar
+ */
 public class TrilhaDaGloriaClient implements IRemoteEnemy {	
 	private ClientSideConnection csc;
 	private int playerId;
 	private Controle control;
+	private boolean conectado;
 	
 	/**
 	 * Inicia uma nova conexão com o servidor passado como parametro e inicializa jogo
@@ -18,6 +24,7 @@ public class TrilhaDaGloriaClient implements IRemoteEnemy {
 	public void connectToServer(String address, int port) {
 		csc = new ClientSideConnection(address, port);
 		System.out.println("Conectado ao servidor tcp://" + address + ":" + port);
+		conectado = true;
 		
 		// Mensagem com inicializações
 		System.out.println("Aguardando pacote de inicializações...");
@@ -69,6 +76,8 @@ public class TrilhaDaGloriaClient implements IRemoteEnemy {
 		enviarMensagem(msg);
 		
 		csc.closeConnection();
+		
+		conectado = false;
 	}
 
 	/**
@@ -101,6 +110,6 @@ public class TrilhaDaGloriaClient implements IRemoteEnemy {
 		client.connectToServer(address, Integer.parseInt(port));
 		
 		// Evita desconexão do cliente durante desenvolvimento
-		while(true);
+		while(client.conectado);
 	}
 }

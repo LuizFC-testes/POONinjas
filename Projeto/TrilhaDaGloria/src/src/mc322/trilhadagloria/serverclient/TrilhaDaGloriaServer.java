@@ -6,6 +6,11 @@ import java.net.Socket;
 
 import mc322.trilhadagloria.controle.GeradorServer;
 
+/**
+ * Servidor de Trilha da Glória
+ * @author João Victor E. Matoso
+ * @author Luiz Felipe Cezar
+ */
 public class TrilhaDaGloriaServer {
 	
 	public static final int PORT = 55555;
@@ -17,7 +22,8 @@ public class TrilhaDaGloriaServer {
 	GeradorServer gerador;
 	
 	/**
-	 * Construtor do servidor
+	 * Construtor do servidor cria um servidor que escuta na porta definida no atributo PORT
+	 * Cria um gerador para gerar as cartas e tabuleiros do jogo
 	 */
 	public TrilhaDaGloriaServer() {
 		System.out.println("----- SERVIDOR DE TRILHA DA GLORIA -----");
@@ -37,7 +43,7 @@ public class TrilhaDaGloriaServer {
 	}
 	
 	/**
-	 * Aceita conexões dos jogadores
+	 * Aceita conexões dos jogadores. Até duas conexões no máximo
 	 */
 	public void acceptConnections() {
 		try {
@@ -46,7 +52,10 @@ public class TrilhaDaGloriaServer {
 			while(numPlayers < 2) {
 				// Aguarda conexão do cliente
 				Socket s = ss.accept();
+				
 				System.out.println("Jogador #" + numPlayers + " conectou.");
+				
+				// Cria uma handler de conexão para o cliente conectado
 				ServerSideConnection ssc = new ServerSideConnection(s, numPlayers);
 				
 				if(numPlayers == 0) {
@@ -63,6 +72,10 @@ public class TrilhaDaGloriaServer {
 		}
 	}
 	
+	/**
+	 * Envia uma mensagem inicial com os dados iniciais de cartas e tabuleiro gerados,
+	 * e inicia as threads de comunicação
+	 */
 	public void startCommunication() {
 		player0.connectEnemy(player1);
 		player1.connectEnemy(player0);
@@ -84,6 +97,9 @@ public class TrilhaDaGloriaServer {
 	}
 	
 
+	/**
+	 * Função main inicia um server de Trilha da Glória
+	 */
 	public static void main(String[] args) {
 		TrilhaDaGloriaServer server = new TrilhaDaGloriaServer();
 		server.acceptConnections();

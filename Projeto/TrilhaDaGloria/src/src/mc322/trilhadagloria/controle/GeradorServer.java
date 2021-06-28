@@ -152,7 +152,6 @@ public class GeradorServer {
 		
 		pi.playerId = playerId;
 		pi.command = "inicializar";
-		pi.msg = "Inicializando cartas e terrenos";
 		pi.cartaId = -1;
 		pi.posTabuleiro = null;
 		pi.tabuleiro = tabuleiro;
