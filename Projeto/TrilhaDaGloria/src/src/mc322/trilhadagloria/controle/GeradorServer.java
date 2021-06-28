@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+import mc322.trilhadagloria.carta.Dominio;
 import mc322.trilhadagloria.field.Tabuleiro;
-import mc322.trilhadagloria.monarch.Dominio;
 
 public class GeradorServer {
 	private static int cartaId = 0;

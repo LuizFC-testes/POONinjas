@@ -1,4 +1,6 @@
-package mc322.trilhadagloria.monarch;
+package mc322.trilhadagloria.carta;
+
+import mc322.trilhadagloria.monarch.HabilidadeEspecial;
 
 public class Guerreiro extends Heroi implements HabilidadeEspecial {
 	Efeito bonusTerritorio;

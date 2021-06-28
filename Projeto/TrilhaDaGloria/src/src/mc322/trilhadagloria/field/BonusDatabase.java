@@ -1,6 +1,6 @@
 package mc322.trilhadagloria.field;
 
-import mc322.trilhadagloria.monarch.Dominio;
+import mc322.trilhadagloria.carta.Dominio;
 
 public class BonusDatabase {
 	

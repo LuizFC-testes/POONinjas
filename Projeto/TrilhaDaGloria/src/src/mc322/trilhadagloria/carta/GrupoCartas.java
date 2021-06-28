@@ -1,4 +1,4 @@
-package mc322.trilhadagloria.monarch;
+package mc322.trilhadagloria.carta;
 
 import java.util.ArrayList;
 
@@ -24,5 +24,14 @@ public class GrupoCartas {
 		}
 		
 		return false;
+	}
+
+	public Carta buscarCartaPorId(int cartaId) {
+		for(Carta c : cartas) {
+			if(c.getId() == cartaId) {
+				return c;
+			}
+		}
+		return null;
 	}
 }

@@ -1,5 +1,6 @@
 package mc322.trilhadagloria.monarch;
 
+import mc322.trilhadagloria.carta.Carta;
 import mc322.trilhadagloria.exceptions.EmptyDeckException;
 import mc322.trilhadagloria.exceptions.GameExceptions;
 import mc322.trilhadagloria.exceptions.NotEnoughManaException;
@@ -16,5 +17,5 @@ public interface ICommand {
 
 	public void sacrificarCarta(int cartaId);
 
-	public void invocarCarta(int cartaId, int[] posTabuleiro);
+	public void invocarCarta(int cartaId, int[] posTabuleiro) throws NotEnoughManaException, GameExceptions;
 }

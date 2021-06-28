@@ -1,8 +1,9 @@
-package mc322.trilhadagloria.monarch;
+package mc322.trilhadagloria.carta;
 
 import java.util.ArrayList;
 
 import mc322.trilhadagloria.field.Terreno;
+import mc322.trilhadagloria.monarch.HabilidadeEspecial;
 
 public class Bardo extends Heroi implements HabilidadeEspecial {
 	ArrayList<Efeito> efeitosModificados;

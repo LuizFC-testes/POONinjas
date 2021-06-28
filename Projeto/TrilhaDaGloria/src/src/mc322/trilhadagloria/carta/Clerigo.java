@@ -1,19 +1,18 @@
-package mc322.trilhadagloria.monarch;
+package mc322.trilhadagloria.carta;
 
-public class Ladino extends Heroi {
+public class Clerigo extends Heroi {
 
-	public Ladino(int id, Dominio dominio) {
+	public Clerigo(int id, Dominio dominio) {
 		super(id, dominio);
 		
-		forca = new int[] {100, 0};
-		resistencia = new int[] {130,120};
+		forca = new int[] {120, 0};
+		resistencia = new int[] {120,120};
 		alcance = 0;
 	}
 
-	
 	@Override
 	public String getClasse() {
-		return "Ladino";
+		return "Clerigo";
 	}
 
 
@@ -27,4 +26,5 @@ public class Ladino extends Heroi {
 	public String getHabAt() {
 		return "Não possui.";
 	}
+
 }

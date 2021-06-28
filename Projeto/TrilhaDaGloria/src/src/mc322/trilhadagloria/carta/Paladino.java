@@ -1,4 +1,4 @@
-package mc322.trilhadagloria.monarch;
+package mc322.trilhadagloria.carta;
 
 import java.util.ArrayList;
 

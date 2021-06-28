@@ -2,6 +2,9 @@ package mc322.trilhadagloria.monarch;
 
 import java.awt.Color;
 
+import mc322.trilhadagloria.carta.Carta;
+import mc322.trilhadagloria.carta.Deck;
+import mc322.trilhadagloria.carta.GrupoCartas;
 import mc322.trilhadagloria.exceptions.EmptyDeckException;
 import mc322.trilhadagloria.exceptions.GameExceptions;
 import mc322.trilhadagloria.exceptions.NotEnoughManaException;
@@ -115,5 +118,24 @@ public class Monarca implements IMonarca{
 
 	public Color getColor() {
 		return cor;
+	}
+
+	@Override
+	public void sacrificarCarta(int cartaId) {
+		Carta c = mao.buscarCartaPorId(cartaId);
+		
+		if(mao.removerCarta(c)) {
+			enviarCemiterio(c);
+			mana++;
+		}
+	}
+
+	@Override
+	public void invocarCarta(int cartaId, int[] posTabuleiro) throws NotEnoughManaException, GameExceptions {
+		Carta c = mao.buscarCartaPorId(cartaId);
+		
+		Terreno t = tabuleiro.getTerreno(posTabuleiro[0], posTabuleiro[1]);
+		
+		invocarCarta(c, t);
 	}
 }

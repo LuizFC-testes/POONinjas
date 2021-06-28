@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
-import mc322.trilhadagloria.monarch.IStatusHeroi;
+import mc322.trilhadagloria.carta.IStatusHeroi;
 
 
 public class PainelCartaEst extends JLayeredPane implements IRStatusHeroi {

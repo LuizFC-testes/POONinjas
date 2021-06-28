@@ -3,6 +3,10 @@ package mc322.trilhadagloria.gui.painelCartas;
 import javax.swing.JFrame;
 import java.awt.Container;
 import javax.swing.JScrollPane;
+
+import mc322.trilhadagloria.carta.Barbaro;
+import mc322.trilhadagloria.carta.Dominio;
+import mc322.trilhadagloria.carta.Heroi;
 import mc322.trilhadagloria.monarch.*;
 
 public class TestePainelCarta {
