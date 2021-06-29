@@ -36,17 +36,17 @@ public class GeradorClient {
 //		control.conecta(view);
 		
 		// Conecta battle
-		battle.conecta(tabuleiro);
+//		battle.conecta(tabuleiro);
 		
 		// Conecta tabuleiro
 //		tabuleiro.conecta(view);
 //		tabuleiro.conecta(tabView);
 		
 		// Conecta monarca
-		player.connect(tabuleiro);
-		player.conecta(null, null);
-		inimigo.connect(tabuleiro);
-		inimigo.conecta(null, null);
+//		player.connect(tabuleiro);
+//		player.conecta(null, null);
+//		inimigo.connect(tabuleiro);
+//		inimigo.conecta(null, null);
 		
 		
 		return control;

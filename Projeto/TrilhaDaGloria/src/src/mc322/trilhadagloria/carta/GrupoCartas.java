@@ -1,7 +1,11 @@
 package mc322.trilhadagloria.carta;
 
+import java.awt.Container;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+
+import mc322.trilhadagloria.gui.painelCartas.PainelCartaEst;
 import mc322.trilhadagloria.gui.telaPrinc.ITableCartas;
 
 public class GrupoCartas implements IRTableCartas {
@@ -49,5 +53,23 @@ public class GrupoCartas implements IRTableCartas {
 	
 	public void conecta(ITableCartas view) {
 		this.view = view;
+	}
+	
+	public void imprimir() {
+		for(Carta c : cartas) {
+			System.out.println("Classe: " + c.getClass() + "\tDominio: " + c.dominio.toString());
+			
+			JFrame frame = new JFrame("Heroi");
+			frame.setSize(650, 900);
+			frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			Container pane = frame.getContentPane();
+			pane.setLayout(null);
+			
+			PainelCartaEst carta = new PainelCartaEst();
+			carta.connectHeroi((Heroi)c);
+			carta.gerarCarta();
+			pane.add(carta);
+			frame.setVisible(true);
+		}
 	}
 }

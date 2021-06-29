@@ -1,9 +1,14 @@
 package mc322.trilhadagloria.carta;
 
+import java.awt.Container;
 import java.util.ArrayList;
+
+import javax.swing.JFrame;
+
 import mc322.trilhadagloria.exceptions.EmptyDeckException;
-import mc322.trilhadagloria.monarch.Monarca;
+import mc322.trilhadagloria.gui.painelCartas.PainelCartaEst;
 import mc322.trilhadagloria.gui.telaPrinc.ICardCount;
+import mc322.trilhadagloria.monarch.Monarca;
 
 public class Deck extends GrupoCartas {
 	
@@ -17,7 +22,7 @@ public class Deck extends GrupoCartas {
 		if(cartas.size() <= 0) {
 			throw new EmptyDeckException("Nao foi possivel comprar carta do deck");
 		}
-		deckV.reduzirContador();
+//		deckV.reduzirContador();
 		return cartas.remove(0);
 	}
 	

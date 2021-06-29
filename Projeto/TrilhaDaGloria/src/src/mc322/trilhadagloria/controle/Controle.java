@@ -194,13 +194,6 @@ public class Controle implements IControle {
 		remote.fimDeJogo();
 	}
 
-
-
-
-
-
-
-
 	public void mensagemRemota(Mensagem msg) {
 		if(!suaVez) {
 			switch(msg.command) {
@@ -228,6 +221,22 @@ public class Controle implements IControle {
 
 	private void sacrificarCarta(int cartaId) {
 		inimigo.sacrificarCarta(cartaId);
+	}
+
+	public void mostrarDeck(int i) {
+		if(i == 0) {
+			player.mostrarDeck();
+		} else {
+			inimigo.mostrarDeck();
+		}
+	}
+
+	public void mostrarMao(int i) {
+		if(i == 0) {
+			player.mostrarMao();
+		} else {
+			inimigo.mostrarMao();
+		}
 	}
 
 

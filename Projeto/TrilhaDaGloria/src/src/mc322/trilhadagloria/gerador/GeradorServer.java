@@ -18,8 +18,8 @@ public class GeradorServer {
 	
 	public GeradorServer() {
 		// Gerar decks
-		deckPlayer0 = gerarDeck(30,0,0);
-		deckPlayer1 = gerarDeck(30,0,0);
+		deckPlayer0 = gerarDeck(6,0,0);
+		deckPlayer1 = gerarDeck(6,0,0);
 		
 		// Gerar terrenos
 		tabuleiro = new String[Tabuleiro.MAPSIZE][Tabuleiro.MAPSIZE];
@@ -138,7 +138,7 @@ public class GeradorServer {
 			return "VULCANICO";
 		// Montanha
 		else if(p >= 63 && p < 76)
-			return "MONTANHA";
+			return "MONTANHAS";
 		// Planicie
 		else if(p >= 76 && p < 86)
 			return "PLANICIE";

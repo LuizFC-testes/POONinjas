@@ -79,6 +79,10 @@ public class TrilhaDaGloriaClient implements IRemoteEnemy {
 		
 		conectado = false;
 	}
+	
+	public void mostrarDeck(int i) {
+		control.mostrarDeck(i);
+	}
 
 	/**
 	 * Função main
@@ -88,21 +92,23 @@ public class TrilhaDaGloriaClient implements IRemoteEnemy {
 	public static void main(String args[]) {
 		String address;
 		String port;
+		Scanner teclado = new Scanner(System.in);
+
 		
 		// Verifica se argumentos foram informados corretamente
 		if(args.length == 2) {
 			address = args[0];
 			port = args[1];
 		} else {
-			Scanner teclado = new Scanner(System.in);
 			
+
 			System.out.print("Endereço do servidor: ");
 			address = teclado.nextLine();
 
 			System.out.print("Porta do servidor: ");
 			port = teclado.nextLine();
+
 			
-			teclado.close();
 		}
 		
 		// Inicia cliente no endereço especificado
@@ -110,6 +116,32 @@ public class TrilhaDaGloriaClient implements IRemoteEnemy {
 		client.connectToServer(address, Integer.parseInt(port));
 		
 		// Evita desconexão do cliente durante desenvolvimento
-		while(client.conectado);
+		while(client.conectado) {
+			System.out.print("--> ");
+			String cmd = teclado.nextLine();
+			
+
+			
+			switch(cmd) {
+			case "deck":
+				client.mostrarDeck(0);
+				break;
+			case "deck inimigo":
+				client.mostrarDeck(1);
+				break;
+			case "mao":
+				client.mostrarMao(0);
+				break;
+			case "mao inimigo":
+				client.mostrarMao(1);
+				break;
+			}
+		}
+		
+		teclado.close();
+	}
+
+	private void mostrarMao(int i) {
+		control.mostrarMao(i);
 	}
 }

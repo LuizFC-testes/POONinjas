@@ -144,4 +144,14 @@ public class Monarca implements IMonarca{
 		((IRTableCartas)mao).conecta(mao);
 		((IRTableCartas)cemiterio).conecta(cemiterio);
 	}
+
+	@Override
+	public void mostrarDeck() {
+		deck.imprimir();
+	}
+
+	@Override
+	public void mostrarMao() {
+		mao.imprimir();
+	}
 }

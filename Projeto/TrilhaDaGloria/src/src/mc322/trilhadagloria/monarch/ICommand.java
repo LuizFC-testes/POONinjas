@@ -18,4 +18,8 @@ public interface ICommand {
 	public void sacrificarCarta(int cartaId);
 
 	public void invocarCarta(int cartaId, int[] posTabuleiro) throws NotEnoughManaException, GameExceptions;
+
+	public void mostrarDeck();
+
+	public void mostrarMao();
 }
