@@ -7,6 +7,7 @@ import mc322.trilhadagloria.exceptions.GameExceptions;
 import mc322.trilhadagloria.field.IFieldControl;
 import mc322.trilhadagloria.field.Terreno;
 import mc322.trilhadagloria.gui.IViewControl;
+import mc322.trilhadagloria.gui.telaPrinc.ITabConnect;
 import mc322.trilhadagloria.monarch.ICommand;
 import mc322.trilhadagloria.serverclient.IRemoteEnemy;
 import mc322.trilhadagloria.serverclient.Mensagem;
@@ -18,6 +19,7 @@ public class Controle implements IControle {
 	private IRemoteEnemy remote;
 	private IFieldControl tabuleiro;
 	private IViewControl view;
+	private ITabConnect viewTab;
 	private int playerId;
 	private int inimigoId;
 	private boolean suaVez;
@@ -42,6 +44,10 @@ public class Controle implements IControle {
 	@Override
 	public void conecta(IBattle battle) {
 		this.battle = battle;
+	}
+	
+	public void conecta(ITabConnect view) {
+		viewTab = view;
 	}
 
 	@Override
@@ -153,12 +159,12 @@ public class Controle implements IControle {
 		}
 	}
 	
-	private void invocarCarta(int cartaId, int[] posTabuleiro) {
-		try {
-			inimigo.invocarCarta(cartaId, posTabuleiro);
-		} catch (GameExceptions e) {
-			System.err.println("*** Erro ao invocar carta: " + e.getMessage());
-		}
+	public void invocarCarta(int cartaId, int[] posTabuleiro) {
+			try {
+				player.invocarCarta(cartaId, posTabuleiro);
+			} catch (GameExceptions e) {
+				System.err.println("*** Erro ao invocar carta: " + e.getMessage());
+			}
 	}
 
 
@@ -239,8 +245,12 @@ public class Controle implements IControle {
 		}
 	}
 
+	public void mostrarTabuleiro() {
+		viewTab.mostrar(playerId);
+	}
 
-
-
+	public ITabConnect getTabView() {
+		return viewTab;
+	}
 
 }

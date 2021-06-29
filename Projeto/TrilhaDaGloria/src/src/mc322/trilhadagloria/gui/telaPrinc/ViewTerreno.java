@@ -22,7 +22,16 @@ public class ViewTerreno extends JLayeredPane implements IViewTerreno {
         String bioma = bio + ".png";
         ImgAjust imgBio = new ImgAjust(bioma);
         imgBio.redimensionar(100, 100);
-        add(new JLabel(imgBio), DEFAULT_LAYER);
+        
+        JLabel jl = new JLabel(imgBio);
+        
+        jl.setLocation(0,0);
+        jl.setSize(100, 100);
+        
+        
+        add(jl, DEFAULT_LAYER);
+        
+        
     }
 
     public void adicionarCartaAcima(IStatusCarta carta) {

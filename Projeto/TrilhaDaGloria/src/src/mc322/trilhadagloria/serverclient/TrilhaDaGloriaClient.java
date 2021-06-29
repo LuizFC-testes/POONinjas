@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 import mc322.trilhadagloria.controle.Controle;
 import mc322.trilhadagloria.gerador.GeradorClient;
+import mc322.trilhadagloria.gui.telaPrinc.FrameExpTab;
+import mc322.trilhadagloria.gui.telaPrinc.ITabConnect;
+import mc322.trilhadagloria.gui.telaPrinc.TabView;
 
 /**
  * Classe Cliente de Trilha da Glória
@@ -100,15 +103,11 @@ public class TrilhaDaGloriaClient implements IRemoteEnemy {
 			address = args[0];
 			port = args[1];
 		} else {
-			
-
 			System.out.print("Endereço do servidor: ");
 			address = teclado.nextLine();
 
 			System.out.print("Porta do servidor: ");
 			port = teclado.nextLine();
-
-			
 		}
 		
 		// Inicia cliente no endereço especificado
@@ -119,8 +118,6 @@ public class TrilhaDaGloriaClient implements IRemoteEnemy {
 		while(client.conectado) {
 			System.out.print("--> ");
 			String cmd = teclado.nextLine();
-			
-
 			
 			switch(cmd) {
 			case "deck":
@@ -135,10 +132,17 @@ public class TrilhaDaGloriaClient implements IRemoteEnemy {
 			case "mao inimigo":
 				client.mostrarMao(1);
 				break;
+			case "tabuleiro":
+				client.mostrarTabuleiro();
+				break;
 			}
 		}
 		
 		teclado.close();
+	}
+
+	private void mostrarTabuleiro() {
+		control.mostrarTabuleiro();
 	}
 
 	private void mostrarMao(int i) {

@@ -57,7 +57,7 @@ public class GrupoCartas implements IRTableCartas {
 	
 	public void imprimir() {
 		for(Carta c : cartas) {
-			System.out.println("Classe: " + c.getClass() + "\tDominio: " + c.dominio.toString());
+			System.out.println("[" + c.getId() + "] Classe: " + c.getClass().getSimpleName() + "\tDominio: " + c.dominio.toString());
 			
 			JFrame frame = new JFrame("Heroi");
 			frame.setSize(650, 900);

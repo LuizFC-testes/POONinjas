@@ -22,4 +22,8 @@ public class TabView extends JPanel implements ITabConnect {
     public IViewTerreno getViewTerreno(int x, int y) {
     	return terrenos[x][y];
     }
+    
+    public void mostrar(int playerId) {
+    	new FrameExpTab(this, playerId);
+    }
 }
