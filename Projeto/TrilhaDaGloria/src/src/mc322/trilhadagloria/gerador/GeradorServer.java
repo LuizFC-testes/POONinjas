@@ -18,8 +18,8 @@ public class GeradorServer {
 	
 	public GeradorServer() {
 		// Gerar decks
-		deckPlayer0 = gerarDeck(6,0,0);
-		deckPlayer1 = gerarDeck(6,0,0);
+		deckPlayer0 = gerarDeck(10,0,0);
+		deckPlayer1 = gerarDeck(10,0,0);
 		
 		// Gerar terrenos
 		tabuleiro = new String[Tabuleiro.MAPSIZE][Tabuleiro.MAPSIZE];
