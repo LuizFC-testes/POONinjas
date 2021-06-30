@@ -16,7 +16,7 @@ Leia o [manual](Regras/Manual.md) para mais informações sobre as regras do jog
 * Neste [video](assets/apresentacao-video.mp4), é apresentado a proposta do jogo, as regras e mecânicas básicas e um primeiro modelo simples da arquitetura do jogo.
 
 ## Vídeo do Jogo
-* Neste [video](assets/apresentacao-final.mp4), é apresentado brevement o funcionamento do jogo.
+* Neste [video](assets/apresentacao.mp4), é apresentado brevement o funcionamento do jogo.
 
 # Slides do Projeto
 
